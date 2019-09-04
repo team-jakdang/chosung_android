@@ -1,4 +1,4 @@
-package com.wlswnwns.chosung_android.nikname
+package com.wlswnwns.chosung_android.nickname
 
 
 // MVP 에서
@@ -15,7 +15,7 @@ package com.wlswnwns.chosung_android.nikname
 // 닉네임이 10글자를 넘지 않으면 확인 버튼읋 활성화해줍니다
 // 확인 버튼을 누르면 메인 프레그먼트를 띄워줍니다
 
-interface NikNameContract{
+interface NickNameContract{
 
     interface View{
 

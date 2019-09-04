@@ -1,15 +1,15 @@
-package com.wlswnwns.chosung_android.nikname
+package com.wlswnwns.chosung_android.nickname
 
-class NikNamePresenter(view : NikNameContract.View) : NikNameContract.Presenter{
+class NickNamePresenter(view : NickNameContract.View) : NickNameContract.Presenter{
 
 
 
-    var view : NikNameContract.View
-    var model : NikNameModel
+    var view : NickNameContract.View
+    var model : NickNameModel
 
     init {
         this.view = view
-        this.model = NikNameModel()
+        this.model = NickNameModel()
 
     }
 

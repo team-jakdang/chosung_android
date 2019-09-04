@@ -1,7 +1,5 @@
-package com.wlswnwns.chosung_android.nikname
+package com.wlswnwns.chosung_android.nickname
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,26 +10,26 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.wlswnwns.chosung_android.R
-import kotlinx.android.synthetic.main.layout_nikname.*
+import kotlinx.android.synthetic.main.layout_nickname.*
 
 
-class NikNameFragment : Fragment(), NikNameContract.View {
+class NickNameFragment : Fragment(), NickNameContract.View {
 
 
-    var presenter: NikNameContract.Presenter? = null
+    var presenter: NickNameContract.Presenter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.layout_nikname, container, false)
+        return inflater.inflate(R.layout.layout_nickname, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter = NikNamePresenter(this)
+        presenter = NickNamePresenter(this)
         presenter?.viewDidLoad()
 
     }
@@ -75,7 +73,7 @@ class NikNameFragment : Fragment(), NikNameContract.View {
 
     override fun MoveMainFragment() {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            NikNameFragmentDirections.actionNikNameFragmentToMainFragment(presenter?.getStrNikName() ?: "")
+            NickNameFragmentDirections.actionNickNameFragmentToMainFragment(presenter?.getStrNikName() ?: "")
         )
     }
 

@@ -6,8 +6,8 @@
 
 
     <!--닉네임-->
-    <string name="nikname_hint">닉네임을 입력해주세요</string>
-    <string name="nikname_confirm_btn">확인</string>
+    <string name="nickname_hint">닉네임을 입력해주세요</string>
+    <string name="nickname_confirm_btn">확인</string>
 
 
 </resources>

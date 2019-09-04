@@ -49,7 +49,7 @@
 
     <EditText
             android:id="@+id/NikNameEditTextView"
-            android:hint="@string/nikname_hint"
+            android:hint="@string/nickname_hint"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toRightOf="@+id/LeftGuideLine"
@@ -68,7 +68,7 @@
             app:layout_constraintRight_toLeftOf="@+id/RightGuideLine"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.1"
-            android:text="@string/nikname_confirm_btn"/>
+            android:text="@string/nickname_confirm_btn"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
