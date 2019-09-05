@@ -9,5 +9,9 @@
     <string name="nickname_hint">닉네임을 입력해주세요</string>
     <string name="nickname_confirm_btn">확인</string>
 
+    <!--메인화면-->
+    <string name="main_create_room_btn">방 만들기</string>
+    <string name="main_search_room_btn">방 찾기</string>
+
 
 </resources>

@@ -37,7 +37,7 @@ class MainFragment : Fragment(), MainContract.View {
 
     override fun viewInit() {
         // 훈민정음 버튼 클릭이벤트
-        HunminGameBtnView.setOnClickListener { MoveHunminGameFragment() }
+        CreateRoomBtn.setOnClickListener { MoveHunminGameFragment() }
 
 
     }
