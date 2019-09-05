@@ -6,7 +6,7 @@ interface HunminGameRankingContract {
     interface  View {
 
         // 뷰 초기화
-        fun viewInit()
+        fun viewInit() 
     }
 
     interface Presenter{

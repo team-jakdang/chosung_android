@@ -7,7 +7,7 @@ class HunminGameRankingPresenter(view: HunminGameRankingContract.View) : HunminG
 
     var view: HunminGameRankingContract.View
     var model: HunminGameRankingModel
-
+ 
     // 생성자
     init {
         this.view = view

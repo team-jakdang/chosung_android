@@ -19,7 +19,7 @@
                 android:layout_marginTop="32dp"
                 app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="8dp"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginBottom="29dp" app:layout_constraintBottom_toTopOf="@+id/GameLogRecyclerView"
+                android:layout_marginBottom="32dp" app:layout_constraintBottom_toTopOf="@+id/GameLogRecyclerView"
                 app:layout_constraintEnd_toStartOf="@+id/ChosungTextView" android:layout_marginEnd="16dp"/>
         <TextView
                 android:layout_width="0dp"

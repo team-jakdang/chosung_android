@@ -11,7 +11,7 @@ class HunminGameRankingFragment : Fragment(), HunminGameRankingContract.View {
 
     var presenter: HunminGameRankingContract.Presenter? = null
 
-    override fun onCreateView(
+    override fun onCreateView( 
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
