@@ -9,9 +9,17 @@
     <string name="nickname_hint">닉네임을 입력해주세요</string>
     <string name="nickname_confirm_btn">확인</string>
 
+
     <!--메인화면-->
     <string name="main_create_room_btn">방 만들기</string>
     <string name="main_search_room_btn">방 찾기</string>
+
+    <!--훈민정음 게임-->
+    <string name="hunminGame_hint">단어를 입력해주세요</string>
+    <string name="hunminGame_answer">정답입니다</string>
+    <string name="hunminGame_wrong">제시한 초성과 다른 단어입니다</string>
+
+
 
 
 </resources>
