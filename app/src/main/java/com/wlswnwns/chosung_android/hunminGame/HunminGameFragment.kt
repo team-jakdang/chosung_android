@@ -10,10 +10,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.wlswnwns.chosung_android.R
 import kotlinx.android.synthetic.main.layout_hunmingame.*
 
 class HunminGameFragment : Fragment(), HunminGameContract.View {
+
 
 
     var presenter: HunminGameContract.Presenter? = null
@@ -60,6 +62,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
         // 유저가 키보드에 있는 완료 버튼을 누르면 답이 맞는지 체크하는 'presenter'의  checkUserInputTextIsAnswer() 호출
         UserInputEditTextView.setOnEditorActionListener {v, actionId, event ->
             presenter?.checkUserInputTextIsAnswer()
+//            presenter?.listViewGameLog()
             true
         }
 
@@ -105,5 +108,12 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
         UserInputEditTextView.isVisible = true
         WrongImageView.isVisible = true
     }
+
+    override fun listViewGameLogs(arg : ArrayList<Any>) {
+//        GameLogRecyclerView.set
+    }
+
+
+
 
 }
