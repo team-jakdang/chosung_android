@@ -5,12 +5,9 @@
       <config />
     </shared>
   </component>
-  <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="8b3396bb-4b5c-4e75-a52b-b02d990c09db" name="Default Changelist" comment="">
+<<<<<<< Updated upstream
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/wlswnwns/chosung_android/hunminGameRanking/HunminGameRankingContract.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/wlswnwns/chosung_android/hunminGameRanking/HunminGameRankingFragment.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/wlswnwns/chosung_android/hunminGameRanking/HunminGameRankingModel.kt" afterDir="false" />
@@ -33,6 +30,10 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/wlswnwns/chosung_android/hunminGame/HunminGameModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/wlswnwns/chosung_android/hunminGame/HunminGameModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/wlswnwns/chosung_android/hunminGame/HunminGamePresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/wlswnwns/chosung_android/hunminGame/HunminGamePresenter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_hunmingame.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_hunmingame.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,6 +55,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< Updated upstream
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wlswnwns/chosung_android/hunminGameRanking/HunminGameRankingContract.kt">
           <provider selected="true" editor-type-id="text-editor">
@@ -78,12 +80,29 @@
           <provider editor-type-id="text-editor">
             <state relative-caret-position="510">
               <caret line="34" column="10" lean-forward="true" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wlswnwns/chosung_android/hunminGame/HunminGameModel.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/layout_hunmingame.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="-471">
+              <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
+>>>>>>> Stashed changes
             </state>
           </provider>
           <provider selected="true" editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< Updated upstream
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wlswnwns/chosung_android/hunminGame/HunminGameModel.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
@@ -107,12 +126,19 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="716">
               <caret line="60" selection-start-line="60" selection-end-line="60" />
+=======
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wlswnwns/chosung_android/hunminGame/HunminGameContract.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="55" column="5" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+<<<<<<< Updated upstream
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -126,6 +152,8 @@
       </list>
     </option>
   </component>
+=======
+>>>>>>> Stashed changes
   <component name="FindInProjectRecents">
     <findStrings>
       <find>app:def</find>
@@ -145,6 +173,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+<<<<<<< Updated upstream
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="hunminGame" />
@@ -163,6 +192,8 @@
         </map>
       </branch-storage>
     </favorite-branches>
+=======
+>>>>>>> Stashed changes
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -193,10 +224,18 @@
       </list>
     </option>
   </component>
+<<<<<<< Updated upstream
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="x" value="1680" />
     <option name="width" value="1920" />
     <option name="height" value="1080" />
+=======
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1680" />
+    <option name="y" value="23" />
+    <option name="width" value="1878" />
+    <option name="height" value="1057" />
+>>>>>>> Stashed changes
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -205,6 +244,7 @@
     <panes>
       <pane id="PackagesPane" />
       <pane id="Scope" />
+<<<<<<< Updated upstream
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -227,11 +267,15 @@
           <select />
         </subPane>
       </pane>
+=======
+      <pane id="ProjectPane" />
+>>>>>>> Stashed changes
       <pane id="AndroidView">
         <subPane>
           <expand>
             <path>
               <item name="chosung_android" type="1abcf292:AndroidViewProjectNode" />
+<<<<<<< Updated upstream
               <item name="app" type="feadf853:AndroidModuleNode" />
             </path>
             <path>
@@ -331,6 +375,10 @@
               <item name="chosung_android" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
+=======
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+            </path>
+>>>>>>> Stashed changes
           </expand>
           <select />
         </subPane>
@@ -339,7 +387,6 @@
   </component>
   <component name="PropertiesComponent">
     <property name="device.picker.selection" value="21db1d0cb20c7ece" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -446,11 +493,21 @@
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
       <updated>1567671753850</updated>
+<<<<<<< Updated upstream
+=======
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="1. 훈민정음 랭킹 UI 추가&#10;2. 훈민정음 게임 UI 수정 (로그창 추가)">
+      <created>1567702411696</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1567702411696</updated>
+>>>>>>> Stashed changes
+    </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< Updated upstream
     <frame x="1680" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
@@ -479,6 +536,12 @@
       <window_info anchor="right" id="Theme Preview" />
       <window_info anchor="right" id="Palette&#9;" />
       <window_info anchor="right" id="Preview" weight="0.30404687" />
+=======
+    <frame x="1680" y="23" width="1878" height="1057" extended-state="0" />
+    <layout>
+      <window_info id="Captures" order="0" weight="0.25" />
+      <window_info anchor="right" id="Gradle" />
+>>>>>>> Stashed changes
     </layout>
     <layout-to-restore>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20693928" />
@@ -511,6 +574,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1. 훈민정음 인터페이스 및 클래스 추가&#10;2. 메인→훈민정음 네비게이션 추가(개발을 위한 임시버튼)&#10;3. 게임 1차 UI 추가" />
     <MESSAGE value="1. 게임 2차 UI 추가&#10;2. 유저가 단어 입력했을때 텍스트 받아오기&#10;3. 유저가 단어를 입력했을때 답이 맞고 틀림에 대한 여부를 텍스트 창으로 띄우기" />
+<<<<<<< Updated upstream
     <option name="LAST_COMMIT_MESSAGE" value="1. 게임 2차 UI 추가&#10;2. 유저가 단어 입력했을때 텍스트 받아오기&#10;3. 유저가 단어를 입력했을때 답이 맞고 틀림에 대한 여부를 텍스트 창으로 띄우기" />
   </component>
   <component name="editorHistoryManager">
@@ -702,9 +766,20 @@
           <folding>
             <element signature="e#43#323#0" expanded="true" />
           </folding>
+=======
+    <MESSAGE value="1. 훈민정음 랭킹 UI 추가&#10;2. 훈민정음 게임 UI 수정 (로그창 추가)" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. 훈민정음 랭킹 UI 추가&#10;2. 훈민정음 게임 UI 수정 (로그창 추가)" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/layout_main.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wlswnwns/chosung_android/main/MainPresenter.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -791,6 +866,12 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="34" column="10" lean-forward="true" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wlswnwns/chosung_android/hunminGame/HunminGameModel.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+>>>>>>> Stashed changes
         </state>
       </provider>
       <provider selected="true" editor-type-id="android-designer2" />
