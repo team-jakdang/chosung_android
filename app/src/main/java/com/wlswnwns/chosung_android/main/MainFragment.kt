@@ -6,11 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import com.wlswnwns.chosung_android.R
 import kotlinx.android.synthetic.main.layout_main.*
 
 
-class MainFragment : Fragment(), MainContract.View {
+class MainFragment internal constructor(): Fragment(), MainContract.View {
+
+
+
+    // 이전 프레그먼트에서 전달 받아온 데이터들
+    private val args : MainFragmentArgs by navArgs()
 
 
     // presenter 선언
@@ -34,15 +40,28 @@ class MainFragment : Fragment(), MainContract.View {
 
     override fun viewInit() {
         // 훈민정음 버튼 클릭이벤트
-        HunminGameBtnView.setOnClickListener { MoveHunminGameFragment() }
+
+        CreateRoomBtn.setOnClickListener { moveWaitRoomFragment() }
+        SearchRoomBtn.setOnClickListener { moveQRCameraFragment() }
+
+
     }
 
-    // 버튼 클릭시 호출되는 메소드 (훈민정음 프레그먼트로 이동)
-    override fun MoveHunminGameFragment() {
+    override fun moveWaitRoomFragment() {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            MainFragmentDirections.actionMainFragmentToHunminGameFragment()
+
+            MainFragmentDirections.actionMainFragmentToWaitRoomFragment(args.strNickName)
         )
     }
+
+
+    override fun moveQRCameraFragment() {
+        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
+            MainFragmentDirections.actionMainFragmentToCameraFragment(args.strNickName)
+        )
+    }
+
+
 
 
 }

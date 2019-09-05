@@ -1,4 +1,4 @@
-package com.wlswnwns.chosung_android.qrcamera;
+package com.wlswnwns.chosung_android.qrcamera.View;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -18,6 +18,7 @@ import android.view.Surface;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import me.dm7.barcodescanner.zbar.ZBarScannerView;
 import net.sourceforge.zbar.Config;
 import net.sourceforge.zbar.Image;
 import net.sourceforge.zbar.ImageScanner;
@@ -39,7 +40,7 @@ public class MyZBarScannerView extends MyBarcodeScannerView {
     private static final String TAG = "ZBarScannerView";
 
     public interface ResultHandler {
-        public void handleResult(Result rawResult, byte[] imageData);
+        public void handleResult(Result rawResult);
     }
 
     static {
@@ -49,7 +50,7 @@ public class MyZBarScannerView extends MyBarcodeScannerView {
     private ImageScanner mScanner;
     private List<BarcodeFormat> mFormats;
     private ResultHandler mResultHandler;
-    private com.wlswnwns.chosung_android.qrcamera.Camera.Presenter presenter;
+    public com.wlswnwns.chosung_android.qrcamera.CameraContract.Presenter presenter;
     private File mFile;
     private byte[] mImageData;
     private Camera mCamera;
@@ -76,7 +77,7 @@ public class MyZBarScannerView extends MyBarcodeScannerView {
         this.appCompatActivity = appCompatActivity;
     }
 
-    public void setPresenter(com.wlswnwns.chosung_android.qrcamera.Camera.Presenter presenter) {
+    public void setPresenter(com.wlswnwns.chosung_android.qrcamera.CameraContract.Presenter presenter) {
         this.presenter = presenter;
     }
 
@@ -114,19 +115,15 @@ public class MyZBarScannerView extends MyBarcodeScannerView {
 
     @Override
     public void onPreviewFrame(byte[] data, Camera camera) {
-        if (mResultHandler == null) {
+        if(mResultHandler == null) {
             return;
         }
 
         try {
             Camera.Parameters parameters = camera.getParameters();
             Camera.Size size = parameters.getPreviewSize();
-            width = size.width;
-            height = size.height;
-
-
-            this.mImageData = data;
-            this.mCamera = camera;
+            int width = size.width;
+            int height = size.height;
 
             if (DisplayUtils.getScreenOrientation(getContext()) == Configuration.ORIENTATION_PORTRAIT) {
                 int rotationCount = getRotationCount();
@@ -138,7 +135,6 @@ public class MyZBarScannerView extends MyBarcodeScannerView {
                 data = getRotatedData(data, camera);
             }
 
-
             Rect rect = getFramingRectInPreview(width, height);
             Image barcode = new Image(width, height, "Y800");
             barcode.setData(data);
@@ -146,9 +142,7 @@ public class MyZBarScannerView extends MyBarcodeScannerView {
 
             int result = mScanner.scanImage(barcode);
 
-
             if (result != 0) {
-                //   camera.takePicture(shutterCallback, rawCallback, jpegCallback);
                 SymbolSet syms = mScanner.getResults();
                 final Result rawResult = new Result();
                 for (Symbol sym : syms) {
@@ -176,88 +170,19 @@ public class MyZBarScannerView extends MyBarcodeScannerView {
                         // Stopping the preview can take a little long.
                         // So we want to set result handler to null to discard subsequent calls to
                         // onPreviewFrame.
-
-                        byte[] currentData = null;
-
-                        if (camera != null) {
-                            Camera.Parameters parameters = camera.getParameters();
-                            int imageFormat = parameters.getPreviewFormat();
-                            Bitmap bitmap = null;
-
-                            if (imageFormat == ImageFormat.NV21) {
-                                int w = parameters.getPreviewSize().width;
-                                int h = parameters.getPreviewSize().height;
-
-                                YuvImage yuvImage = new YuvImage(mImageData, imageFormat, w, h, null);
-                                Rect rect = new Rect(0, 0, w, h);
-                                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                                yuvImage.compressToJpeg(rect, 100, outputStream);
-
-                                bitmap = BitmapFactory.decodeByteArray(outputStream.toByteArray(), 0, outputStream.size());
-                            } else if (imageFormat == ImageFormat.JPEG || imageFormat == ImageFormat.RGB_565) {
-                                bitmap = BitmapFactory.decodeByteArray(mImageData, 0, mImageData.length);
-                            }
-
-                            Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
-                            Camera.getCameraInfo(mCameraWrapper.mCameraId, cameraInfo);
-
-                            int mDisplayOrientation = appCompatActivity.getWindowManager().getDefaultDisplay().getRotation();
-
-                            //이미지를 디바이스 방향으로 회전
-                            Matrix matrix = new Matrix();
-                            matrix.postRotate(calculatePreviewOrientation(cameraInfo, mDisplayOrientation));
-                            bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
-
-
-                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                            currentData = stream.toByteArray();
-                            Log.e("Log", "onPreviewFrame");
-                        } else {
-                            Log.e("Log", "Camera is null");
-                        }
-
-
-//                        BitmapFactory.Options options = new BitmapFactory.Options();
-//                        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-//                        Bitmap bitmap = BitmapFactory.decodeByteArray(mImageData, 0, mImageData.length, options);
-//
-//                        Log.e("비트맵이 널인듯",bitmap+"");
-//
-//                        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
-//                        Camera.getCameraInfo(mCameraWrapper.mCameraId, cameraInfo);
-//
-//                        int mDisplayOrientation = appCompatActivity.getWindowManager().getDefaultDisplay().getRotation();
-//
-//                        //이미지를 디바이스 방향으로 회전
-//                        Matrix matrix = new Matrix();
-//                        matrix.postRotate(calculatePreviewOrientation(cameraInfo, mDisplayOrientation));
-//                        bitmap = Bitmap.createBitmap(bitmap, 0, 0, 1920, 1080, matrix, true);
-//
-//                        //bitmap을 byte array로 변환
-//                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//
-//                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-//                        byte[] currentData = stream.toByteArray();
-
-
                         ResultHandler tmpResultHandler = mResultHandler;
                         mResultHandler = null;
 
                         stopCameraPreview();
-
                         if (tmpResultHandler != null) {
-
-                            tmpResultHandler.handleResult(rawResult, currentData);
+                            tmpResultHandler.handleResult(rawResult);
                         }
                     }
                 });
-
-
             } else {
                 camera.setOneShotPreviewCallback(this);
             }
-        } catch (RuntimeException e) {
+        } catch(RuntimeException e) {
             // TODO: Terrible hack. It is possible that this method is invoked after camera is released.
             Log.e(TAG, e.toString(), e);
         }

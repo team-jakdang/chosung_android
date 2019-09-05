@@ -1,4 +1,4 @@
-package com.wlswnwns.chosung_android.qrcamera;
+package com.wlswnwns.chosung_android.qrcamera.View;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -14,6 +14,7 @@ import androidx.annotation.ColorInt;
 
 import com.wlswnwns.chosung_android.R;
 
+import com.wlswnwns.chosung_android.qrcamera.MyCameraHandlerThread;
 import me.dm7.barcodescanner.core.CameraPreview;
 import me.dm7.barcodescanner.core.CameraUtils;
 import me.dm7.barcodescanner.core.CameraWrapper;

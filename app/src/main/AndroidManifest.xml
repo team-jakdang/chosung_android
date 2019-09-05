@@ -29,9 +29,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-                android:name="com.wlswnwns.chosung_android.qrcamera.CameraActivity"
-                android:screenOrientation="portrait"/>
 
     </application>
 
