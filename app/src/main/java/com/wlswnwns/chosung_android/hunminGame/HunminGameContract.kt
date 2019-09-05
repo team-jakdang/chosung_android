@@ -7,7 +7,7 @@ interface HunminGameContract {
         // 뷰 초기화
         fun viewInit()
 
-        // 유저가 입력하는 단어가 3글자를 넘으면 안된다는 토스트 메세지!
+        // 유저가 입력하는 단어가 3글자를 넘으면 안된다는 토스트 메세지
         fun longUserInputText()
 
         // 제한 시간이 활성화
