@@ -11,7 +11,8 @@
               android:label="layout_main"
               tools:layout="@layout/layout_main">
         <argument android:name="strNickName" app:argType="string"/>
-        <action android:id="@+id/action_mainFragment_to_hunminGameFragment" app:destination="@id/hunminGameFragment"/>
+        <action android:id="@+id/action_mainFragment_to_cameraFragment" app:destination="@id/cameraFragment"/>
+        <action android:id="@+id/action_mainFragment_to_waitRoomFragment" app:destination="@id/waitRoomFragment"/>
     </fragment>
 
     <fragment android:id="@+id/nickNameFragment"
@@ -25,6 +26,17 @@
               tools:layout="@layout/layout_hunmingame">
         <action android:id="@+id/action_hunminGameFragment_to_mainFragment"
         />
+    </fragment>
+    <fragment android:id="@+id/cameraFragment" android:name="com.wlswnwns.chosung_android.qrcamera.CameraFragment"
+              android:label="CameraFragment">
+        <argument android:name="strNickName" app:argType="string"/>
+        <action android:id="@+id/action_cameraFragment_to_waitRoomFragment" app:destination="@id/waitRoomFragment"/>
+    </fragment>
+    <fragment android:id="@+id/waitRoomFragment" android:name="com.wlswnwns.chosung_android.waitRoom.WaitRoomFragment"
+              android:label="WaitRoomFragment">
+        <action android:id="@+id/action_waitRoomFragment_to_hunminGameFragment"
+                app:destination="@id/hunminGameFragment"/>
+        <argument android:name="strNikName" app:argType="string"/>
     </fragment>
 
 

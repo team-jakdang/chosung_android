@@ -8,7 +8,12 @@ interface MainContract {
 
 //        fun hunminGameBtn()
 
-        fun MoveHunminGameFragment()
+
+        // 대기방으로 이동합니다
+        fun moveWaitRoomFragment()
+
+        // QR카메라를 띄워줍니다
+        fun moveQRCameraFragment()
     }
 
 

@@ -15,6 +15,7 @@ class NickNamePresenter(view : NickNameContract.View) : NickNameContract.Present
 
     override fun viewDidLoad() {
         view.viewInit()
+        view.requestPermission()
     }
 
     override fun setStrNikName(nikname: String) {
@@ -26,7 +27,12 @@ class NickNamePresenter(view : NickNameContract.View) : NickNameContract.Present
 
     override fun checkNikNameLength() {
 
-        if(model.strUserNikName.length <= 10) view.confirmBtnActive() else view.confirmBtnUnActive(); view.longNikName()
+        if(model.strUserNikName.length <= 10) {
+            view.confirmBtnActive()
+        } else {
+            view.confirmBtnUnActive()
+            view.longNikName()
+        }
     }
 
 }

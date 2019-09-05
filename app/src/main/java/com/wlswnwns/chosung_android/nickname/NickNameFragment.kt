@@ -1,5 +1,6 @@
 package com.wlswnwns.chosung_android.nickname
 
+import android.Manifest
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
+import com.google.android.material.snackbar.Snackbar
+import com.tbruyelle.rxpermissions2.RxPermissions
 import com.wlswnwns.chosung_android.R
 import kotlinx.android.synthetic.main.layout_nickname.*
 
@@ -52,7 +55,7 @@ class NickNameFragment : Fragment(), NickNameContract.View {
 
         })
 
-        ConfirmBtnView.setOnClickListener { MoveMainFragment() }
+        ConfirmBtnView.setOnClickListener { moveMainFragment() }
 
     }
 
@@ -71,10 +74,26 @@ class NickNameFragment : Fragment(), NickNameContract.View {
         ConfirmBtnView.isEnabled = false
     }
 
-    override fun MoveMainFragment() {
+    override fun moveMainFragment() {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
             NickNameFragmentDirections.actionNickNameFragmentToMainFragment(presenter?.getStrNikName() ?: "")
         )
+    }
+
+    override fun requestPermission() {
+
+        RxPermissions(this).let {
+            it.requestEach(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe { permission ->
+                    if (permission.granted) {
+
+                    } else if (permission.shouldShowRequestPermissionRationale) {
+
+                    } else {
+
+                    }
+                }
+        }
     }
 
 }

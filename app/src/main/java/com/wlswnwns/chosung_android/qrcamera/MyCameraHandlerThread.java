@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 
+import com.wlswnwns.chosung_android.qrcamera.View.MyBarcodeScannerView;
+import me.dm7.barcodescanner.core.CameraHandlerThread;
 import me.dm7.barcodescanner.core.CameraUtils;
 import me.dm7.barcodescanner.core.CameraWrapper;
 
@@ -20,6 +22,7 @@ public class MyCameraHandlerThread extends HandlerThread {
         mScannerView = scannerView;
         start();
     }
+
 
     public void startCamera(final int cameraId) {
         Handler localHandler = new Handler(getLooper());
