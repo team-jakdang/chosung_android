@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TODO: Update blank fragment layout -->
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".main.MainFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/LeftGuideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.2"/>
+
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/RightGuideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8"/>
+
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/CenterGulideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"/>
+
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ImageTopGuideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.2"/>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ImageBottomGuideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.55"/>
+
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ButtonTopGuideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.60"/>
+
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ButtonBottomGuideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.9"/>
+
+
+    <ImageView
+            android:id="@+id/LogoImageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toRightOf="@+id/LeftGuideLine"
+            app:layout_constraintTop_toBottomOf="@+id/ImageTopGuideLine"
+            app:layout_constraintRight_toLeftOf="@+id/RightGuideLine"
+            app:layout_constraintBottom_toTopOf="@+id/ImageBottomGuideLine"
+            android:src="@drawable/img_person"/>
+
+
+    <Button
+            android:text="@string/main_create_room_btn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/CreateRoomBtn"
+            app:layout_constraintBottom_toTopOf="@+id/ButtonBottomGuideLine"
+            app:layout_constraintTop_toBottomOf="@+id/ButtonTopGuideLine"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/CenterGulideLine"/>
+
+
+
+    <Button
+            android:text="@string/main_search_room_btn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/SearchRoomBtn"
+            app:layout_constraintBottom_toTopOf="@+id/ButtonBottomGuideLine"
+            app:layout_constraintTop_toBottomOf="@+id/ButtonTopGuideLine"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/CenterGulideLine"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
