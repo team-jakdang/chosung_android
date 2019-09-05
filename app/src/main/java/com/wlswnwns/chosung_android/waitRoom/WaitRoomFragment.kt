@@ -18,6 +18,8 @@ class WaitRoomFragment : Fragment(),WaitRoomContract.View{
 
     private val args : WaitRoomFragmentArgs by navArgs()
 
+    var presenter : WaitRoomContract.Presenter? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +31,9 @@ class WaitRoomFragment : Fragment(),WaitRoomContract.View{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        presenter = WaitRoomPresenter(this)
+        presenter?.viewDidLoad()
 
     }
 
