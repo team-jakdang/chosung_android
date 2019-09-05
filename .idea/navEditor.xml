@@ -8,13 +8,34 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="hunminGameFragment">
+                  <entry key="cameraFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
                             <option name="x" value="500" />
-                            <option name="y" value="12" />
+                            <option name="y" value="368" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_cameraFragment_to_waitRoomFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="hunminGameFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="985" />
+                            <option name="y" value="109" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -35,12 +56,17 @@
                         <option name="myPosition">
                           <Point>
                             <option name="x" value="256" />
-                            <option name="y" value="12" />
+                            <option name="y" value="54" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_mainFragment_to_hunminGameFragment">
+                            <entry key="action_mainFragment_to_cameraFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_mainFragment_to_waitRoomFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -56,12 +82,33 @@
                         <option name="myPosition">
                           <Point>
                             <option name="x" value="12" />
-                            <option name="y" value="12" />
+                            <option name="y" value="54" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
                             <entry key="action_nickNameFragment_to_mainFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="waitRoomFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="546" />
+                            <option name="y" value="-34" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_waitRoomFragment_to_hunminGameFragment">
                               <value>
                                 <LayoutPositions />
                               </value>

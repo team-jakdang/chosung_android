@@ -32,7 +32,10 @@ interface NickNameContract{
         fun confirmBtnUnActive()
 
         // 메인 프레그먼트를 띄워줍니다
-        fun MoveMainFragment()
+        fun moveMainFragment()
+
+        // 어플에 필요한 권한을 요청합니다
+        fun requestPermission()
 
 
     }

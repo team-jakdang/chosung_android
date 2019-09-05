@@ -18,8 +18,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.frontec.inventoryapp.Camera.View.AutoFitTextureView
-        android:id="@+id/texture"
+    <com.wlswnwns.chosung_android.qrcamera.View.MyZBarScannerView
+        android:id="@+id/scannerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -15,6 +15,7 @@ class NickNamePresenter(view : NickNameContract.View) : NickNameContract.Present
 
     override fun viewDidLoad() {
         view.viewInit()
+        view.requestPermission()
     }
 
     override fun setStrNikName(nikname: String) {
