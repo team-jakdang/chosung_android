@@ -2,16 +2,9 @@
 <FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-<<<<<<< HEAD
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".hunminGame.HunminGameFragment" android:id="@+id/frameLayout">
-=======
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-       android:layout_height="match_parent"
-        tools:context=".hunminGame.HunminGameFragment">
->>>>>>> kungkungdda
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
