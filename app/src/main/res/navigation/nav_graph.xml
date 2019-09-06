@@ -37,7 +37,14 @@
         <action android:id="@+id/action_waitRoomFragment_to_hunminGameFragment"
                 app:destination="@id/hunminGameFragment"/>
         <argument android:name="strNikName" app:argType="string"/>
+        <action
+                android:id="@+id/action_waitRoomFragment_to_kungKungDdaGameFragment"
+                app:destination="@id/kungKungDdaGameFragment" />
     </fragment>
+    <fragment
+            android:id="@+id/kungKungDdaGameFragment"
+            android:name="com.wlswnwns.chosung_android.hunminGame.KungKungDdaGameFragment"
+            android:label="KungKungDdaGameFragment" />
 
 
 </navigation>
