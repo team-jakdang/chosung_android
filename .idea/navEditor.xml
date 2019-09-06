@@ -40,7 +40,33 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_hunminGameFragment_to_mainFragment">
+                            <entry key="action_hunminGameFragment_to_hunminGameRankingFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="hunminGameRankingFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="1254" />
+                            <option name="y" value="-5" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_hunminGameRankingFragment_to_hunminGameFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_hunminGameRankingFragment_to_waitRoomFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
