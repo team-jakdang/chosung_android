@@ -1,13 +1,21 @@
 package com.wlswnwns.chosung_android.hunminGame
 
+import android.os.CountDownTimer
 import android.os.Handler
+import android.provider.SyncStateContract.Helpers.update
+import android.util.Log
+import java.util.*
+import kotlin.collections.ArrayList
+
+
 
 class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Presenter {
 
 
-
+    var timer: Timer?=null
     var view: HunminGameContract.View
     var model: HunminGameModel
+
 
     // 생성자
     init {
@@ -66,6 +74,21 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
         view.listViewGameLogs(model.listGameLog)
     }
 
+
+    override fun gameTimerStart() {
+        val countDownTimer = object : CountDownTimer(2000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                Log.d("tekloon", "millisUntilFinished $millisUntilFinished")
+                val time:Long = (millisUntilFinished/1000) % 60
+                view.timeSetTextView(time.toString())
+            }
+            override fun onFinish() {
+                view.moveHunminGameRankingFragment()
+            }
+        }
+        countDownTimer.start()
+
+    }
 
 
 

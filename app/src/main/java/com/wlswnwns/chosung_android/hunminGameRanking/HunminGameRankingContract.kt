@@ -6,7 +6,13 @@ interface HunminGameRankingContract {
     interface  View {
 
         // 뷰 초기화
-        fun viewInit() 
+        fun viewInit()
+
+        // 한 판더 버튼을 눌렀을때 다시 훈민정음으로 가는 버튼
+        fun moveHunminGameFragment()
+
+        // 게임종료 버튼을 눌렀을때 대기실로 가는 버튼
+        fun moveMainFragment()
     }
 
     interface Presenter{

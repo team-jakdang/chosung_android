@@ -26,7 +26,14 @@ interface HunminGameContract {
         fun defaultGameView()
 
         fun listViewGameLogs(arg : ArrayList<Any>)
+
         // 순위 발표 프레그먼트
+        fun moveHunminGameRankingFragment()
+
+        fun timeSetTextView(timeText : String)
+
+
+
 
 
     }
@@ -55,6 +62,10 @@ interface HunminGameContract {
 
         // 게임 로그를 쌓아 채팅방에 보여주는 메소드
         fun listViewGameLog()
+
+        fun gameTimerStart()
+
+
 
 
     }

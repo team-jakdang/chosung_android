@@ -24,8 +24,8 @@
               android:name="com.wlswnwns.chosung_android.hunminGame.HunminGameFragment"
               android:label="layout_hunmingame"
               tools:layout="@layout/layout_hunmingame">
-        <action android:id="@+id/action_hunminGameFragment_to_mainFragment"
-        />
+        <action android:id="@+id/action_hunminGameFragment_to_hunminGameRankingFragment"
+                app:destination="@+id/hunminGameRankingFragment"/>
     </fragment>
     <fragment android:id="@+id/cameraFragment" android:name="com.wlswnwns.chosung_android.qrcamera.CameraFragment"
               android:label="CameraFragment">
@@ -45,6 +45,15 @@
             android:id="@+id/kungKungDdaGameFragment"
             android:name="com.wlswnwns.chosung_android.hunminGame.KungKungDdaGameFragment"
             android:label="KungKungDdaGameFragment" />
+
+    <fragment android:id="@+id/hunminGameRankingFragment"
+              android:name="com.wlswnwns.chosung_android.hunminGameRanking.HunminGameRankingFragment"
+              android:label="HunminGameRankingFragment">
+        <action android:id="@+id/action_hunminGameRankingFragment_to_waitRoomFragment"
+                app:destination="@id/waitRoomFragment"/>
+        <action android:id="@+id/action_hunminGameRankingFragment_to_hunminGameFragment"
+                app:destination="@id/hunminGameFragment"/>
+    </fragment>
 
 
 </navigation>
