@@ -46,7 +46,11 @@
     <string name="hunminGame_answer">정답입니다</string>
     <string name="hunminGame_wrong">제시한 초성과 다른 단어입니다</string>
 
-
+    <!-- 쿵쿵따 게임 -->
+    <string name="kkungDda_gameOver">게임 종료</string>
+    <string name="kkungDda_Loser">걸린 사람</string>
+    <string name="kkungDda_restartGame">게임 재시작</string>
+    <string name="kkungDda_finishGame">그만하기</string>
 
 
 </resources>
