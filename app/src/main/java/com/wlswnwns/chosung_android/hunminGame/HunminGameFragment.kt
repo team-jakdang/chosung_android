@@ -10,8 +10,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.RecyclerView
 import com.wlswnwns.chosung_android.R
 import kotlinx.android.synthetic.main.layout_hunmingame.*
+import kotlinx.android.synthetic.main.layout_kungkungddagame.*
 
 class HunminGameFragment : Fragment(), HunminGameContract.View {
 
@@ -31,6 +34,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
         presenter = HunminGamePresenter(this)
         presenter?.viewDidLoad()
+        presenter?.gameTimerStart() // 게임 타이머 시작
 
     }
 
@@ -56,12 +60,13 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
         })
 
 
-
         // 유저가 키보드에 있는 완료 버튼을 누르면 답이 맞는지 체크하는 'presenter'의  checkUserInputTextIsAnswer() 호출
-        UserInputEditTextView.setOnEditorActionListener {v, actionId, event ->
+        UserInputEditTextView.setOnEditorActionListener { v, actionId, event ->
             presenter?.checkUserInputTextIsAnswer()
+//            presenter?.listViewGameLog()
             true
         }
+
 
 
     }
@@ -105,5 +110,23 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
         UserInputEditTextView.isVisible = true
         WrongImageView.isVisible = true
     }
+
+    override fun listViewGameLogs(arg: ArrayList<Any>) {
+//        GameLogRecyclerView.set
+    }
+
+
+    // 게임 시간이 변화하는걸 텍스트 뷰로 보여줌
+    override fun timeSetTextView(timeText: String) {
+        TimeLimitTextView.setText(timeText)
+
+    }
+
+    override fun moveHunminGameRankingFragment() {
+        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
+            HunminGameFragmentDirections.actionHunminGameFragmentToHunminGameRankingFragment()
+        )
+    }
+
 
 }

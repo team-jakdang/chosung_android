@@ -25,7 +25,15 @@ interface HunminGameContract {
         // 정답이 아닐때 보여주는 아이콘이 1초가 지나면 사라지게
         fun defaultGameView()
 
+        fun listViewGameLogs(arg : ArrayList<Any>)
+
         // 순위 발표 프레그먼트
+        fun moveHunminGameRankingFragment()
+
+        fun timeSetTextView(timeText : String)
+
+
+
 
 
     }
@@ -40,7 +48,8 @@ interface HunminGameContract {
         // 모델의 유저가 입력한 텍스트를 변경
         fun setStrUserInputEditText(inputText : String)
         fun getStrUserInputEditText():String
-
+        fun setListGameLog(inputText : String)
+        fun getListGameLog():ArrayList<Any>
 
         // 랜덤 초성은 3글자 이하이기 때문에 유저가 3글자 이상 쓸 경우 view 의 longUserInputText()를 실행해준다
         fun checkUserInputTextLength()
@@ -51,7 +60,14 @@ interface HunminGameContract {
         // 실패뷰를(X표시) 1초뒤에 사라지게 하는 메소드
         fun wrongViewTimeSet()
 
+        // 게임 로그를 쌓아 채팅방에 보여주는 메소드
+        fun listViewGameLog()
+
+        fun gameTimerStart()
+
+
 
 
     }
+
 }
