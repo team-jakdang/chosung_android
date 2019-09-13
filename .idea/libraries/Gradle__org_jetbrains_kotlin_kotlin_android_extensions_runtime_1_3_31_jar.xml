@@ -6,10 +6,7 @@
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-android-extensions-runtime/1.3.31/5a1e4386b5aca0f7c5f24d6458867f20387f2ce0/kotlin-android-extensions-runtime-1.3.31-javadoc.jar!/" />
     </JAVADOC>
-<<<<<<< HEAD
     <LIBRARY_FILE />
-=======
->>>>>>> 6171865c20c199cacd07f2647503992c35d5588a
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-android-extensions-runtime/1.3.31/172e3476313dd6b959f488b7e610a600ea596e34/kotlin-android-extensions-runtime-1.3.31-sources.jar!/" />
     </SOURCES>

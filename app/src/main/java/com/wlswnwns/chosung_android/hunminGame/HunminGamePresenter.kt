@@ -6,20 +6,13 @@ import android.provider.SyncStateContract.Helpers.update
 import android.util.Log
 import java.util.*
 import kotlin.collections.ArrayList
-<<<<<<< HEAD
-=======
 
->>>>>>> 6171865c20c199cacd07f2647503992c35d5588a
 
 
 class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Presenter {
 
 
-<<<<<<< HEAD
-    var timer: Timer? = null
-=======
     var timer: Timer?=null
->>>>>>> 6171865c20c199cacd07f2647503992c35d5588a
     var view: HunminGameContract.View
     var model: HunminGameModel
 
@@ -76,11 +69,6 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
             view.defaultGameView()
         }, 400)
     }
-<<<<<<< HEAD
-
-    override fun listViewGameLog() {
-        view.listViewGameLogs(model.listGameLog)
-=======
 
     override fun listViewGameLog() {
         view.listViewGameLogs(model.listGameLog)
@@ -100,27 +88,9 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
         }
         countDownTimer.start()
 
->>>>>>> 6171865c20c199cacd07f2647503992c35d5588a
     }
 
-    override fun gameTimerStart() {
-        val countDownTimer = object : CountDownTimer(2000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                Log.d("tekloon", "millisUntilFinished $millisUntilFinished")
-                val time: Long = (millisUntilFinished / 1000) % 60
-                view.timeSetTextView(time.toString())
-            }
-
-            override fun onFinish() {
-                view.moveHunminGameRankingFragment()
-            }
-        }
-        countDownTimer.start()
-
-<<<<<<< HEAD
-    }
-=======
 
 
->>>>>>> 6171865c20c199cacd07f2647503992c35d5588a
+
 }
