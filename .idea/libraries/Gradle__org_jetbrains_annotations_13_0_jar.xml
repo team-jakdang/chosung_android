@@ -6,7 +6,10 @@
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/73368c3b0887f3adc2c2730dd1b95d7c3781aaf3/annotations-13.0-javadoc.jar!/" />
     </JAVADOC>
+<<<<<<< HEAD
     <LIBRARY_FILE />
+=======
+>>>>>>> 6171865c20c199cacd07f2647503992c35d5588a
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/5991ca87ef1fb5544943d9abc5a9a37583fabe03/annotations-13.0-sources.jar!/" />
     </SOURCES>

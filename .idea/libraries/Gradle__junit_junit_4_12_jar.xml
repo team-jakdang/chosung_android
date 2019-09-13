@@ -6,7 +6,10 @@
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/941a8be4506c65f0a9001c08812fb7da1e505e21/junit-4.12-javadoc.jar!/" />
     </JAVADOC>
+<<<<<<< HEAD
     <LIBRARY_FILE />
+=======
+>>>>>>> 6171865c20c199cacd07f2647503992c35d5588a
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/a6c32b40bf3d76eca54e3c601e5d1470c86fcdfa/junit-4.12-sources.jar!/" />
     </SOURCES>

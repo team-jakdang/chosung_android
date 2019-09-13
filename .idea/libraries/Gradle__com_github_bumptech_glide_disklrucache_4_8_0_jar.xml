@@ -6,7 +6,10 @@
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.8.0/c60adbc928fbfb4c5337c489584308b1ca3ed3e/disklrucache-4.8.0-javadoc.jar!/" />
     </JAVADOC>
+<<<<<<< HEAD
     <LIBRARY_FILE />
+=======
+>>>>>>> 6171865c20c199cacd07f2647503992c35d5588a
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.8.0/a630e44b1cbd0e5e01fac844bfbc6cc6412a3991/disklrucache-4.8.0-sources.jar!/" />
     </SOURCES>

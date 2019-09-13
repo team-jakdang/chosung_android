@@ -53,6 +53,7 @@
                 app:destination="@id/waitRoomFragment"/>
         <action android:id="@+id/action_hunminGameRankingFragment_to_hunminGameFragment"
                 app:destination="@id/hunminGameFragment"/>
+<<<<<<< HEAD
     </fragment>
 
     <fragment android:id="@+id/hunminGameRankingFragment"
@@ -62,6 +63,8 @@
                 app:destination="@id/waitRoomFragment"/>
         <action android:id="@+id/action_hunminGameRankingFragment_to_hunminGameFragment"
                 app:destination="@id/hunminGameFragment"/>
+=======
+>>>>>>> 6171865c20c199cacd07f2647503992c35d5588a
     </fragment>
 
 
