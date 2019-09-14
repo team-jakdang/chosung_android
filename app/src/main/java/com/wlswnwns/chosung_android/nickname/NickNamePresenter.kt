@@ -34,5 +34,8 @@ class NickNamePresenter(view : NickNameContract.View) : NickNameContract.Present
             view.longNikName()
         }
     }
+    override fun saveNickName() {
+
+    }
 
 }

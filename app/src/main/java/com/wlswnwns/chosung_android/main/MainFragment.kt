@@ -8,19 +8,21 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.wlswnwns.chosung_android.R
+import com.wlswnwns.chosung_android.dialog.GameSettingDialog
 import kotlinx.android.synthetic.main.layout_main.*
 
 
-class MainFragment internal constructor(): Fragment(), MainContract.View {
-
-
+class MainFragment internal constructor() : Fragment(), MainContract.View {
 
     // 이전 프레그먼트에서 전달 받아온 데이터들
-    private val args : MainFragmentArgs by navArgs()
+    private val args: MainFragmentArgs by navArgs()
 
 
     // presenter 선언
     var presenter: MainContract.Presenter? = null
+
+   lateinit var GameSettingDialog : GameSettingDialog
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +43,9 @@ class MainFragment internal constructor(): Fragment(), MainContract.View {
     override fun viewInit() {
         // 훈민정음 버튼 클릭이벤트
 
-        CreateRoomBtn.setOnClickListener { moveWaitRoomFragment() }
+        CreateRoomBtn.setOnClickListener {
+            presenter?.onClickMakeRoomBtn()
+        }
         SearchRoomBtn.setOnClickListener { moveQRCameraFragment() }
 
 
@@ -61,6 +65,26 @@ class MainFragment internal constructor(): Fragment(), MainContract.View {
         )
     }
 
+    override fun showGameSettingDialog() {
+
+        GameSettingDialog = GameSettingDialog(this@MainFragment.context!!, presenter!!).apply {
+            window!!.setBackgroundDrawableResource(android.R.color.transparent)
+            show()
+        }
+    }
+
+    override fun closeGameSettingDialog() {
+
+        GameSettingDialog.apply {
+            if (isShowing) {
+                cancel()
+            }
+        }
+    }
+
+    override fun showFailMakeRoomMsg() {
+
+    }
 
 
 

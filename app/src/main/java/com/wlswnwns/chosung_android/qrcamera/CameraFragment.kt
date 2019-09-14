@@ -77,5 +77,9 @@ class CameraFragment internal constructor() : Fragment(), CameraContract.View, M
         )
     }
 
+    override fun showFailFindRoomData() {
+
+    }
+
 
 }

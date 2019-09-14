@@ -16,6 +16,9 @@ interface CameraContract {
         // 대기방으로 이동합니다
         fun moveWaitRoomFragment()
 
+        // 인식된 QR코드에 해당하는 방이 존재하지 않을떄 호출되는 에러 메세지
+        fun showFailFindRoomData()
+
 
     }
 

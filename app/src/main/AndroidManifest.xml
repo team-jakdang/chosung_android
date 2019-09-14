@@ -21,7 +21,8 @@
             android:theme="@style/Noactionbar">
         <activity android:name=".MainActivity"
                   android:screenOrientation="portrait"
-                  android:windowSoftInputMode="adjustResize">
+
+        >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -29,9 +30,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-                android:name="com.wlswnwns.chosung_android.qrcamera.CameraActivity"
-                android:screenOrientation="portrait"/>
 
     </application>
 
