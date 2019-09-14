@@ -56,5 +56,17 @@ class WaitRoomFragment : Fragment(),WaitRoomContract.View{
         )
     }
 
+    override fun showEixtRoomDialog() {
+
+    }
+
+    override fun exitRoom() {
+
+    }
+
+    override fun showFailExitRoom() {
+
+    }
+
 
 }

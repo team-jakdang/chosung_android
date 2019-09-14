@@ -16,6 +16,23 @@ class WaitRoomPresenter (view : WaitRoomContract.View ) : WaitRoomContract.Prese
     override fun viewDidLoad() {
         view.viewInit()
     }
+    override fun onClickGameStartBtn() {
+
+    }
+
+    override fun onClickExitRoom() {
+
+    }
+
+    override fun checkRoomOwner() {
+
+    }
+
+    override fun removeRoom() {
+
+    }
+
+
 
 
 }

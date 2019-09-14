@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-<<<<<<< HEAD
-        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".hunminGame.HunminGameFragment" android:id="@+id/frameLayout">
-=======
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-       android:layout_height="match_parent"
+        android:layout_height="match_parent"
         tools:context=".hunminGame.HunminGameFragment">
->>>>>>> kungkungdda
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,83 +12,112 @@
             android:layout_height="match_parent">
 
         <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/TimeLimitTextView"
-                android:fontFamily="sans-serif-medium" android:textSize="80sp" android:hint="20"
-                android:layout_marginTop="32dp"
-                app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginBottom="32dp" app:layout_constraintBottom_toTopOf="@+id/GameLogRecyclerView"
-                app:layout_constraintEnd_toStartOf="@+id/ChosungTextView" android:layout_marginEnd="16dp"/>
-        <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" android:id="@+id/ChosungTextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="16dp"
-                android:textSize="40sp"
-                android:background="#9C27B0" android:textColor="#FFFFFF" android:textColorHighlight="#FFFFFF"
-                android:textAlignment="center" android:hint="ㅇㅊ" android:textColorHint="#FFFFFF"
-                app:layout_constraintStart_toEndOf="@+id/TimeLimitTextView"
-                android:layout_marginStart="16dp" app:layout_constraintHorizontal_bias="0.0"
-                android:layout_marginTop="16dp" app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/GameLogRecyclerView"/>
-        <EditText
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                app:layout_constraintVertical_bias="1.0"
-                android:id="@+id/UserInputEditTextView"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/ChosungTextView"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="sans-serif-medium"
+                android:hint="20"
+                android:textSize="80sp"
+                app:layout_constraintBottom_toTopOf="@+id/GameLogRecyclerView"
+                app:layout_constraintEnd_toStartOf="@+id/ChosungTextView"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                android:textSize="24sp" android:textColorHint="#C9C3C3"
-                android:hint="@string/hunminGame_hint"
+                app:layout_constraintTop_toTopOf="parent" />
 
-
-        />
-        <ImageView
-                android:src="@drawable/img_game_answer"
-                android:layout_width="wrap_content"
+        <TextView
+                android:id="@+id/ChosungTextView"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/AnswerImageView" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/TimeLimitTextView"
-                android:layout_marginBottom="32dp" app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.494" app:layout_constraintVertical_bias="0.495"
-                android:visibility="gone"
-        />
-        <ImageView
-                android:src="@drawable/img_game_wrong"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/WrongImageView" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/TimeLimitTextView"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
+                android:background="#9C27B0"
+                android:hint="ㅇㅊ"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toTopOf="@+id/GameLogRecyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/TimeLimitTextView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+                android:id="@+id/UserInputEditTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:ems="10"
+                android:hint="@string/hunminGame_hint"
+                android:inputType="textPersonName"
+                android:textColorHint="#C9C3C3"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.494"
-                app:layout_constraintVertical_bias="0.451"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ChosungTextView"
+                app:layout_constraintVertical_bias="1.0"
+
+
+                />
+
+        <ImageView
+                android:id="@+id/AnswerImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="32dp"
+                android:src="@drawable/img_game_answer"
                 android:visibility="gone"
-        />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TimeLimitTextView"
+                app:layout_constraintVertical_bias="0.495" />
+
+        <ImageView
+                android:id="@+id/WrongImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/img_game_wrong"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TimeLimitTextView"
+                app:layout_constraintVertical_bias="0.451" />
+
         <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/GameLogRecyclerView"
                 android:layout_width="397dp"
                 android:layout_height="509dp"
-                android:id="@+id/GameLogRecyclerView" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="6dp" android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/UserInputEditTextView" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/ChosungTextView" app:layout_constraintHorizontal_bias="0.0"/>
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/UserInputEditTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ChosungTextView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

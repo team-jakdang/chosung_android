@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.layout_main.*
 
 class MainFragment internal constructor() : Fragment(), MainContract.View {
 
-
     // 이전 프레그먼트에서 전달 받아온 데이터들
     private val args: MainFragmentArgs by navArgs()
 
@@ -45,7 +44,7 @@ class MainFragment internal constructor() : Fragment(), MainContract.View {
         // 훈민정음 버튼 클릭이벤트
 
         CreateRoomBtn.setOnClickListener {
-            presenter?.makeGameSetting()
+            presenter?.onClickMakeRoomBtn()
         }
         SearchRoomBtn.setOnClickListener { moveQRCameraFragment() }
 
@@ -82,6 +81,11 @@ class MainFragment internal constructor() : Fragment(), MainContract.View {
             }
         }
     }
+
+    override fun showFailMakeRoomMsg() {
+
+    }
+
 
 
 }

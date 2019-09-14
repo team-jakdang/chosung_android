@@ -28,13 +28,15 @@ class MainPresenter(view: MainContract.View) : MainContract.Presenter {
         view.moveWaitRoomFragment()
     }
 
-    override fun makeGameSetting() {
-        view.showGameSettingDialog()
-    }
 
     override fun closeGameSetting() {
         view.closeGameSettingDialog()
     }
+
+    override fun onClickMakeRoomBtn() {
+        view.showGameSettingDialog()
+    }
+
 
 
 }

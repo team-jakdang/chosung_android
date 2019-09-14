@@ -54,6 +54,9 @@ interface NickNameContract{
         // 10 글자가 넘지 않으면 confirmBtnActive() 를 실행해줍니다
         fun checkNikNameLength()
 
+        // 닉네임을 로컬 저장소에 저장합니다
+        fun saveNickName()
+
     }
 
 

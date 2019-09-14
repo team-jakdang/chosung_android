@@ -6,6 +6,8 @@ interface MainContract {
 
         fun viewInit()
 
+
+
         // 게임 세팅 다이얼로그 생성
         fun showGameSettingDialog()
 
@@ -18,6 +20,11 @@ interface MainContract {
 
         // QR카메라를 띄워줍니다
         fun moveQRCameraFragment()
+
+
+        // 방 만들기가 실패했을 경우 보여줄 오류 메세지입니다
+        fun showFailMakeRoomMsg()
+
     }
 
 
@@ -26,8 +33,8 @@ interface MainContract {
         // 프레그먼트의 뷰가 생성되면 호출됩니다
         fun viewDidLoad()
 
-        // 게임 세팅 다이얼로그를 생성합니다
-        fun makeGameSetting()
+        // 게임 방 생성 버튼을 누르면 호출됩니다
+        fun onClickMakeRoomBtn()
 
         // 게임 세팅 다이얼로그를 닫습니다
         fun closeGameSetting()
