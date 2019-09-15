@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.layout_hunmingame.*
 class HunminGameFragment : Fragment(), HunminGameContract.View {
 
 
+
     var presenter: HunminGameContract.Presenter? = null
 
     override fun onCreateView(
@@ -31,7 +32,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
         presenter = HunminGamePresenter(this)
         presenter?.viewDidLoad()
-//        presenter?.gameTimerStart() // 게임 타이머 시작
+        presenter?.gameTimerStart() // 게임 타이머 시작
 
     }
 
@@ -68,23 +69,21 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
     }
 
+    override fun showErrorMsg(msg: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
-    override fun longUserInputText() {
+    override fun randomChosungSetTextView(chosung: ArrayList<String>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun longUserInputText(chosungLength: String) {
         Toast.makeText(context, "단어의 길이가 3자를 넘으면 안됩니다", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun timeLimitTextActive() {
-        TitleTextView.isEnabled = true
-    }
-
-    override fun timeLimitTextUnActive() {
-        TitleTextView.isEnabled = false
     }
 
 
     // 기본 게임 뷰
     override fun defaultGameView() {
-        ChosungFirstTextView.isVisible = true
         UserInputEditTextView.isVisible = true
         WrongImageView.isVisible = false
         AnswerImageView.isVisible = false
@@ -95,7 +94,6 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
     // ChosungTextView ,UserInputEditTextView 를 숨긴다
     // AnswerImageView 을 보이게 한다
     override fun answerGameView() {
-        ChosungFirstTextView.isVisible = false
         UserInputEditTextView.isVisible = false
         AnswerImageView.isVisible = true
     }
@@ -103,27 +101,29 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
     // 유저가 정답이 아닐때 바뀌는 뷰
     // ChosungTextView ,UserInputEditTextView , WrongImageView 보이게
     override fun wrongGameView() {
-        ChosungFirstTextView.isVisible = true
         UserInputEditTextView.isVisible = true
         WrongImageView.isVisible = true
     }
 
     override fun listViewGameLogs(arg: ArrayList<Any>) {
-//        GameLogRecyclerView.set
-    }
-
-
-    // 게임 시간이 변화하는걸 텍스트 뷰로 보여줌
-    override fun timeSetTextView(timeText: String) {
-        TitleTextView.setText(timeText)
 
     }
 
+
+    // 순위 프래그먼트로 이동
     override fun moveHunminGameRankingFragment() {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
             HunminGameFragmentDirections.actionHunminGameFragmentToHunminGameRankingFragment()
         )
     }
+
+
+
+    override fun timeProgressBarActive() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+
 
 
 }
