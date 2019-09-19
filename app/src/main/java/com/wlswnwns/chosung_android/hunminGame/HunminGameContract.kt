@@ -34,9 +34,6 @@ interface HunminGameContract {
         // 에러 메세지를 다이얼로그로 보여줌
         fun showErrorMsg(msg : String)
 
-
-
-
     }
 
     interface Presenter{
@@ -87,10 +84,6 @@ interface HunminGameContract {
 
         // 순위 프래그먼트로 이동하기 위한 임시 타이머
         fun gameTimerStart()
-
-
-
-
     }
 
 }

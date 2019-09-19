@@ -1,5 +1,7 @@
 package com.wlswnwns.chosung_android.waitRoom
 
+import com.wlswnwns.chosung_android.item.User
+
 interface WaitRoomContract{
 
     interface View{
@@ -21,6 +23,11 @@ interface WaitRoomContract{
 
         // 사용자가 어떠한 에러로 방에서 나가기를 실패할 경우 나타내주는 메세지
         fun showFailExitRoom()
+
+        fun showUserList(Users : ArrayList<User>)
+
+
+
 
     }
 

@@ -16,7 +16,6 @@ interface KungKungDdaGameContract {
         // 제한 시간이 종료될때 비활성화
         fun timeLimitTextUnActive()
 
-        //
 
 
     }
@@ -24,6 +23,6 @@ interface KungKungDdaGameContract {
     interface Presenter{
 
 
-
     }
+
 }
