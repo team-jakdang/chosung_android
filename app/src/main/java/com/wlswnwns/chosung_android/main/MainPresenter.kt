@@ -25,7 +25,7 @@ class MainPresenter(view: MainContract.View) : MainContract.Presenter {
 
     override fun makeGame() {
         view.closeGameSettingDialog()
-        view.moveWaitRoomFragment()
+        view.moveWaitRoomFragment(model.strMode,model.iChosungLenght,model.iTime)
     }
 
 

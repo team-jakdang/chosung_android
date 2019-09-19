@@ -74,7 +74,7 @@ class CameraFragment internal constructor() : Fragment(), CameraContract.View, M
 
     override fun moveWaitRoomFragment() {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            CameraFragmentDirections.actionCameraFragmentToWaitRoomFragment(args.strNickName)
+            CameraFragmentDirections.actionCameraFragmentToWaitRoomFragment(args.strNickName,"훈민정음",2,10)
         )
     }
 

@@ -112,6 +112,7 @@
                 app:layout_constraintVertical_bias="0">
 
             <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/ModeHunMin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -119,6 +120,7 @@
 
 
             <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/ModeKungKung"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -173,6 +175,7 @@
                 app:layout_constraintVertical_bias="0">
 
             <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/Length2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -180,6 +183,7 @@
 
 
             <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/Length3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -234,6 +238,7 @@
                 app:layout_constraintVertical_bias="0">
 
             <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/Time10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -241,6 +246,7 @@
 
 
             <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/Time20"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

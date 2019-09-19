@@ -1,6 +1,7 @@
 package com.wlswnwns.chosung_android.waitRoom
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,8 +35,9 @@ class WaitRoomFragment : Fragment(),WaitRoomContract.View{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        
         presenter = WaitRoomPresenter(this)
-        presenter?.viewDidLoad()
+        presenter?.viewDidLoad(args.strMode,args.iLength,args.iTime)
 
     }
 
@@ -90,9 +92,20 @@ class WaitRoomFragment : Fragment(),WaitRoomContract.View{
         ).let {
             entryListView.adapter = it
         }
-
-
     }
+
+    override fun showGameMode(mode: String) {
+        GameNameView.text = mode
+    }
+
+    override fun showChosungLength(length: Int) {
+        ChosungLengthView.text = length.toString()+"글자"
+    }
+
+    override fun showTime(time: Int) {
+        GameTimeView.text = time.toString()+"초"
+    }
+
 
 
 }

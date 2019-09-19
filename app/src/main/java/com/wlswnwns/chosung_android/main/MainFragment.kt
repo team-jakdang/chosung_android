@@ -51,10 +51,10 @@ class MainFragment internal constructor() : Fragment(), MainContract.View {
 
     }
 
-    override fun moveWaitRoomFragment() {
+    override fun moveWaitRoomFragment(mode: String, iLength: Int, iTime: Int) {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
 
-            MainFragmentDirections.actionMainFragmentToWaitRoomFragment(args.strNickName)
+            MainFragmentDirections.actionMainFragmentToWaitRoomFragment(args.strNickName,mode,iLength,iTime)
         )
     }
 

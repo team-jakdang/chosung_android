@@ -40,6 +40,15 @@
         <action
                 android:id="@+id/action_waitRoomFragment_to_kungKungDdaGameFragment"
                 app:destination="@id/kungKungDdaGameFragment" />
+        <argument
+                android:name="strMode"
+                app:argType="string" />
+        <argument
+                android:name="iLength"
+                app:argType="integer" />
+        <argument
+                android:name="iTime"
+                app:argType="integer" />
     </fragment>
     <fragment
             android:id="@+id/kungKungDdaGameFragment"
