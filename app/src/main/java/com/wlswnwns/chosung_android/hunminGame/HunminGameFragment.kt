@@ -3,7 +3,6 @@ package com.wlswnwns.chosung_android.hunminGame
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +10,11 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.RecyclerView
 import com.wlswnwns.chosung_android.R
 import kotlinx.android.synthetic.main.layout_hunmingame.*
 
 class HunminGameFragment : Fragment(), HunminGameContract.View {
+
 
 
     var presenter: HunminGameContract.Presenter? = null
@@ -70,23 +69,21 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
     }
 
+    override fun showErrorMsg(msg: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
-    override fun longUserInputText() {
+    override fun randomChosungSetTextView(chosung: ArrayList<String>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun longUserInputText(chosungLength: String) {
         Toast.makeText(context, "단어의 길이가 3자를 넘으면 안됩니다", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun timeLimitTextActive() {
-        TimeLimitTextView.isEnabled = true
-    }
-
-    override fun timeLimitTextUnActive() {
-        TimeLimitTextView.isEnabled = false
     }
 
 
     // 기본 게임 뷰
     override fun defaultGameView() {
-        ChosungTextView.isVisible = true
         UserInputEditTextView.isVisible = true
         WrongImageView.isVisible = false
         AnswerImageView.isVisible = false
@@ -97,7 +94,6 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
     // ChosungTextView ,UserInputEditTextView 를 숨긴다
     // AnswerImageView 을 보이게 한다
     override fun answerGameView() {
-        ChosungTextView.isVisible = false
         UserInputEditTextView.isVisible = false
         AnswerImageView.isVisible = true
     }
@@ -105,27 +101,29 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
     // 유저가 정답이 아닐때 바뀌는 뷰
     // ChosungTextView ,UserInputEditTextView , WrongImageView 보이게
     override fun wrongGameView() {
-        ChosungTextView.isVisible = true
         UserInputEditTextView.isVisible = true
         WrongImageView.isVisible = true
     }
 
     override fun listViewGameLogs(arg: ArrayList<Any>) {
-//        GameLogRecyclerView.set
-    }
-
-
-    // 게임 시간이 변화하는걸 텍스트 뷰로 보여줌
-    override fun timeSetTextView(timeText: String) {
-        TimeLimitTextView.setText(timeText)
 
     }
 
+
+    // 순위 프래그먼트로 이동
     override fun moveHunminGameRankingFragment() {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
             HunminGameFragmentDirections.actionHunminGameFragmentToHunminGameRankingFragment()
         )
     }
+
+
+
+    override fun timeProgressBarActive() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+
 
 
 }
