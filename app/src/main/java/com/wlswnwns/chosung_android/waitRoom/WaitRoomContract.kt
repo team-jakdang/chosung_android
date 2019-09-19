@@ -26,6 +26,12 @@ interface WaitRoomContract{
 
         fun showUserList(Users : ArrayList<User>)
 
+        fun showGameMode(mode:String)
+
+        fun showChosungLength(length : Int)
+
+        fun showTime(time : Int)
+
 
 
 
@@ -33,7 +39,7 @@ interface WaitRoomContract{
 
     interface Presenter{
         // 프레그먼트의 뷰가 생성되면 호출됩니다
-        fun viewDidLoad()
+        fun viewDidLoad(mode: String, iLength : Int, iTime : Int)
 
         //게임 시작 버튼을 누르면 호출됩니다
         fun onClickGameStartBtn()

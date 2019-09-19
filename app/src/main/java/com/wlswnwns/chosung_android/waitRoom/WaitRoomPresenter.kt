@@ -13,10 +13,17 @@ class WaitRoomPresenter (view : WaitRoomContract.View ) : WaitRoomContract.Prese
         this.model = WaitRoomModel()
     }
 
-    override fun viewDidLoad() {
+    override fun viewDidLoad(mode: String, iLength: Int, iTime: Int) {
         view.viewInit()
         model.dummyUsers()
         view.showUserList(model.Users!!)
+        model.strMode = mode
+        model.iLength = iLength
+        model.iTime = iTime
+        view.showGameMode(mode)
+        view.showChosungLength(iLength)
+        view.showTime(iTime)
+
     }
     override fun onClickGameStartBtn() {
 

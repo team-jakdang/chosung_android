@@ -8,6 +8,11 @@ class WaitRoomModel {
 
     var Users : ArrayList<User>? = null
 
+    var strMode : String = ""
+    var iLength : Int = 2
+    var iTime : Int = 10
+
+
     fun dummyUsers(){
         Users = ArrayList()
 

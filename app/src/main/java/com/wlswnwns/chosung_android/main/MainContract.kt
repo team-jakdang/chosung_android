@@ -16,7 +16,7 @@ interface MainContract {
 
 
         // 대기방으로 이동합니다
-        fun moveWaitRoomFragment()
+        fun moveWaitRoomFragment(mode: String, iLength : Int, iTime : Int)
 
         // QR카메라를 띄워줍니다
         fun moveQRCameraFragment()
