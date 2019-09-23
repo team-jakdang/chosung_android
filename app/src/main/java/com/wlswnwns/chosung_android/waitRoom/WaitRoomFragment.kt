@@ -35,7 +35,7 @@ class WaitRoomFragment : Fragment(),WaitRoomContract.View{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        
+
         presenter = WaitRoomPresenter(this)
         presenter?.viewDidLoad(args.strMode,args.iLength,args.iTime)
 
