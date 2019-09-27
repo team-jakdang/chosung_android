@@ -8,6 +8,7 @@ class HunminGameModel {
     var listGameLog = arrayListOf<Any>()
     var roomInfo : String = ""
     var chosungLength : Int = 2
+    var iTime : Int = 2
     var userInfo : String = ""
     var randomChosung = arrayOf("ㅊ","ㅇ","ㅊ")
 
