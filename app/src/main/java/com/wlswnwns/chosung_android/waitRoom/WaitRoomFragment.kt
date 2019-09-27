@@ -42,16 +42,16 @@ class WaitRoomFragment : Fragment(),WaitRoomContract.View{
     }
 
 
-    override fun viewInit() {
-        HunMinBtn.setOnClickListener { moveHunMinFragment() }
+    override fun viewInit(iLength : Int, iTime : Int) {
+        HunMinBtn.setOnClickListener { moveHunMinFragment(iLength,iTime) }
         KungKungDdaBtn.setOnClickListener { moveKungKungDdaFragment() }
         GameStartBtn.setOnClickListener { presenter?.onClickGameStartBtn() }
         BackBtn.setOnClickListener { presenter?.onClickExitRoom() }
     }
 
-    override fun moveHunMinFragment() {
+    override fun moveHunMinFragment(iLength : Int, iTime : Int) {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            WaitRoomFragmentDirections.actionWaitRoomFragmentToHunminGameFragment()
+            WaitRoomFragmentDirections.actionWaitRoomFragmentToHunminGameFragment(iLength,iTime)
         )
 
     }

@@ -14,7 +14,7 @@ class WaitRoomPresenter (view : WaitRoomContract.View ) : WaitRoomContract.Prese
     }
 
     override fun viewDidLoad(mode: String, iLength: Int, iTime: Int) {
-        view.viewInit()
+        view.viewInit(model.iLength,model.iTime)
         model.dummyUsers()
         view.showUserList(model.Users!!)
         model.strMode = mode
@@ -27,7 +27,7 @@ class WaitRoomPresenter (view : WaitRoomContract.View ) : WaitRoomContract.Prese
     }
     override fun onClickGameStartBtn() {
 
-        view.moveHunMinFragment()
+        view.moveHunMinFragment(model.iLength,model.iTime)
 
     }
 

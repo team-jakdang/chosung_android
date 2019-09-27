@@ -39,9 +39,9 @@ class HunminGameRankingFragment : Fragment(), HunminGameRankingContract.View {
     override fun moveHunminGameFragment() {
 
         Log.e("ff", "ff1")
-        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            HunminGameRankingFragmentDirections.actionHunminGameRankingFragmentToHunminGameFragment()
-        )
+//        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
+//            HunminGameRankingFragmentDirections.actionHunminGameRankingFragmentToHunminGameFragment(2,20,)
+//        )
     }
 
     override fun moveMainFragment() {
