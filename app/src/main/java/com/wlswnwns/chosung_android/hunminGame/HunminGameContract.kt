@@ -1,5 +1,7 @@
 package com.wlswnwns.chosung_android.hunminGame
 
+import com.wlswnwns.chosung_android.item.Game
+
 interface HunminGameContract {
 
     interface  View{
@@ -33,6 +35,8 @@ interface HunminGameContract {
 
         // 에러 메세지를 다이얼로그로 보여줌
         fun showErrorMsg(msg : String)
+
+        fun showChosungLogList(Game : ArrayList<Game>)
 
     }
 
