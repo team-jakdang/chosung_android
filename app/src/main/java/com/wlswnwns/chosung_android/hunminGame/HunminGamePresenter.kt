@@ -25,6 +25,8 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
     // 뷰 초기화 실행
     override fun viewDidLoad() {
         view.viewInit()
+        model.dummyGameLogs()
+        view.showChosungLogList(model.GameLog!!)
     }
 
     // 유저가 입력한 텍스트를 set
