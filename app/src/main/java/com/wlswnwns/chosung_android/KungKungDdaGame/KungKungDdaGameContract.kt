@@ -104,5 +104,7 @@ interface KungKungDdaGameContract {
         // 순서가 넘어가면 숫자 카운트 다운 시작
         fun gameTimerStart()
 
+        fun gameTimerStart1()
+
     }
 }

@@ -12,7 +12,9 @@ import com.wlswnwns.chosung_android.KungKungDdaGame.KungKungDdaGameModel
  **/
 
 class KungKungDdaGamePresenter(view : KungKungDdaGameContract.View) : KungKungDdaGameContract.Presenter {
-
+    override fun gameTimerStart1() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
 
     var view : KungKungDdaGameContract.View
