@@ -1,5 +1,7 @@
 package com.wlswnwns.chosung_android.nickname
 
+import android.content.Context
+
 
 // MVP 에서
 // View 와 Presenter 의 뼈대를 정의해줍니다
@@ -20,7 +22,7 @@ interface NickNameContract{
     interface View{
 
         // 뷰를 초기화해줍니다
-        fun viewInit()
+        fun viewInit(nickname : String)
 
         // 닉네임이 10글자를 넘으면 안된다는 토스트 메세지를 띄워줍니다
         fun longNikName()
@@ -43,19 +45,21 @@ interface NickNameContract{
     interface Presenter{
 
         // 프레그먼트의 뷰가 생성되면 호출됩니다
-        fun viewDidLoad()
+        fun viewDidLoad(context: Context)
 
         // 모델의 닉네임을 변경해줍니다
         fun setStrNikName(nikname : String)
         fun getStrNikName():String
+
+        fun onClickConfirmBtn(context: Context)
+
 
         // 모델에 입력된 닉네임의 길이를 확인해
         // 10 글자가 넘으면 view 의 longNikName(), confirmBtnUnActive() 를 실행해줍니다
         // 10 글자가 넘지 않으면 confirmBtnActive() 를 실행해줍니다
         fun checkNikNameLength()
 
-        // 닉네임을 로컬 저장소에 저장합니다
-        fun saveNickName()
+
 
     }
 

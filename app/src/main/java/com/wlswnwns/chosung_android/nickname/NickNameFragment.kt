@@ -33,12 +33,12 @@ class NickNameFragment : Fragment(), NickNameContract.View {
         super.onViewCreated(view, savedInstanceState)
 
         presenter = NickNamePresenter(this)
-        presenter?.viewDidLoad()
+        presenter?.viewDidLoad(requireContext())
 
     }
 
 
-    override fun viewInit() {
+    override fun viewInit(nickname: String) {
         NikNameEditTextView.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
                 presenter?.setStrNikName(NikNameEditTextView.text.toString())
@@ -55,7 +55,8 @@ class NickNameFragment : Fragment(), NickNameContract.View {
 
         })
 
-        ConfirmBtnView.setOnClickListener { moveMainFragment() }
+        ConfirmBtnView.setOnClickListener { presenter?.onClickConfirmBtn(requireContext()) }
+        NikNameEditTextView.setText(nickname)
 
     }
 

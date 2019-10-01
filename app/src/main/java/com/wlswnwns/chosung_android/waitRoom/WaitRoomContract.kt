@@ -1,14 +1,16 @@
 package com.wlswnwns.chosung_android.waitRoom
 
+import com.wlswnwns.chosung_android.item.User
+
 interface WaitRoomContract{
 
     interface View{
 
         // 뷰를 초기화해줍니다
-        fun viewInit()
+        fun viewInit(iLength : Int, iTime : Int)
 
         // 훈민정음 게임 프레그먼트를 띄워줍니다
-        fun moveHunMinFragment()
+        fun moveHunMinFragment(iLength : Int, iTime : Int)
 
         // 쿵쿵따 게임 프레그먼트를 띄워줍니다
         fun moveKungKungDdaFragment()
@@ -22,11 +24,22 @@ interface WaitRoomContract{
         // 사용자가 어떠한 에러로 방에서 나가기를 실패할 경우 나타내주는 메세지
         fun showFailExitRoom()
 
+        fun showUserList(Users : ArrayList<User>)
+
+        fun showGameMode(mode:String)
+
+        fun showChosungLength(length : Int)
+
+        fun showTime(time : Int)
+
+
+
+
     }
 
     interface Presenter{
         // 프레그먼트의 뷰가 생성되면 호출됩니다
-        fun viewDidLoad()
+        fun viewDidLoad(mode: String, iLength : Int, iTime : Int)
 
         //게임 시작 버튼을 누르면 호출됩니다
         fun onClickGameStartBtn()

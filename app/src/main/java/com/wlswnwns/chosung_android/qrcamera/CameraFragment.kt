@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -73,12 +74,12 @@ class CameraFragment internal constructor() : Fragment(), CameraContract.View, M
 
     override fun moveWaitRoomFragment() {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            CameraFragmentDirections.actionCameraFragmentToWaitRoomFragment(args.strNickName)
+            CameraFragmentDirections.actionCameraFragmentToWaitRoomFragment(args.strNickName,"훈민정음",2,10)
         )
     }
 
     override fun showFailFindRoomData() {
-
+        Toast.makeText(requireContext(),R.string.qrcamera_fail_find_room,Toast.LENGTH_SHORT).show()
     }
 
 

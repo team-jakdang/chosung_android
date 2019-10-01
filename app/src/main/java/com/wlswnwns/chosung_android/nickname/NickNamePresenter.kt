@@ -1,11 +1,12 @@
 package com.wlswnwns.chosung_android.nickname
 
-class NickNamePresenter(view : NickNameContract.View) : NickNameContract.Presenter{
+import android.content.Context
+
+class NickNamePresenter(view: NickNameContract.View) : NickNameContract.Presenter {
 
 
-
-    var view : NickNameContract.View
-    var model : NickNameModel
+    var view: NickNameContract.View
+    var model: NickNameModel
 
     init {
         this.view = view
@@ -13,29 +14,33 @@ class NickNamePresenter(view : NickNameContract.View) : NickNameContract.Present
 
     }
 
-    override fun viewDidLoad() {
-        view.viewInit()
+    override fun viewDidLoad(context: Context) {
+        view.viewInit(model.getNickName(context))
         view.requestPermission()
     }
 
     override fun setStrNikName(nikname: String) {
-       model.strUserNikName = nikname
+        model.strUserNikName = nikname
     }
+
     override fun getStrNikName(): String {
         return model.strUserNikName
     }
 
     override fun checkNikNameLength() {
 
-        if(model.strUserNikName.length <= 10) {
+        if (model.strUserNikName.length <= 10) {
             view.confirmBtnActive()
         } else {
             view.confirmBtnUnActive()
             view.longNikName()
         }
     }
-    override fun saveNickName() {
 
+    override fun onClickConfirmBtn(context: Context) {
+        model.saveNickName(context)
+        view.moveMainFragment()
     }
+
 
 }
