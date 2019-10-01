@@ -1,5 +1,7 @@
 package com.wlswnwns.chosung_android.hunminGame
 
+import com.wlswnwns.chosung_android.item.Game
+
 interface HunminGameContract {
 
     interface  View{
@@ -34,13 +36,16 @@ interface HunminGameContract {
         // 에러 메세지를 다이얼로그로 보여줌
         fun showErrorMsg(msg : String)
 
+        // 초성 로그를 보여줌
+        fun showChosungLogList(Game : ArrayList<Game>)
+
     }
 
     interface Presenter{
 
 
         // 프레그먼트의 뷰가 생성되면 호출 (viewDidLoad()안에서 viewInit()을 실행한다)
-        fun viewDidLoad()
+        fun viewDidLoad(iLength : Int, iTime : Int)
 
         // 방 정보 모델에 전달
         fun setArrRoomInfo(chosungLength : Int)
