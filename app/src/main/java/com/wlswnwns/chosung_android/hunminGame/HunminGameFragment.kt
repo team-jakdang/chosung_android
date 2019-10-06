@@ -10,13 +10,19 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import com.wlswnwns.chosung_android.R
+import com.wlswnwns.chosung_android.item.Game
 import kotlinx.android.synthetic.main.layout_hunmingame.*
 
 class HunminGameFragment : Fragment(), HunminGameContract.View {
 
+    private val args : HunminGameFragmentArgs by navArgs()
+
 
     var presenter: HunminGameContract.Presenter? = null
+    private val TAG = "HunminGameFragment ==>"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,10 +36,14 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
         super.onViewCreated(view, savedInstanceState)
 
         presenter = HunminGamePresenter(this)
-        presenter?.viewDidLoad()
+        presenter?.viewDidLoad(args.iLength,args.iTime)
+        presenter?.gameTimerStart() // 게임 타이머 시작
 
     }
 
+    override fun showChosungLogList(Game: ArrayList<Game>) {
+
+    }
 
     override fun viewInit() {
         UserInputEditTextView.addTextChangedListener(object : TextWatcher {
@@ -56,33 +66,33 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
         })
 
 
-
         // 유저가 키보드에 있는 완료 버튼을 누르면 답이 맞는지 체크하는 'presenter'의  checkUserInputTextIsAnswer() 호출
-        UserInputEditTextView.setOnEditorActionListener {v, actionId, event ->
+        UserInputEditTextView.setOnEditorActionListener { v, actionId, event ->
+            Log.e(TAG, v.toString()+actionId.toString()+event)
             presenter?.checkUserInputTextIsAnswer()
+//            presenter?.listViewGameLog()
             true
         }
 
 
+
     }
 
+    override fun showErrorMsg(msg: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
-    override fun longUserInputText() {
+    override fun randomChosungSetTextView(chosung: ArrayList<String>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun longUserInputText(chosungLength: String) {
         Toast.makeText(context, "단어의 길이가 3자를 넘으면 안됩니다", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun timeLimitTextActive() {
-        TimeLimitTextView.isEnabled = true
-    }
-
-    override fun timeLimitTextUnActive() {
-        TimeLimitTextView.isEnabled = false
     }
 
 
     // 기본 게임 뷰
     override fun defaultGameView() {
-        ChosungTextView.isVisible = true
         UserInputEditTextView.isVisible = true
         WrongImageView.isVisible = false
         AnswerImageView.isVisible = false
@@ -93,7 +103,6 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
     // ChosungTextView ,UserInputEditTextView 를 숨긴다
     // AnswerImageView 을 보이게 한다
     override fun answerGameView() {
-        ChosungTextView.isVisible = false
         UserInputEditTextView.isVisible = false
         AnswerImageView.isVisible = true
     }
@@ -101,9 +110,29 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
     // 유저가 정답이 아닐때 바뀌는 뷰
     // ChosungTextView ,UserInputEditTextView , WrongImageView 보이게
     override fun wrongGameView() {
-        ChosungTextView.isVisible = true
         UserInputEditTextView.isVisible = true
         WrongImageView.isVisible = true
     }
+
+    override fun listViewGameLogs(arg: ArrayList<Any>) {
+
+    }
+
+
+    // 순위 프래그먼트로 이동
+    override fun moveHunminGameRankingFragment() {
+        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
+            HunminGameFragmentDirections.actionHunminGameFragmentToHunminGameRankingFragment()
+        )
+    }
+
+
+
+    override fun timeProgressBarActive() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+
+
 
 }

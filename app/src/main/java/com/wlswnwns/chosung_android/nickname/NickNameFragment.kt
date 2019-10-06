@@ -33,12 +33,12 @@ class NickNameFragment : Fragment(), NickNameContract.View {
         super.onViewCreated(view, savedInstanceState)
 
         presenter = NickNamePresenter(this)
-        presenter?.viewDidLoad()
+        presenter?.viewDidLoad(requireContext())
 
     }
 
 
-    override fun viewInit() {
+    override fun viewInit(nickname: String) {
         NikNameEditTextView.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
                 presenter?.setStrNikName(NikNameEditTextView.text.toString())
@@ -55,13 +55,14 @@ class NickNameFragment : Fragment(), NickNameContract.View {
 
         })
 
-        ConfirmBtnView.setOnClickListener { moveMainFragment() }
+        ConfirmBtnView.setOnClickListener { presenter?.onClickConfirmBtn(requireContext()) }
+        NikNameEditTextView.setText(nickname)
 
     }
 
 
     override fun longNikName() {
-        Toast.makeText(context, "닉네임 길이가 10자를 넘으면 안됩니다", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, requireActivity().resources.getString(R.string.nickname_too_long_name), Toast.LENGTH_SHORT).show()
     }
 
 
