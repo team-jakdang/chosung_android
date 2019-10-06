@@ -32,9 +32,15 @@ class CameraModel {
 
 
             if (r != "{}") {
-                bRoomExist = true
+                if(result.getBoolean("bHasRoom")){
+                    bRoomExist = true
 
-                findRoomListner.onSuccess()
+                    findRoomListner.onSuccess()
+                }else{
+                    findRoomListner.onFail()
+                }
+
+
             } else {
                 findRoomListner.onFail()
             }
