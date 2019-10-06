@@ -21,6 +21,7 @@ interface MainContract {
         // 대기방으로 이동합니다
         fun moveWaitRoomFragment(game : Game,room : Room)
 
+
         // QR카메라를 띄워줍니다
         fun moveQRCameraFragment()
 

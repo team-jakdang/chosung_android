@@ -78,6 +78,7 @@ class CameraFragment internal constructor() : Fragment(), CameraContract.View, M
             CameraFragmentDirections.actionCameraFragmentToWaitRoomFragment(args.strNickName,
                 room, Game()
             )
+
         )
     }
 

@@ -25,6 +25,7 @@ class MainPresenter(view: MainContract.View) : MainContract.Presenter {
 
     override fun makeGame() {
         view.closeGameSettingDialog()
+
         model.makeRoomRequest(object : MainModel.makeRoomListner {
             override fun onSuccess() {
                 view.moveWaitRoomFragment(model.Game,model.room)
@@ -35,6 +36,7 @@ class MainPresenter(view: MainContract.View) : MainContract.Presenter {
             }
 
         })
+
     }
 
 

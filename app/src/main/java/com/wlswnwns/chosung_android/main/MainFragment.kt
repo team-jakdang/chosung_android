@@ -11,12 +11,10 @@ import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.dialog.GameSettingDialog
 import com.wlswnwns.chosung_android.item.Game
 import com.wlswnwns.chosung_android.item.Room
+
 import kotlinx.android.synthetic.main.layout_main.*
 import kotlinx.android.synthetic.main.layout_wait_room.*
 import net.glxn.qrgen.android.QRCode
-
-
-
 
 class MainFragment internal constructor() : Fragment(), MainContract.View {
 
@@ -64,6 +62,7 @@ class MainFragment internal constructor() : Fragment(), MainContract.View {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
 
             MainFragmentDirections.actionMainFragmentToWaitRoomFragment(args.strNickName,room,game)
+
         )
     }
 

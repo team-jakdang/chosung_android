@@ -13,7 +13,9 @@ class GameSettingDialog(context: Context,presenter : MainContract.Presenter) : D
 
 
     var presenter : MainContract.Presenter
+
     var strMode : String = "hunmin"
+
     var iLength : Int = 2
     var iTime : Int = 10
 
@@ -36,6 +38,7 @@ class GameSettingDialog(context: Context,presenter : MainContract.Presenter) : D
             when(GameModeRadioGroup.checkedRadioButtonId){
                 R.id.ModeHunMin -> strMode = "hunmin"
                 R.id.ModeKungKung -> strMode = "kkt"
+
             }
         }
 

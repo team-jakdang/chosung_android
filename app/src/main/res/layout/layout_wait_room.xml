@@ -53,8 +53,9 @@
                 android:id="@+id/entryListView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_weight="1" />
+
 
         <TextView
                 android:layout_width="match_parent"
@@ -222,7 +223,7 @@
             app:layout_constraintTop_toBottomOf="@id/QRCodeTitleView"
             app:layout_constraintRight_toRightOf="parent"/>
 
-
+==
     <Button
             android:id="@+id/KungKungDdaBtn"
             android:layout_width="0dp"

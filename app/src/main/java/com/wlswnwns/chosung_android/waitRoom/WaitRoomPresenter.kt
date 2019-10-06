@@ -29,10 +29,12 @@ class WaitRoomPresenter (view : WaitRoomContract.View ) : WaitRoomContract.Prese
         view.showTime(game.iTime)
         view.showQRCodeImage( model.makeRoomQRCode())
 
+
     }
     override fun onClickGameStartBtn() {
 
         view.moveHunMinFragment(model.Game.iChosungLenght,model.Game.iTime)
+
 
     }
 

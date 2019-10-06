@@ -10,5 +10,4 @@ class Game : Serializable{
     var strUserName : String = "test"
     var strChosung : String = "test"
 
-
 }

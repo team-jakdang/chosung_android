@@ -7,6 +7,7 @@ import com.wlswnwns.chosung_android.item.User
 import com.wlswnwns.chosung_android.utils.APiAsyc
 import net.glxn.qrgen.android.QRCode
 
+
 class WaitRoomModel {
 
     var isRoomOwner = false
@@ -29,6 +30,7 @@ class WaitRoomModel {
         Users = ArrayList()
 
         for (i in 0..10) {
+
             Users?.add(User().apply { strUserName = "User$i" })
         }
     }
