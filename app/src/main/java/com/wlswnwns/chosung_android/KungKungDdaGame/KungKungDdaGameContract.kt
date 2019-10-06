@@ -37,6 +37,7 @@ interface KungKungDdaGameContract {
         //유저가 입력한 단어들을 보여주기 위한 리스트
         fun listViewGameLogs(arg : ArrayList<Any>)
 
+
         //쿵쿵따 게임 종료 프래그먼트 띄움
         fun moveToKungDdaGameOverFragment()
 
@@ -70,6 +71,7 @@ interface KungKungDdaGameContract {
         // 서버에서 받아온 랜덤 초성을 모델에 전달
         fun setRandomChosung(chosung : ArrayList<String>)
         fun getRandomChosung()
+
 
 
         // 유저가 입력한 텍스트를 모델에 전달

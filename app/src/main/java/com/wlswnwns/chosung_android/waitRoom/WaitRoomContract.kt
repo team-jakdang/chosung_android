@@ -1,5 +1,9 @@
 package com.wlswnwns.chosung_android.waitRoom
 
+import android.graphics.Bitmap
+import com.wlswnwns.chosung_android.item.Game
+import com.wlswnwns.chosung_android.item.Room
+
 import com.wlswnwns.chosung_android.item.User
 
 interface WaitRoomContract{
@@ -32,6 +36,8 @@ interface WaitRoomContract{
 
         fun showTime(time : Int)
 
+        fun showQRCodeImage(img : Bitmap)
+
 
 
 
@@ -39,7 +45,8 @@ interface WaitRoomContract{
 
     interface Presenter{
         // 프레그먼트의 뷰가 생성되면 호출됩니다
-        fun viewDidLoad(mode: String, iLength : Int, iTime : Int)
+        fun viewDidLoad(game: Game,room : Room)
+
 
         //게임 시작 버튼을 누르면 호출됩니다
         fun onClickGameStartBtn()

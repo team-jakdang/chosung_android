@@ -13,7 +13,9 @@ class GameSettingDialog(context: Context,presenter : MainContract.Presenter) : D
 
 
     var presenter : MainContract.Presenter
-    var strMode : String = "훈민정음"
+
+    var strMode : String = "hunmin"
+
     var iLength : Int = 2
     var iTime : Int = 10
 
@@ -34,8 +36,9 @@ class GameSettingDialog(context: Context,presenter : MainContract.Presenter) : D
 
         GameModeRadioGroup.setOnCheckedChangeListener { radioGroup, i ->
             when(GameModeRadioGroup.checkedRadioButtonId){
-                R.id.ModeHunMin -> strMode = "훈민정음"
-                R.id.ModeKungKung -> strMode = "쿵쿵따"
+                R.id.ModeHunMin -> strMode = "hunmin"
+                R.id.ModeKungKung -> strMode = "kkt"
+
             }
         }
 

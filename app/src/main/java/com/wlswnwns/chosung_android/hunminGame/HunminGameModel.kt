@@ -11,6 +11,7 @@ class HunminGameModel {
     var iTime : Int = 2
     var userInfo : String = ""
     var randomChosung = arrayOf("ㅊ","ㅇ","ㅊ")
+
     var listUserOrderList = arrayListOf<Any>()
 
     var isRoomOwner = false

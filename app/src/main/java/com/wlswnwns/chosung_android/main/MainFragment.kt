@@ -9,8 +9,12 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.dialog.GameSettingDialog
-import kotlinx.android.synthetic.main.layout_main.*
+import com.wlswnwns.chosung_android.item.Game
+import com.wlswnwns.chosung_android.item.Room
 
+import kotlinx.android.synthetic.main.layout_main.*
+import kotlinx.android.synthetic.main.layout_wait_room.*
+import net.glxn.qrgen.android.QRCode
 
 class MainFragment internal constructor() : Fragment(), MainContract.View {
 
@@ -49,12 +53,16 @@ class MainFragment internal constructor() : Fragment(), MainContract.View {
         SearchRoomBtn.setOnClickListener { moveQRCameraFragment() }
 
 
+
+
+
     }
 
-    override fun moveWaitRoomFragment(mode: String, iLength: Int, iTime: Int) {
+    override fun moveWaitRoomFragment(game: Game,room : Room) {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
 
-            MainFragmentDirections.actionMainFragmentToWaitRoomFragment(args.strNickName,mode,iLength,iTime)
+            MainFragmentDirections.actionMainFragmentToWaitRoomFragment(args.strNickName,room,game)
+
         )
     }
 

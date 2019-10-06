@@ -1,5 +1,8 @@
 package com.wlswnwns.chosung_android.waitRoom
 
+import com.wlswnwns.chosung_android.item.Game
+import com.wlswnwns.chosung_android.item.Room
+
 class WaitRoomPresenter (view : WaitRoomContract.View ) : WaitRoomContract.Presenter{
 
 
@@ -13,21 +16,25 @@ class WaitRoomPresenter (view : WaitRoomContract.View ) : WaitRoomContract.Prese
         this.model = WaitRoomModel()
     }
 
-    override fun viewDidLoad(mode: String, iLength: Int, iTime: Int) {
-        view.viewInit(model.iLength,model.iTime)
+    override fun viewDidLoad(game: Game, room : Room) {
+        view.viewInit(game.iChosungLenght,game.iTime)
         model.dummyUsers()
         view.showUserList(model.Users!!)
-        model.strMode = mode
-        model.iLength = iLength
-        model.iTime = iTime
-        view.showGameMode(mode)
-        view.showChosungLength(iLength)
-        view.showTime(iTime)
+        model.Game = game
+        model.room = room
+
+
+        view.showGameMode(game.strMode)
+        view.showChosungLength(game.iChosungLenght)
+        view.showTime(game.iTime)
+        view.showQRCodeImage( model.makeRoomQRCode())
+
 
     }
     override fun onClickGameStartBtn() {
 
-        view.moveHunMinFragment(model.iLength,model.iTime)
+        view.moveHunMinFragment(model.Game.iChosungLenght,model.Game.iTime)
+
 
     }
 

@@ -28,6 +28,7 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View  {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.layout_kungkungddagame, container, false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

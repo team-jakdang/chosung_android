@@ -1,5 +1,8 @@
 package com.wlswnwns.chosung_android.main
 
+import com.wlswnwns.chosung_android.item.Game
+import com.wlswnwns.chosung_android.item.Room
+
 interface MainContract {
 
     interface  View {
@@ -16,7 +19,8 @@ interface MainContract {
 
 
         // 대기방으로 이동합니다
-        fun moveWaitRoomFragment(mode: String, iLength : Int, iTime : Int)
+        fun moveWaitRoomFragment(game : Game,room : Room)
+
 
         // QR카메라를 띄워줍니다
         fun moveQRCameraFragment()

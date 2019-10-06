@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.wlswnwns.chosung_android.R
+import com.wlswnwns.chosung_android.item.Game
+import com.wlswnwns.chosung_android.item.Room
 import com.wlswnwns.chosung_android.nickname.NickNameFragmentDirections
 import com.wlswnwns.chosung_android.qrcamera.View.MyZBarScannerView
 import kotlinx.android.synthetic.main.layout_qrcamera.*
@@ -68,13 +70,15 @@ class CameraFragment internal constructor() : Fragment(), CameraContract.View, M
         Log.e(TAG, rawResult?.getContents()); // Prints scan results
         Log.e(TAG, rawResult?.getBarcodeFormat()?.getName()); // Prints the scan format (qrcode, pdf417 etc.)
 
-        presenter?.setQRData(rawResult?.getContents() ?: "")
-        presenter?.checkQRData()
+        presenter?.checkQRData(rawResult?.getContents() ?: "")
     }
 
-    override fun moveWaitRoomFragment() {
+    override fun moveWaitRoomFragment(room: Room) {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            CameraFragmentDirections.actionCameraFragmentToWaitRoomFragment(args.strNickName,"훈민정음",2,10)
+            CameraFragmentDirections.actionCameraFragmentToWaitRoomFragment(args.strNickName,
+                room, Game()
+            )
+
         )
     }
 
