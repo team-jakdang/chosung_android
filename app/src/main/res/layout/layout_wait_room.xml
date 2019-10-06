@@ -53,8 +53,8 @@
                 android:id="@+id/entryListView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <TextView
                 android:layout_width="match_parent"
@@ -212,6 +212,15 @@
             app:layout_constraintTop_toBottomOf="@+id/GameTimeView"
             app:layout_constraintVertical_bias="0" />
 
+
+    <ImageView
+            android:id="@+id/QRCodeImgView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/KungKungDdaBtn"
+            app:layout_constraintLeft_toRightOf="@+id/LeftGuideLine"
+            app:layout_constraintTop_toBottomOf="@id/QRCodeTitleView"
+            app:layout_constraintRight_toRightOf="parent"/>
 
 
     <Button

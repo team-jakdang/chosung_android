@@ -18,14 +18,23 @@ class MainPresenter(view: MainContract.View) : MainContract.Presenter {
 
 
     override fun gameSetting(mode: String, length: Int, time: Int) {
-        model.strMode = mode
-        model.iChosungLenght = length
-        model.iTime = time
+        model.Game.strMode = mode
+        model.Game.iChosungLenght = length
+        model.Game.iTime = time
     }
 
     override fun makeGame() {
         view.closeGameSettingDialog()
-        view.moveWaitRoomFragment(model.strMode,model.iChosungLenght,model.iTime)
+        model.makeRoomRequest(object : MainModel.makeRoomListner {
+            override fun onSuccess() {
+                view.moveWaitRoomFragment(model.Game,model.room)
+            }
+
+            override fun onFail() {
+                view.showFailMakeRoomMsg()
+            }
+
+        })
     }
 
 
@@ -36,7 +45,6 @@ class MainPresenter(view: MainContract.View) : MainContract.Presenter {
     override fun onClickMakeRoomBtn() {
         view.showGameSettingDialog()
     }
-
 
 
 }

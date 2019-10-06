@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.wlswnwns.chosung_android.R
+import com.wlswnwns.chosung_android.item.Game
+import com.wlswnwns.chosung_android.item.Room
 import kotlinx.android.synthetic.main.layout_hunmingame_ranking.*
 
 class HunminGameRankingFragment : Fragment(), HunminGameRankingContract.View {
@@ -48,6 +50,8 @@ class HunminGameRankingFragment : Fragment(), HunminGameRankingContract.View {
         Log.e("ff", "ff2")
 
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            HunminGameRankingFragmentDirections.actionHunminGameRankingFragmentToWaitRoomFragment("은채","",0,0)
+            HunminGameRankingFragmentDirections.actionHunminGameRankingFragmentToWaitRoomFragment("은채",
+                Room(), Game()
+            )
         )    }
 }
