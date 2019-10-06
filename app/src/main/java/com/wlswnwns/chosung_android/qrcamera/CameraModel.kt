@@ -32,6 +32,8 @@ class CameraModel {
 
 
             if (r != "{}") {
+
+                //방이 존재하면 true 값을 응답받습니다
                 if(result.getBoolean("bHasRoom")){
                     bRoomExist = true
 
