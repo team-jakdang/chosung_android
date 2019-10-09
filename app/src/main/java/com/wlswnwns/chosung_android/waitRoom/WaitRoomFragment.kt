@@ -17,12 +17,11 @@ import com.wlswnwns.chosung_android.item.User
 import kotlinx.android.synthetic.main.layout_wait_room.*
 
 class WaitRoomFragment : Fragment(), WaitRoomContract.View {
+
     private val args: WaitRoomFragmentArgs by navArgs()
 
     var presenter: WaitRoomContract.Presenter? = null
 
-
-    var presenter : WaitRoomContract.Presenter? = null
 
 
     override fun onCreateView(
@@ -36,15 +35,17 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        
+
         presenter = WaitRoomPresenter(this)
-        presenter?.viewDidLoad(args.strMode,args.iLength,args.iTime)
+        presenter?.viewDidLoad(args.game,args.room)
 
     }
 
 
-    override fun viewInit(iLength : Int, iTime : Int) {
-        HunMinBtn.setOnClickListener { moveHunMinFragment(iLength,iTime) }
+
+
+    override fun viewInit(iLength: Int, iTime: Int) {
+        HunMinBtn.setOnClickListener { moveHunMinFragment(iLength, iTime) }
         KungKungDdaBtn.setOnClickListener { moveKungKungDdaFragment() }
         GameStartBtn.setOnClickListener { presenter?.onClickGameStartBtn() }
         BackBtn.setOnClickListener { presenter?.onClickExitRoom() }
@@ -57,25 +58,6 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
 
     }
 
-        presenter = WaitRoomPresenter(this)
-        presenter?.viewDidLoad(args.game,args.room)
-
-    }
-
-
-    override fun viewInit(iLength: Int, iTime: Int) {
-        HunMinBtn.setOnClickListener { moveHunMinFragment(iLength, iTime) }
-        KungKungDdaBtn.setOnClickListener { moveKungKungDdaFragment() }
-        GameStartBtn.setOnClickListener { presenter?.onClickGameStartBtn() }
-        BackBtn.setOnClickListener { presenter?.onClickExitRoom() }
-    }
-
-    override fun moveHunMinFragment(iLength: Int, iTime: Int) {
-        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            WaitRoomFragmentDirections.actionWaitRoomFragmentToHunminGameFragment(iLength, iTime)
-        )
-
-    }
 
     override fun moveKungKungDdaFragment() {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(

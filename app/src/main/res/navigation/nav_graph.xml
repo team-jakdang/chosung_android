@@ -58,7 +58,7 @@
     </fragment>
     <fragment
             android:id="@+id/kungKungDdaGameFragment"
-            android:name="com.wlswnwns.chosung_android.hunminGame.KungKungDdaGameFragment"
+            android:name="com.wlswnwns.chosung_android.KungKungDdaGame.KungKungDdaGameFragment"
             android:label="KungKungDdaGameFragment" />
 
     <fragment android:id="@+id/hunminGameRankingFragment"

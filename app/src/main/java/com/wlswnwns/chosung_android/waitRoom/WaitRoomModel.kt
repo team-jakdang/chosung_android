@@ -21,6 +21,7 @@ class WaitRoomModel {
     var room: Room = Room()
 
     fun makeRoomQRCode(): Bitmap {
+      
         room.bitmapQRCode = QRCode.from(room.iRoomId.toString()).bitmap()
         return room.bitmapQRCode!!
     }
