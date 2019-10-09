@@ -131,7 +131,7 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 
             }
             override fun onFinish() {
-                view.moveHunminGameRankingFragment()
+                view.moveHunminGameOverFragment()
             }
         }
         countDownTimer.start()

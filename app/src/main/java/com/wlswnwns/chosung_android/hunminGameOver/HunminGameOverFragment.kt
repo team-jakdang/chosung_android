@@ -1,4 +1,4 @@
-package com.wlswnwns.chosung_android.hunminGameRanking
+package com.wlswnwns.chosung_android.hunminGameOver
 
 import android.os.Bundle
 import android.util.Log
@@ -12,29 +12,30 @@ import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.item.Game
 import com.wlswnwns.chosung_android.item.Room
 
-import kotlinx.android.synthetic.main.layout_hunmingame_ranking.*
+import kotlinx.android.synthetic.main.layout_game_over.*
 
-class HunminGameRankingFragment : Fragment(), HunminGameRankingContract.View {
+class HunminGameOverFragment : Fragment(), HunminGameOverContract.View {
 
-    var presenter: HunminGameRankingContract.Presenter? = null
+    var presenter: HunminGameOverContract.Presenter? = null
 
     override fun onCreateView( 
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.layout_hunmingame_ranking, container, false)
+        return inflater.inflate(R.layout.layout_game_over, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter = HunminGameRankingPresenter(this)
+        presenter = HunminGameOverPresenter(this)
         presenter?.viewDidLoad()
 
     }
 
     override fun viewInit() {
 
+        TitleTextView.setText(requireActivity().resources.getString(R.string.game_over_hunmin_title))
         OneMoreGameBtnView.setOnClickListener{moveHunminGameFragment()}
         GameEndBtnView.setOnClickListener{ moveMainFragment()}
 
@@ -52,7 +53,7 @@ class HunminGameRankingFragment : Fragment(), HunminGameRankingContract.View {
         Log.e("ff", "ff2")
 
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            HunminGameRankingFragmentDirections.actionHunminGameRankingFragmentToWaitRoomFragment("은채",
+            HunminGameOverFragmentDirections.actionHunminGameOverFragmentToWaitRoomFragment("은채",
                 Room(), Game()
             )
 
