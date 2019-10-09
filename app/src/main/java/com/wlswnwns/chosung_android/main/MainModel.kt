@@ -21,7 +21,7 @@ class MainModel{
       try {
          gameData.put("strGameMode", Game.strMode)
          gameData.put("iWordLength", Game.iChosungLenght)
-         gameData.put("iTimeLimit", 20)
+         gameData.put("iTimeLimit", Game.iTime)
          apiAsyc = APiAsyc("room-control/makeRoom", "POST", gameData)
          apiAsyc.execute()
 
