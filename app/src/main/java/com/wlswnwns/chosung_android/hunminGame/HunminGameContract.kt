@@ -27,9 +27,6 @@ interface HunminGameContract {
         // 정답이 아닐때 보여주는 아이콘이 1초가 지나면 사라지게
         fun defaultGameView()
 
-        // 유저가 입력하는 단어들을 보여주는 리스트
-        fun listViewGameLogs(arg : ArrayList<Any>)
-
         // 순위 발표 프레그먼트 띄움
         fun moveHunminGameOverFragment()
 
@@ -37,7 +34,7 @@ interface HunminGameContract {
         fun showErrorMsg(msg : String)
 
         // 초성 로그를 보여줌
-        fun showChosungLogList(Game : ArrayList<Game>)
+        fun showChosungLogList(ChosungLog : ArrayList<Game>)
 
     }
 

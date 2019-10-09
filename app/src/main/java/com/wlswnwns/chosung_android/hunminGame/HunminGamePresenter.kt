@@ -28,7 +28,9 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
         model.dummyGameLogs()
         model.chosungLength = iLength
         model.iTime = iTime
-        view.showChosungLogList(model.GameLog!!)
+
+
+        view.showChosungLogList(model.ChosungLog!!)
     }
 
     // 유저가 입력한 텍스트를 set
@@ -119,22 +121,22 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
     }
 
     override fun listViewGameLog() {
-        view.listViewGameLogs(model.listGameLog)
+//        view.listViewGameLogs(model.listGameLog)
     }
 
 
     override fun gameTimerStart() {
-        val countDownTimer = object : CountDownTimer(2000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                Log.d("tekloon", "millisUntilFinished $millisUntilFinished")
-//                val time:Long = (millisUntilFinished/1000) % 60
-
-            }
-            override fun onFinish() {
-                view.moveHunminGameOverFragment()
-            }
-        }
-        countDownTimer.start()
+//        val countDownTimer = object : CountDownTimer(12000, 1000) {
+//            override fun onTick(millisUntilFinished: Long) {
+//                Log.d("tekloon", "millisUntilFinished $millisUntilFinished")
+////                val time:Long = (millisUntilFinished/1000) % 60
+//
+//            }
+//            override fun onFinish() {
+//                view.moveHunminGameOverFragment()
+//            }
+//        }
+//        countDownTimer.start()
 
     }
 

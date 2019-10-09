@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.wlswnwns.chosung_android.R
+import com.wlswnwns.chosung_android.adapter.HunminGameRoomChosungLogAdapter
 import com.wlswnwns.chosung_android.item.Game
 import kotlinx.android.synthetic.main.layout_hunmingame.*
 
@@ -41,8 +42,17 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
     }
 
-    override fun showChosungLogList(Game: ArrayList<Game>) {
+    override fun showChosungLogList(ChosungLog: ArrayList<Game>) {
 
+        println("ChosungLogList :: " + ChosungLog)
+
+        HunminGameRoomChosungLogAdapter(
+            requireContext(),
+            presenter!!,
+            ChosungLog
+        ).let {
+            GameLogRecyclerView.adapter = it
+        }
     }
 
     override fun viewInit() {
@@ -114,9 +124,6 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
         WrongImageView.isVisible = true
     }
 
-    override fun listViewGameLogs(arg: ArrayList<Any>) {
-
-    }
 
 
     // 게임오버 프래그먼트로 이동
