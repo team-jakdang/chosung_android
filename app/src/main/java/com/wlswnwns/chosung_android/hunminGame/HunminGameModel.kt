@@ -16,14 +16,14 @@ class HunminGameModel {
 
     var isRoomOwner = false
 
-    var GameLog : ArrayList<Game>? = null
+    var ChosungLog : ArrayList<Game>? = null
 
     fun dummyGameLogs(){
-        GameLog = ArrayList()
+        ChosungLog = ArrayList()
 
         for(i in 0..10){
-            GameLog?.add(Game().apply { strUserName = "User$i"  })
-            GameLog?.add(Game().apply { strChosung = "chosung$i"  })
+            ChosungLog?.add(Game().apply { strUserName = "User$i"  })
+            ChosungLog?.add(Game().apply { strChosung = "chosung$i"  })
 
         }
     }
