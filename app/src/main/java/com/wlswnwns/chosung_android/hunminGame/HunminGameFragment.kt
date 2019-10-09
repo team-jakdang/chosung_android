@@ -119,10 +119,10 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
     }
 
 
-    // 순위 프래그먼트로 이동
-    override fun moveHunminGameRankingFragment() {
+    // 게임오버 프래그먼트로 이동
+    override fun moveHunminGameOverFragment() {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            HunminGameFragmentDirections.actionHunminGameFragmentToHunminGameRankingFragment()
+            HunminGameFragmentDirections.actionHunminGameFragmentToHunminGameOverFragment()
         )
     }
 

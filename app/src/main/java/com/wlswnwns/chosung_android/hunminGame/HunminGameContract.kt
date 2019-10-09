@@ -31,7 +31,7 @@ interface HunminGameContract {
         fun listViewGameLogs(arg : ArrayList<Any>)
 
         // 순위 발표 프레그먼트 띄움
-        fun moveHunminGameRankingFragment()
+        fun moveHunminGameOverFragment()
 
         // 에러 메세지를 다이얼로그로 보여줌
         fun showErrorMsg(msg : String)
