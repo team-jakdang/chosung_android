@@ -4,9 +4,9 @@ import android.os.CountDownTimer
 import android.os.Handler
 import android.provider.SyncStateContract.Helpers.update
 import android.util.Log
+import com.wlswnwns.chosung_android.item.Test
 import java.util.*
 import kotlin.collections.ArrayList
-
 
 
 class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Presenter {
@@ -23,14 +23,15 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
     }
 
     // 뷰 초기화 실행
-    override fun viewDidLoad(iLength : Int, iTime : Int) {
+    override fun viewDidLoad(iLength: Int, iTime: Int) {
         view.viewInit()
-        model.dummyGameLogs()
+//        model.dummyGameLogs()
         model.chosungLength = iLength
         model.iTime = iTime
+        model.ChosungLog = ArrayList()
 
 
-        view.showChosungLogList(model.ChosungLog!!)
+//        view.showChosungLogList(model.ChosungLog!!)
     }
 
     // 유저가 입력한 텍스트를 set
@@ -103,13 +104,29 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 
     // 글자 수 체크
     override fun checkUserInputTextLength() {
-        if (model.strUserInputEditText.length > getArrRoomInfo()) view.longUserInputText(getArrRoomInfo().toString())
+        if (model.strUserInputEditText.length > getArrRoomInfo()) view.longUserInputText(
+            getArrRoomInfo().toString()
+        )
 
     }
 
     // 유저가 입력한 답이 '은채' 이면 성공뷰를 아니라면 실패뷰를 띄어준다
     override fun checkUserInputTextIsAnswer() {
         if (model.strUserInputEditText == "은채") view.answerGameView() else wrongViewTimeSet()
+
+    }
+
+    override fun addChosungLog() {
+
+
+
+//        model.ChosungLog?.add(model.Game)
+        model.ChosungLog?.add(Test("은채", model.strUserInputEditText) )
+//        model.ChosungLog?.add(model.Game.apply { strChosung = model.strUserInputEditText })
+
+        Log.e("TAG" , "초성어레이:: " + model.ChosungLog)
+        view.showChosungLogList(model.ChosungLog!!)
+
     }
 
     override fun wrongViewTimeSet() {
@@ -139,8 +156,6 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 //        countDownTimer.start()
 
     }
-
-
 
 
 }

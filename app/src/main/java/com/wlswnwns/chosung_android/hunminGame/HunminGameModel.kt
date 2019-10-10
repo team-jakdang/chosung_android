@@ -1,6 +1,7 @@
 package com.wlswnwns.chosung_android.hunminGame
 
 import com.wlswnwns.chosung_android.item.Game
+import com.wlswnwns.chosung_android.item.Test
 
 class HunminGameModel {
 
@@ -16,16 +17,17 @@ class HunminGameModel {
 
     var isRoomOwner = false
 
-    var ChosungLog : ArrayList<Game>? = null
+    var Game: Game = Game()
+    var ChosungLog : ArrayList<Test>? = null
 
-    fun dummyGameLogs(){
-        ChosungLog = ArrayList()
-
-        for(i in 0..10){
-            ChosungLog?.add(Game().apply { strUserName = "User$i"  })
-            ChosungLog?.add(Game().apply { strChosung = "chosung$i"  })
-
-        }
-    }
+//    fun dummyGameLogs(){
+//        ChosungLog = ArrayList()
+//
+//        for(i in 0..10){
+//            ChosungLog?.add(Game().apply { strUserName = "User$i"  })
+//            ChosungLog?.add(Game().apply { strChosung = "chosung$i"  })
+//
+//        }
+//    }
 
 }
