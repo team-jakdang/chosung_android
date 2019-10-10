@@ -1,6 +1,7 @@
 package com.wlswnwns.chosung_android.hunminGame
 
 import com.wlswnwns.chosung_android.item.Game
+import com.wlswnwns.chosung_android.item.Test
 
 interface HunminGameContract {
 
@@ -34,7 +35,7 @@ interface HunminGameContract {
         fun showErrorMsg(msg : String)
 
         // 초성 로그를 보여줌
-        fun showChosungLogList(ChosungLog : ArrayList<Game>)
+        fun showChosungLogList(ChosungLog : ArrayList<Test>)
 
     }
 
@@ -77,6 +78,9 @@ interface HunminGameContract {
 
         // 유저가 입력한 단어가 답에 속하는지 여부를 판단하기 위한 메소드(추후 서버와 통신)
         fun checkUserInputTextIsAnswer()
+
+        // 초성 로그 리스트에 추가하는 메소드
+        fun addChosungLog()
 
         // 실패뷰를(X표시) 1초뒤에 사라지게 하는 메소드
         fun wrongViewTimeSet()
