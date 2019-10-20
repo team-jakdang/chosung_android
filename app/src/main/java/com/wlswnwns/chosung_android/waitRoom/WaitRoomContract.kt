@@ -45,7 +45,7 @@ interface WaitRoomContract{
 
     interface Presenter{
         // 프레그먼트의 뷰가 생성되면 호출됩니다
-        fun viewDidLoad(game: Game,room : Room)
+        fun viewDidLoad(game: Game,room : Room, nickNmae : String)
 
 
         //게임 시작 버튼을 누르면 호출됩니다
@@ -60,6 +60,8 @@ interface WaitRoomContract{
         //방장이 방을 나가는경우 model에서
         //방을 제거해달라고 서버측에 요청을 보냅니다
         fun removeRoom()
+
+        fun disConnectSocket()
 
     }
 

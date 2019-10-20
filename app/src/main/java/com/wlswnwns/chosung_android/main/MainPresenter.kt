@@ -12,8 +12,9 @@ class MainPresenter(view: MainContract.View) : MainContract.Presenter {
     }
 
 
-    override fun viewDidLoad() {
+    override fun viewDidLoad(nickName: String) {
         view.viewInit()
+        model.CreateUser(nickName)
     }
 
 

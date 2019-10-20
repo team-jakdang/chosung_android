@@ -35,7 +35,7 @@ interface MainContract {
     interface Presenter{
 
         // 프레그먼트의 뷰가 생성되면 호출됩니다
-        fun viewDidLoad()
+        fun viewDidLoad(nickName : String)
 
         // 게임 방 생성 버튼을 누르면 호출됩니다
         fun onClickMakeRoomBtn()
