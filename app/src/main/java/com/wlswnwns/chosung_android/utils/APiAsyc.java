@@ -133,6 +133,8 @@ public class APiAsyc extends AsyncTask<Void, Void, String> {
 
             int status = con.getResponseCode();
             Log.e("응답코드==>",""+status);
+            String result = con.getResponseMessage();
+            Log.e("응답메세지==>",""+result);
 
 
             stream = con.getInputStream();

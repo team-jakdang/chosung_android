@@ -123,7 +123,7 @@ class KungKungDdaGamePresenter(view : KungKungDdaGameContract.View) : KungKungDd
 
         val countDownTimer = object : CountDownTimer(2000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                Log.d("kungddaCntTime", "millisUntilFinished $millisUntilFinished")
+                Log.e("kungddaCntTime", "millisUntilFinished $millisUntilFinished")
 //                val time:Long = (millisUntilFinished/1000) % 60
 
             }

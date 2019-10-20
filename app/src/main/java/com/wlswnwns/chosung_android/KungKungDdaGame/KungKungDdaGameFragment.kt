@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import com.wlswnwns.chosung_android.KungKungDdaGame.KungKungDdaGameContract
-import com.wlswnwns.chosung_android.KungKungDdaGame.KungKungDdaGamePresenter
+import androidx.navigation.Navigation
 import com.wlswnwns.chosung_android.R
 import kotlinx.android.synthetic.main.layout_kungkungddagame.*
 
@@ -37,6 +36,8 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View  {
         //뷰가 만들어지는 시점에서 프레젠터 생성.
         presenter = KungKungDdaGamePresenter(this)
         presenter?.viewDidLoad() //set View
+        presenter?.gameTimerStart() // 게임 타이머 시작
+
 
     }
 
@@ -98,8 +99,10 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View  {
     }
 
     override fun moveToKungDdaGameOverFragment() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
+            KungKungDdaGameFragmentDirections.actionKungKungDdaGameFragmentToKungKungDdaGameOverFragment()
+
+        )    }
 
     override fun showErrorMsg(msg: String) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

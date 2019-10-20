@@ -6,8 +6,6 @@ import com.wlswnwns.chosung_android.item.Game
 import com.wlswnwns.chosung_android.item.Room
 import com.wlswnwns.chosung_android.item.User
 import com.wlswnwns.chosung_android.utils.APiAsyc
-import net.glxn.qrgen.android.QRCode
-import net.glxn.qrgen.core.image.ImageType
 import org.json.JSONObject
 
 class MainModel{

@@ -13,10 +13,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.wlswnwns.chosung_android.R
+import com.wlswnwns.chosung_android.adapter.HunminGameRoomChosungLogAdapter
 import com.wlswnwns.chosung_android.item.Game
+import com.wlswnwns.chosung_android.item.Test
 import kotlinx.android.synthetic.main.layout_hunmingame.*
 
 class HunminGameFragment : Fragment(), HunminGameContract.View {
+
 
     private val args : HunminGameFragmentArgs by navArgs()
 
@@ -41,8 +44,17 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
     }
 
-    override fun showChosungLogList(Game: ArrayList<Game>) {
+    override fun showChosungLogList(ChosungLog: ArrayList<Game>) {
 
+        println("ChosungLogList :: " + ChosungLog)
+
+        HunminGameRoomChosungLogAdapter(
+            requireContext(),
+            presenter!!,
+            ChosungLog
+        ).let {
+            GameLogRecyclerView.adapter = it
+        }
     }
 
     override fun viewInit() {
@@ -53,6 +65,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
                 // 유저가 입력한 단어를 model 에 정의한 userInputEditTextView 에 set 해주기 위해
                 // 'presenter'의 setStrUserInputEditText()를 호출한다
                 presenter?.setStrUserInputEditText(UserInputEditTextView.text.toString())
+
 
                 // 유저가 입력한 단어가 3글자가 넘는지 확인하는 'presenter'의 checkUserInputTextLength()를 호출한다
                 presenter?.checkUserInputTextLength()
@@ -68,8 +81,12 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
         // 유저가 키보드에 있는 완료 버튼을 누르면 답이 맞는지 체크하는 'presenter'의  checkUserInputTextIsAnswer() 호출
         UserInputEditTextView.setOnEditorActionListener { v, actionId, event ->
-            Log.e(TAG, v.toString()+actionId.toString()+event)
+//            Log.e(TAG, v.toString()+actionId.toString()+event)
+            presenter?.addChosungLog()
             presenter?.checkUserInputTextIsAnswer()
+            UserInputEditTextView.setText("")
+
+
 //            presenter?.listViewGameLog()
             true
         }
@@ -114,15 +131,12 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
         WrongImageView.isVisible = true
     }
 
-    override fun listViewGameLogs(arg: ArrayList<Any>) {
-
-    }
 
 
-    // 순위 프래그먼트로 이동
-    override fun moveHunminGameRankingFragment() {
+    // 게임오버 프래그먼트로 이동
+    override fun moveHunminGameOverFragment() {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            HunminGameFragmentDirections.actionHunminGameFragmentToHunminGameRankingFragment()
+            HunminGameFragmentDirections.actionHunminGameFragmentToHunminGameOverFragment()
         )
     }
 
