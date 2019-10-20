@@ -9,23 +9,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.hunminGame.HunminGameContract
 import com.wlswnwns.chosung_android.item.Game
-import com.wlswnwns.chosung_android.item.Test
+
 
 
 class HunminGameRoomChosungLogAdapter(
     private val context: Context,
     private var presenter: HunminGameContract.Presenter,
-    items: ArrayList<Test>
+    items: ArrayList<Game>
 
 ) : RecyclerView.Adapter<HunminGameRoomChosungLogAdapter.UserViewHolder>() {
 
-    var items: ArrayList<Test>
+    var items: ArrayList<Game>
 
 
     init {
 
         this.items = items
-//        println("init!!!!!! :: " + items)
 
     }
 
@@ -56,7 +55,7 @@ class HunminGameRoomChosungLogAdapter(
     }
 
     override fun getItemCount(): Int {
-//        println("getItemCount :: " + items.size)
+
 
         return items.size
     }
@@ -65,7 +64,7 @@ class HunminGameRoomChosungLogAdapter(
 
         holder.UserNameView?.text = items[position].strUserName
         holder.ChosungView?.text = items[position].strChosung
-//        println("onBindViewHolder :: " + items)
+
 
 
     }

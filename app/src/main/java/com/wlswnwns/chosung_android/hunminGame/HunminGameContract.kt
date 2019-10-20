@@ -35,7 +35,7 @@ interface HunminGameContract {
         fun showErrorMsg(msg : String)
 
         // 초성 로그를 보여줌
-        fun showChosungLogList(ChosungLog : ArrayList<Test>)
+        fun showChosungLogList(ChosungLog : ArrayList<Game>)
 
     }
 
