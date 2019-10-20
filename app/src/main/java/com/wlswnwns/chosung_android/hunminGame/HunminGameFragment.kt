@@ -44,7 +44,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
     }
 
-    override fun showChosungLogList(ChosungLog: ArrayList<Test>) {
+    override fun showChosungLogList(ChosungLog: ArrayList<Game>) {
 
         println("ChosungLogList :: " + ChosungLog)
 
@@ -81,7 +81,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
         // 유저가 키보드에 있는 완료 버튼을 누르면 답이 맞는지 체크하는 'presenter'의  checkUserInputTextIsAnswer() 호출
         UserInputEditTextView.setOnEditorActionListener { v, actionId, event ->
-            Log.e(TAG, v.toString()+actionId.toString()+event)
+//            Log.e(TAG, v.toString()+actionId.toString()+event)
             presenter?.addChosungLog()
             presenter?.checkUserInputTextIsAnswer()
             UserInputEditTextView.setText("")

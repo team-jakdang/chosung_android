@@ -25,13 +25,10 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
     // 뷰 초기화 실행
     override fun viewDidLoad(iLength: Int, iTime: Int) {
         view.viewInit()
-//        model.dummyGameLogs()
         model.chosungLength = iLength
         model.iTime = iTime
         model.ChosungLog = ArrayList()
-
-
-//        view.showChosungLogList(model.ChosungLog!!)
+        Log.e("viewDidLoad","뷰 초기화 실행")
     }
 
     // 유저가 입력한 텍스트를 set
@@ -119,13 +116,14 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
     override fun addChosungLog() {
 
 
+//        model.ChosungLog?.add(Test("은채", model.strUserInputEditText) )
+        model.ChosungLog?.add(model.Game.apply{
+            strUserName = "은채";strChosung = model.strUserInputEditText
+        })
 
-//        model.ChosungLog?.add(model.Game)
-        model.ChosungLog?.add(Test("은채", model.strUserInputEditText) )
-//        model.ChosungLog?.add(model.Game.apply { strChosung = model.strUserInputEditText })
 
-        Log.e("TAG" , "초성어레이:: " + model.ChosungLog)
         view.showChosungLogList(model.ChosungLog!!)
+
 
     }
 
