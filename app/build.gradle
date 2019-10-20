@@ -61,7 +61,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'me.dm7.barcodescanner:zbar:1.9.13'
     implementation 'com.github.kenglxn.QRGen:android:2.6.0'
-
+    implementation 'com.neovisionaries:nv-websocket-client:2.9'
 
     // Navigation library
     def nav_version = "2.0.0"

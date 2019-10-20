@@ -40,7 +40,7 @@ class MainFragment internal constructor() : Fragment(), MainContract.View {
         super.onViewCreated(view, savedInstanceState)
 
         presenter = MainPresenter(this)
-        presenter?.viewDidLoad()
+        presenter?.viewDidLoad(args.strNickName)
 
     }
 

@@ -1,7 +1,8 @@
 package com.wlswnwns.chosung_android.waitRoom
 
+import android.content.Intent
 import android.graphics.Bitmap
-import android.os.Bundle
+import android.os.*
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,14 +16,14 @@ import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.adapter.WaitRoomUserListAdapter
 import com.wlswnwns.chosung_android.item.User
 import kotlinx.android.synthetic.main.layout_wait_room.*
+import org.json.JSONException
+import org.json.JSONObject
 
 class WaitRoomFragment : Fragment(), WaitRoomContract.View {
     private val args: WaitRoomFragmentArgs by navArgs()
 
-    var presenter: WaitRoomContract.Presenter? = null
+    var presenter: WaitRoomPresenter? = null
 
-
-    var presenter : WaitRoomContract.Presenter? = null
 
 
     override fun onCreateView(
@@ -36,29 +37,9 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        
-        presenter = WaitRoomPresenter(this)
-        presenter?.viewDidLoad(args.strMode,args.iLength,args.iTime)
-
-    }
-
-
-    override fun viewInit(iLength : Int, iTime : Int) {
-        HunMinBtn.setOnClickListener { moveHunMinFragment(iLength,iTime) }
-        KungKungDdaBtn.setOnClickListener { moveKungKungDdaFragment() }
-        GameStartBtn.setOnClickListener { presenter?.onClickGameStartBtn() }
-        BackBtn.setOnClickListener { presenter?.onClickExitRoom() }
-    }
-
-    override fun moveHunMinFragment(iLength : Int, iTime : Int) {
-        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            WaitRoomFragmentDirections.actionWaitRoomFragmentToHunminGameFragment(iLength,iTime)
-        )
-
-    }
 
         presenter = WaitRoomPresenter(this)
-        presenter?.viewDidLoad(args.game,args.room)
+        presenter?.viewDidLoad(args.game, args.room,args.strNikName)
 
     }
 
@@ -68,6 +49,7 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
         KungKungDdaBtn.setOnClickListener { moveKungKungDdaFragment() }
         GameStartBtn.setOnClickListener { presenter?.onClickGameStartBtn() }
         BackBtn.setOnClickListener { presenter?.onClickExitRoom() }
+
     }
 
     override fun moveHunMinFragment(iLength: Int, iTime: Int) {
@@ -76,6 +58,7 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
         )
 
     }
+
 
     override fun moveKungKungDdaFragment() {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
@@ -129,6 +112,11 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
 
     override fun showQRCodeImage(img: Bitmap) {
         QRCodeImgView.setImageBitmap(img)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
     }
 
 

@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.util.Log
 import com.wlswnwns.chosung_android.item.Game
 import com.wlswnwns.chosung_android.item.Room
+import com.wlswnwns.chosung_android.item.User
 import com.wlswnwns.chosung_android.utils.APiAsyc
 import net.glxn.qrgen.android.QRCode
 import net.glxn.qrgen.core.image.ImageType
@@ -17,6 +18,14 @@ class MainModel{
    lateinit var apiAsyc : APiAsyc
 
    lateinit var room : Room
+
+   lateinit var user : User
+
+
+   fun CreateUser(nickName : String){
+      user = User().apply { strUserName = nickName }
+   }
+
 
    fun makeRoomRequest(makeRoomListner: makeRoomListner) {
       val gameData = JSONObject()
