@@ -1,36 +1,19 @@
-package com.wlswnwns.chosung_android.waitRoom
+package com.wlswnwns.chosung_android
 
-import android.graphics.Bitmap
-import android.os.Messenger
+import android.app.Service
+import android.content.Intent
+import android.os.IBinder
 import android.util.Log
 import com.neovisionaries.ws.client.WebSocket
 import com.neovisionaries.ws.client.WebSocketAdapter
 import com.neovisionaries.ws.client.WebSocketException
 import com.neovisionaries.ws.client.WebSocketFactory
-import com.wlswnwns.chosung_android.ChosungApplication
-import com.wlswnwns.chosung_android.item.Game
-import com.wlswnwns.chosung_android.item.Room
-import com.wlswnwns.chosung_android.item.User
-import com.wlswnwns.chosung_android.utils.APiAsyc
-import net.glxn.qrgen.android.QRCode
-import org.json.JSONArray
-import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 import java.net.UnknownHostException
 
+class SocketService : Service(){
 
-class WaitRoomModel {
-
-    var isRoomOwner = false
-
-    var Users: ArrayList<User>? = null
-
-    var Game: Game = Game()
-
-    lateinit var apiAsyc: APiAsyc
-
-    var room: Room = Room()
 
     var client: WebSocket? = null
 
@@ -57,7 +40,7 @@ class WaitRoomModel {
                                         "enterRoom" ->{
                                             val action = Runnable {
                                                 try {
-                                                    InitUserList(this.getJSONArray("arrUserInfo"))
+                                                    //InitUserList(this.getJSONArray("arrUserInfo"))
                                                     socketConnectListner.onLoadUserList()
                                                 } catch (e: IOException) {
                                                     // TODO Auto-generated catch block
@@ -113,54 +96,10 @@ class WaitRoomModel {
         fun onLoadUserList()
     }
 
-    fun InitUserList(jsonArray : JSONArray) {
 
-        Users = ArrayList()
-
-        for(index in 0 until jsonArray.length()){
-            var userObj =  jsonArray.getJSONObject(index)
-
-            var user = User().apply { strUserName = userObj.getString("strNickName") }
-
-            Users?.add(user)
-        }
-
+    override fun onBind(p0: Intent?): IBinder? {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
-
-    fun enterRoom(IsMaster : Boolean,roomId : Int, nikname : String){
-
-        var data_obj = JSONObject()
-
-        try {
-
-
-            data_obj.put("action", "enterRoom")
-            data_obj.put("bIsMaster", IsMaster)
-            data_obj.put("iRoomId", roomId)
-            data_obj.put("strNickName", nikname)
-
-            client?.let {
-                client?.sendText(data_obj.toString())
-                Log.e("메세지 보냄===>", data_obj.toString())
-            }.let {
-
-            }
-
-
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
-    }
-
-
-
-    fun makeRoomQRCode(): Bitmap {
-        return QRCode.from(room.iRoomId.toString()).bitmap()
-    }
-
-
-
 
 
 }

@@ -7,7 +7,6 @@ class Room : Serializable{
 
     var iRoomId: Int? = null
 
-    var bitmapQRCode: Bitmap? = null
 
 
 }
