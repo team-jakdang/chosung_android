@@ -20,6 +20,7 @@ import org.json.JSONException
 import org.json.JSONObject
 
 class WaitRoomFragment : Fragment(), WaitRoomContract.View {
+
     private val args: WaitRoomFragmentArgs by navArgs()
 
     var presenter: WaitRoomPresenter? = null
@@ -44,6 +45,8 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
     }
 
 
+
+
     override fun viewInit(iLength: Int, iTime: Int) {
         HunMinBtn.setOnClickListener { moveHunMinFragment(iLength, iTime) }
         KungKungDdaBtn.setOnClickListener { moveKungKungDdaFragment() }
@@ -52,9 +55,9 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
 
     }
 
-    override fun moveHunMinFragment(iLength: Int, iTime: Int) {
+    override fun moveHunMinFragment(iLength : Int, iTime : Int) {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            WaitRoomFragmentDirections.actionWaitRoomFragmentToHunminGameFragment(iLength, iTime)
+            WaitRoomFragmentDirections.actionWaitRoomFragmentToHunminGameFragment(iLength,iTime)
         )
 
     }

@@ -1,6 +1,7 @@
 package com.wlswnwns.chosung_android.hunminGame
 
 import com.wlswnwns.chosung_android.item.Game
+import com.wlswnwns.chosung_android.item.Test
 
 interface HunminGameContract {
 
@@ -27,17 +28,14 @@ interface HunminGameContract {
         // 정답이 아닐때 보여주는 아이콘이 1초가 지나면 사라지게
         fun defaultGameView()
 
-        // 유저가 입력하는 단어들을 보여주는 리스트
-        fun listViewGameLogs(arg : ArrayList<Any>)
-
         // 순위 발표 프레그먼트 띄움
-        fun moveHunminGameRankingFragment()
+        fun moveHunminGameOverFragment()
 
         // 에러 메세지를 다이얼로그로 보여줌
         fun showErrorMsg(msg : String)
 
         // 초성 로그를 보여줌
-        fun showChosungLogList(Game : ArrayList<Game>)
+        fun showChosungLogList(ChosungLog : ArrayList<Game>)
 
     }
 
@@ -80,6 +78,9 @@ interface HunminGameContract {
 
         // 유저가 입력한 단어가 답에 속하는지 여부를 판단하기 위한 메소드(추후 서버와 통신)
         fun checkUserInputTextIsAnswer()
+
+        // 초성 로그 리스트에 추가하는 메소드
+        fun addChosungLog()
 
         // 실패뷰를(X표시) 1초뒤에 사라지게 하는 메소드
         fun wrongViewTimeSet()

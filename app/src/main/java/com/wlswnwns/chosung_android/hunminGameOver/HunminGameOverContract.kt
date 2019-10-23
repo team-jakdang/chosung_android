@@ -1,6 +1,6 @@
-package com.wlswnwns.chosung_android.hunminGameRanking
+package com.wlswnwns.chosung_android.hunminGameOver
 
-interface HunminGameRankingContract {
+interface HunminGameOverContract {
 
 
     interface  View {

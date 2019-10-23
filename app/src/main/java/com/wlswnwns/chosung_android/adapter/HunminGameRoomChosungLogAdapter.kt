@@ -11,18 +11,21 @@ import com.wlswnwns.chosung_android.hunminGame.HunminGameContract
 import com.wlswnwns.chosung_android.item.Game
 
 
-class HunminGameRoomUserListAdapter(
+
+class HunminGameRoomChosungLogAdapter(
     private val context: Context,
     private var presenter: HunminGameContract.Presenter,
-    items: ArrayList<Game> //User에 관리하든지, GameUsers를 만들어 따로 하든지 회의후 결정 어찌되었든 닉네임 + 방장 여부도 있어야함
+    items: ArrayList<Game>
 
-) : RecyclerView.Adapter<HunminGameRoomUserListAdapter.UserViewHolder>() {
+) : RecyclerView.Adapter<HunminGameRoomChosungLogAdapter.UserViewHolder>() {
 
     var items: ArrayList<Game>
 
 
     init {
+
         this.items = items
+
     }
 
 
@@ -52,6 +55,8 @@ class HunminGameRoomUserListAdapter(
     }
 
     override fun getItemCount(): Int {
+
+
         return items.size
     }
 
@@ -59,6 +64,7 @@ class HunminGameRoomUserListAdapter(
 
         holder.UserNameView?.text = items[position].strUserName
         holder.ChosungView?.text = items[position].strChosung
+
 
 
     }
