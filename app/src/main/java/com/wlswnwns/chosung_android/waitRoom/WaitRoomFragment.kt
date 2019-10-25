@@ -1,14 +1,13 @@
 package com.wlswnwns.chosung_android.waitRoom
 
-import android.content.Intent
 import android.graphics.Bitmap
 import android.os.*
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
@@ -16,8 +15,6 @@ import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.adapter.WaitRoomUserListAdapter
 import com.wlswnwns.chosung_android.item.User
 import kotlinx.android.synthetic.main.layout_wait_room.*
-import org.json.JSONException
-import org.json.JSONObject
 
 class WaitRoomFragment : Fragment(), WaitRoomContract.View {
 
@@ -37,6 +34,7 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
 
         presenter = WaitRoomPresenter(this)
@@ -119,6 +117,8 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
 
     override fun onDestroyView() {
         super.onDestroyView()
+
+        presenter?.disConnectSocket()
 
     }
 

@@ -1,10 +1,7 @@
 package com.wlswnwns.chosung_android.KungKungDdaGame
 
-import android.os.CountDownTimer
 import android.os.Handler
-import android.util.Log
-import com.wlswnwns.chosung_android.KungKungDdaGame.KungKungDdaGameContract
-import com.wlswnwns.chosung_android.KungKungDdaGame.KungKungDdaGameModel
+import com.wlswnwns.chosung_android.ChosungApplication
 
 /**
  * Contract.Presenter에서 정의한 내용 구현
@@ -21,15 +18,21 @@ class KungKungDdaGamePresenter(view : KungKungDdaGameContract.View) : KungKungDd
 
 
     var model : KungKungDdaGameModel
+
+
     //생성자
     init {
         this.view = view
         this.model= KungKungDdaGameModel()
+
     }
 
     // 콘트렉트에 정의한 뷰 객체를 생성.
     override fun viewDidLoad() {
         view.viewInit()
+
+        ChosungApplication.startKKTGame()
+
     }
 
     // 유저가 입력한 답이 '은채' 이면 성공뷰를 아니라면 실패뷰를 띄어준다. todo.추후 서버에서 받아온 성공 플래그로 수정해야함.
@@ -121,17 +124,17 @@ class KungKungDdaGamePresenter(view : KungKungDdaGameContract.View) : KungKungDd
     //게임 제한시간 카운트다운 시작
     override fun gameTimerStart() {
 
-        val countDownTimer = object : CountDownTimer(2000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                Log.e("kungddaCntTime", "millisUntilFinished $millisUntilFinished")
-//                val time:Long = (millisUntilFinished/1000) % 60
-
-            }
-            override fun onFinish() {
-                view.moveToKungDdaGameOverFragment()
-            }
-        }
-        countDownTimer.start()
+//        val countDownTimer = object : CountDownTimer(2000, 1000) {
+//            override fun onTick(millisUntilFinished: Long) {
+//                Log.e("kungddaCntTime", "millisUntilFinished $millisUntilFinished")
+////                val time:Long = (millisUntilFinished/1000) % 60
+//
+//            }
+//            override fun onFinish() {
+//                view.moveToKungDdaGameOverFragment()
+//            }
+//        }
+//        countDownTimer.start()
     }
 
 
