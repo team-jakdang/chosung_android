@@ -2,6 +2,7 @@ package com.wlswnwns.chosung_android.hunminGame
 
 import com.wlswnwns.chosung_android.item.Game
 import com.wlswnwns.chosung_android.item.Test
+import org.json.JSONArray
 
 class HunminGameModel {
 
@@ -15,4 +16,21 @@ class HunminGameModel {
     var ChosungLog : ArrayList<Game>? = null
 
 
+//    fun InitUserList(jsonArray : JSONArray) : ArrayList<Game> {
+//
+//
+//
+//        var gameInfo =  jsonArray.getJSONObject(index)
+//
+//        for(index in 0 until jsonArray.length()){
+//            var userObj =  jsonArray.getJSONObject(index)
+//
+//            var user = Game().apply { strUserName = userObj.getString("strNickName") }
+//
+//            Game?.add(user)
+//        }
+//
+//        return Users!!
+//
+//    }
 }

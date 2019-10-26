@@ -31,7 +31,9 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
         model.iTime = iTime
         model.ChosungLog = ArrayList()
         Log.e("viewDidLoad","뷰 초기화 실행")
-        ChosungApplication.startHMJEGame()
+        ChosungApplication.startHMJEGame() // 게임시작 체크
+//        ChosungApplication.startHMJEGameTimeCheck()
+
     }
 
     // 유저가 입력한 텍스트를 set
@@ -81,17 +83,11 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getRandomChosungFirst(first: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getRandomChosung(chosung: String) {
+
+
     }
 
-    override fun getRandomChosungSecond(second: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun getRandomChosungThird(third: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     override fun gameStartTimeSendToServer() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

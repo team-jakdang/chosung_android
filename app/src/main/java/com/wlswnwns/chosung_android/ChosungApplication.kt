@@ -60,12 +60,31 @@ class ChosungApplication : Application() {
                                                             )
                                                         )
                                                     } catch (e: IOException) {
-                                                        // TODO Auto-generated catch block
                                                         e.printStackTrace()
                                                     }
                                                 }
 
                                                 ChosungApplication.activity.runOnUiThread(action)
+                                            }
+                                            "startHMJE" -> {
+                                                val action = Runnable {
+                                                    try {
+
+                                                        if(this.getString("strInitialWord") == "ff"){
+
+                                                        }
+                                                        onHunminGameStartInfo(
+                                                            this.getString("iCountDown"),
+                                                            this.getString("strInitialWord")
+                                                        )
+
+                                                    } catch (e: IOException) {
+                                                        e.printStackTrace()
+                                                    }
+                                                }
+
+                                                ChosungApplication.activity.runOnUiThread(action)
+
                                             }
                                         }
                                     }
@@ -117,6 +136,11 @@ class ChosungApplication : Application() {
         interface SocketConnectListner {
             fun onConnet()
             fun onLoadUserList(jsonArray: JSONArray)
+        }
+
+
+        fun onHunminGameStartInfo(count: String, chosung: String) {
+            Log.e("카운트", count)
         }
 
         fun enterRoom(IsMaster: Boolean, roomId: Int, nikname: String) {
@@ -173,6 +197,7 @@ class ChosungApplication : Application() {
                 e.printStackTrace()
             }
         }
+
         fun startHMJEGame() {
 
 
@@ -190,7 +215,28 @@ class ChosungApplication : Application() {
 
                 }
 
-                client?.disconnect();
+
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+
+
+        fun startHMJEGameTimeCheck() {
+            var data_obj = JSONObject()
+
+            try {
+
+                data_obj.put("action", "checkTimeHMJE")
+                data_obj.put("iRoomId", roomId)
+
+                client?.let {
+                    client?.sendText(data_obj.toString())
+                    Log.e("메세지 보냄 훈민정음 게임 시작체크===>", data_obj.toString())
+                }.let {
+
+                }
+
 
             } catch (e: JSONException) {
                 e.printStackTrace()

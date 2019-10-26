@@ -55,9 +55,7 @@ interface HunminGameContract {
 
         // 서버에서 받아온 랜덤 초성을 모델에 전달
         fun setRandomChosung(chosung : ArrayList<String>)
-        fun getRandomChosungFirst(first : String)
-        fun getRandomChosungSecond(second : String)
-        fun getRandomChosungThird(third : String)
+        fun getRandomChosung(chosung : String)
 
         // 유저가 입력한 텍스트를 모델에 전달
         fun setStrUserInputEditText(inputText : String)

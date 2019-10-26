@@ -45,12 +45,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/progressBar"
                 app:layout_constraintVertical_bias="0.0" />
 
+
         <TextView
-                android:id="@+id/ChosungThirdTextView"
-                android:layout_width="70dp"
+                android:id="@+id/ㅊ"
+                android:layout_width="300dp"
                 android:layout_height="70dp"
                 android:background="#0A0A0A"
-                android:hint="ㅊ"
+                android:hint="ㅊㅇ"
                 android:textAlignment="center"
                 android:textColor="#F7E24E"
                 android:textColorHighlight="#FFFFFF"
@@ -59,47 +60,9 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/ChosungView"
                 app:layout_constraintEnd_toEndOf="@+id/ChosungView"
-                app:layout_constraintHorizontal_bias="0.66"
-                app:layout_constraintStart_toEndOf="@+id/ChosungFirstTextView"
-                app:layout_constraintTop_toTopOf="@+id/ChosungView"
-                app:layout_constraintVertical_bias="0.508" />
-
-        <TextView
-                android:id="@+id/ChosungSecondTextView"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="#0A0A0A"
-                android:hint="ㅇ"
-                android:textAlignment="center"
-                android:textColor="#F7E24E"
-                android:textColorHighlight="#FFFFFF"
-                android:textColorHint="#F7E24E"
-                android:textSize="50sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/ChosungView"
-                app:layout_constraintEnd_toStartOf="@+id/ChosungThirdTextView"
-                app:layout_constraintStart_toEndOf="@+id/ChosungFirstTextView"
-                app:layout_constraintTop_toTopOf="@+id/ChosungView"
-                app:layout_constraintVertical_bias="0.508" />
-
-        <TextView
-                android:id="@+id/ChosungFirstTextView"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginStart="48dp"
-                android:background="#0A0A0A"
-                android:hint="ㅊ"
-                android:textAlignment="center"
-                android:textColor="#F7E24E"
-                android:textColorHighlight="#FFFFFF"
-                android:textColorHint="#F7E24E"
-                android:textSize="50sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/ChosungView"
                 app:layout_constraintStart_toStartOf="@+id/ChosungView"
                 app:layout_constraintTop_toTopOf="@+id/ChosungView"
-                app:layout_constraintVertical_bias="0.508" />
-
+                app:layout_constraintVertical_bias="0.469" />
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/GameLogRecyclerView"
