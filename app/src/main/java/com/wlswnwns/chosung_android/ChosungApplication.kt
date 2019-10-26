@@ -21,11 +21,11 @@ class ChosungApplication : Application() {
 
 
         var client: WebSocket? = null
+        var Game: Game = Game()
 
         //서버 주소
         var ip = "wss://an7iczphaj.execute-api.ap-northeast-2.amazonaws.com/dev"
         var thread: Thread? = null
-        var Game: Game = Game()
         var IsMaster: Boolean = false
 
         var roomId: Int = 0
@@ -82,6 +82,43 @@ class ChosungApplication : Application() {
                                                             this.getString("iCountDown"),
                                                             "없음"
                                                         )
+                                                    }
+                                                }
+
+                                                ChosungApplication.activity.runOnUiThread(action)
+
+                                            }
+                                            "checkTimeHMJE" -> {
+                                                val action = Runnable {
+                                                    try {
+                                                        onHunminGameIsTimeOver(
+                                                            this.getBoolean("bTimeOver")
+
+                                                        )
+                                                    } catch (e: IOException) {
+                                                        e.printStackTrace()
+                                                    } catch (e: JSONException) {
+                                                        Log.e("checkTimeHMJE Err===>", e.toString())
+
+                                                    }
+                                                }
+
+                                                ChosungApplication.activity.runOnUiThread(action)
+
+                                            }
+                                            "checkAnswerHMJE" -> {
+                                                val action = Runnable {
+                                                    try {
+                                                        onHunminGameIsAnswer(
+                                                            this.getBoolean("bIsAnswer"),
+                                                            this.getString("resultMessage")
+
+                                                        )
+                                                    } catch (e: IOException) {
+                                                        e.printStackTrace()
+                                                    } catch (e: JSONException) {
+                                                        Log.e("checkTimeHMJE Err===>", e.toString())
+
                                                     }
                                                 }
 
@@ -158,9 +195,21 @@ class ChosungApplication : Application() {
             Game.iCountDown = count
             Game.strInitialWord = chosung
 
+        }
 
+        fun onHunminGameIsTimeOver(isTimeOver :Boolean){
+
+            Game.bTimeOver = isTimeOver
+        }
+
+        fun onHunminGameIsAnswer(bIsAnswer:Boolean, resultMessage:String){
+
+            Game.bIsAnswer = bIsAnswer
+            Game.resultMessage = resultMessage
 
         }
+
+
 
         fun enterRoom(IsMaster: Boolean, roomId: Int, nikname: String) {
 
@@ -252,6 +301,28 @@ class ChosungApplication : Application() {
                 client?.let {
                     client?.sendText(data_obj.toString())
                     Log.e("메세지 보냄 훈민정음 게임 시작체크===>", data_obj.toString())
+                }.let {
+
+                }
+
+
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+
+        fun hunminGameIsAnswer() {
+            var data_obj = JSONObject()
+
+            try {
+
+                data_obj.put("action", "checkAnswerHMJE")
+                data_obj.put("iRoomId", roomId)
+                data_obj.put("strMessage", Game.strChosung)
+
+                client?.let {
+                    client?.sendText(data_obj.toString())
+                    Log.e("메세지 보냄 훈민정음 정답체크===>", data_obj.toString())
                 }.let {
 
                 }

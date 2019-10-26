@@ -92,7 +92,12 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 
 
     override fun gameStartTimeSendToServer() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        ChosungApplication.startHMJEGameTimeCheck() // 타임체크 소켓 연결
+
+        // 게임이 오버되었다면 순위 발표 페이지로 넘어가기 (서버에서 리턴값으로 주는 arrResultInfo 넘겨줘야함)
+        if (model.Game.bTimeOver) {
+            view.moveHunminGameOverFragment()
+        }
     }
 
     override fun gameEndTimeSendToServer() {
@@ -108,9 +113,22 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 
     }
 
-    // 유저가 입력한 답이 '은채' 이면 성공뷰를 아니라면 실패뷰를 띄어준다
+
     override fun checkUserInputTextIsAnswer() {
-        if (model.strUserInputEditText == model.Game.strInitialWord) view.answerGameView() else wrongViewTimeSet()
+
+        ChosungApplication.hunminGameIsAnswer()
+
+        // 유저가 입력한 답이 정답이라면 성공뷰를 띄워주고
+        if(model.Game.bIsAnswer){
+            view.answerGameView()
+
+        }
+        // 아니라면 실패 뷰를 띄어준다.
+        else{
+            wrongViewTimeSet()
+        }
+
+//        if (model.strUserInputEditText == model.Game.strInitialWord) view.answerGameView() else wrongViewTimeSet()
 
     }
 
@@ -142,9 +160,9 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 
         } else {
             view.showChosung(getRandomChosung())
+            gameStartTimeSendToServer() // 타임체크 시
         }
     }
-
 
     override fun gameTimerStart() {
 //        val countDownTimer = object : CountDownTimer(12000, 1000) {
