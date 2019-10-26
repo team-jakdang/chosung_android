@@ -7,6 +7,7 @@ import com.neovisionaries.ws.client.WebSocket
 import com.neovisionaries.ws.client.WebSocketAdapter
 import com.neovisionaries.ws.client.WebSocketException
 import com.neovisionaries.ws.client.WebSocketFactory
+import com.wlswnwns.chosung_android.item.Game
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -24,7 +25,7 @@ class ChosungApplication : Application() {
         //서버 주소
         var ip = "wss://an7iczphaj.execute-api.ap-northeast-2.amazonaws.com/dev"
         var thread: Thread? = null
-
+        var Game: Game = Game()
         var IsMaster: Boolean = false
 
         var roomId: Int = 0
@@ -68,19 +69,22 @@ class ChosungApplication : Application() {
                                             }
                                             "startHMJE" -> {
                                                 val action = Runnable {
-                                                    try {
-
-                                                        if(this.getString("strInitialWord") == "ff"){
-
-                                                        }
-                                                        onHunminGameStartInfo(
-                                                            this.getString("iCountDown"),
-                                                            this.getString("strInitialWord")
-                                                        )
-
-                                                    } catch (e: IOException) {
-                                                        e.printStackTrace()
-                                                    }
+//                                                    try {
+//                                                        hunminstart.onHunminGameStartInfo(
+//                                                            this.getString("iCountDown"),
+//                                                            this.getString("strInitialWord")
+//                                                        )
+//
+//
+//                                                    } catch (e: IOException) {
+//                                                        e.printStackTrace()
+//                                                    } catch (e: JSONException) {
+//                                                        Log.e("Error ===>", e.toString())
+//                                                        hunminstart.onHunminGameStartInfo(
+//                                                            this.getString("iCountDown"),
+//                                                            "없음"
+//                                                        )
+//                                                    }
                                                 }
 
                                                 ChosungApplication.activity.runOnUiThread(action)
@@ -136,12 +140,28 @@ class ChosungApplication : Application() {
         interface SocketConnectListner {
             fun onConnet()
             fun onLoadUserList(jsonArray: JSONArray)
+
+
         }
 
 
-        fun onHunminGameStartInfo(count: String, chosung: String) {
-            Log.e("카운트", count)
+
+        interface HunminStartListner {
+            fun onHunminGameStartInfo(count: String, chosung: String)
+
         }
+
+
+
+//        fun onHunminGameStartInfo(count: String, chosung: String) {
+//            Log.e("카운트", count + chosung)
+//
+//            Game.iCountDown = count
+//            Game.strInitialWord = chosung
+//
+//
+//
+//        }
 
         fun enterRoom(IsMaster: Boolean, roomId: Int, nikname: String) {
 

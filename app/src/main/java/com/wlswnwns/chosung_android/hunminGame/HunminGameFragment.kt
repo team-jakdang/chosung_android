@@ -40,6 +40,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
         presenter = HunminGamePresenter(this)
         presenter?.viewDidLoad(args.iLength,args.iTime)
+        presenter?.setChosung()
         presenter?.gameTimerStart() // 게임 타이머 시작
 
     }
@@ -103,6 +104,12 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+
+    // 랜덤초성과 시작전 타이머를 셋해준
+    override fun showChosung(chosung: String) {
+        ChosungTextView.setText(chosung)
+
+    }
     override fun longUserInputText(chosungLength: String) {
         Toast.makeText(context, "단어의 길이가 3자를 넘으면 안됩니다", Toast.LENGTH_SHORT).show()
     }

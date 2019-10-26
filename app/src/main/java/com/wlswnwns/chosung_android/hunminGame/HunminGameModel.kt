@@ -16,6 +16,7 @@ class HunminGameModel {
     var ChosungLog : ArrayList<Game>? = null
 
 
+
 //    fun InitUserList(jsonArray : JSONArray) : ArrayList<Game> {
 //
 //

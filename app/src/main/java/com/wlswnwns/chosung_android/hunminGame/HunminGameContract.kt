@@ -34,6 +34,8 @@ interface HunminGameContract {
         // 에러 메세지를 다이얼로그로 보여줌
         fun showErrorMsg(msg : String)
 
+        fun showChosung(chosung : String)
+
         // 초성 로그를 보여줌
         fun showChosungLogList(ChosungLog : ArrayList<Game>)
 
@@ -54,8 +56,8 @@ interface HunminGameContract {
         fun getArrUserInfo():ArrayList<Any>
 
         // 서버에서 받아온 랜덤 초성을 모델에 전달
-        fun setRandomChosung(chosung : ArrayList<String>)
-        fun getRandomChosung(chosung : String)
+        fun setRandomChosung(chosung : String)
+        fun getRandomChosung(): String
 
         // 유저가 입력한 텍스트를 모델에 전달
         fun setStrUserInputEditText(inputText : String)
@@ -83,11 +85,10 @@ interface HunminGameContract {
         // 실패뷰를(X표시) 1초뒤에 사라지게 하는 메소드
         fun wrongViewTimeSet()
 
-        // 게임 로그를 쌓아 채팅방에 보여주는 메소드
-        fun listViewGameLog()
-
         // 순위 프래그먼트로 이동하기 위한 임시 타이머
         fun gameTimerStart()
+
+        fun setChosung()
     }
 
 }

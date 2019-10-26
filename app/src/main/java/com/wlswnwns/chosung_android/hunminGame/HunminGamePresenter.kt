@@ -30,7 +30,7 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
         model.chosungLength = iLength
         model.iTime = iTime
         model.ChosungLog = ArrayList()
-        Log.e("viewDidLoad","뷰 초기화 실행")
+        Log.e("viewDidLoad", "뷰 초기화 실행")
         ChosungApplication.startHMJEGame() // 게임시작 체크
 //        ChosungApplication.startHMJEGameTimeCheck()
 
@@ -79,13 +79,14 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun setRandomChosung(chosung: ArrayList<String>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun setRandomChosung(chosung: String) {
+
     }
 
-    override fun getRandomChosung(chosung: String) {
-
-
+    override fun getRandomChosung(): String {
+        Log.e("카운트", model.Game.iCountDown)
+        Log.e("초성", model.Game.strInitialWord)
+        return model.Game.strInitialWord
     }
 
 
@@ -108,7 +109,7 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 
     // 유저가 입력한 답이 '은채' 이면 성공뷰를 아니라면 실패뷰를 띄어준다
     override fun checkUserInputTextIsAnswer() {
-        if (model.strUserInputEditText == "은채") view.answerGameView() else wrongViewTimeSet()
+        if (model.strUserInputEditText == model.Game.strInitialWord) view.answerGameView() else wrongViewTimeSet()
 
     }
 
@@ -116,7 +117,7 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 
 
 //        model.ChosungLog?.add(Test("은채", model.strUserInputEditText) )
-        model.ChosungLog?.add(model.Game.apply{
+        model.ChosungLog?.add(model.Game.apply {
             strUserName = "은채";strChosung = model.strUserInputEditText
         })
 
@@ -134,8 +135,13 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
         }, 400)
     }
 
-    override fun listViewGameLog() {
-//        view.listViewGameLogs(model.listGameLog)
+    override fun setChosung() {
+        if (model.Game.iCountDown == "0") {
+            view.showChosung(model.Game.strInitialWord)
+
+        } else {
+            view.showChosung(getRandomChosung())
+        }
     }
 
 
