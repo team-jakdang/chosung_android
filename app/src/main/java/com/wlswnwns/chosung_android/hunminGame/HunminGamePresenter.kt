@@ -4,7 +4,9 @@ import android.os.CountDownTimer
 import android.os.Handler
 import android.provider.SyncStateContract.Helpers.update
 import android.util.Log
+import com.wlswnwns.chosung_android.ChosungApplication
 import com.wlswnwns.chosung_android.item.Test
+import org.json.JSONArray
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -29,6 +31,7 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
         model.iTime = iTime
         model.ChosungLog = ArrayList()
         Log.e("viewDidLoad","뷰 초기화 실행")
+        ChosungApplication.startHMJEGame()
     }
 
     // 유저가 입력한 텍스트를 set

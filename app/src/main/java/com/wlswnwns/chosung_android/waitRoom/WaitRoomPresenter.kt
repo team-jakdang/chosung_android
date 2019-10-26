@@ -75,7 +75,7 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
     }
 
     override fun disConnectSocket() {
-       // ChosungApplication.client?.disconnect()
+//        ChosungApplication.client?.disconnect()
         Log.e("디스커넥트 소켓 ", "디스디스")
     }
 

@@ -96,10 +96,13 @@ class ChosungApplication : Application() {
                         client?.connect()
 
                     } catch (e: UnknownHostException) {
+                        Log.e("UnknownHost 에러 -->", e.toString())
                         e.printStackTrace()
                     } catch (e: IOException) {
+                        Log.e("IOException 에러 -->", e.toString())
                         e.printStackTrace()
                     } catch (e: WebSocketException) {
+                        Log.e("WebSocket 에러 -->", e.toString())
                         e.printStackTrace()
                     }
                 }
@@ -165,6 +168,29 @@ class ChosungApplication : Application() {
 
                 }
 
+
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+        fun startHMJEGame() {
+
+
+            var data_obj = JSONObject()
+
+            try {
+
+                data_obj.put("action", "startHMJE")
+                data_obj.put("iRoomId", roomId)
+
+                client?.let {
+                    client?.sendText(data_obj.toString())
+                    Log.e("메세지 보냄  훈민정음===>", data_obj.toString())
+                }.let {
+
+                }
+
+                client?.disconnect();
 
             } catch (e: JSONException) {
                 e.printStackTrace()
