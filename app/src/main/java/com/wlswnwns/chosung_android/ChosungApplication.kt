@@ -49,47 +49,18 @@ class ChosungApplication : Application() {
                                     super.onTextMessage(websocket, text)
                                     Log.e("메세지===>", text)
 
-                                    JSONObject(text).apply {
-                                        when (this.getString("strEvent")) {
-                                            "enterRoom" -> {
-                                                val action = Runnable {
-                                                    try {
-                                                        // InitUserList(this.getJSONArray("arrUserInfo"))
-                                                        socketConnectListner.onLoadUserList(
-                                                            this.getJSONArray(
-                                                                "arrUserInfo"
-                                                            )
-                                                        )
-                                                    } catch (e: IOException) {
-                                                        e.printStackTrace()
-                                                    }
-                                                }
-
-                                                ChosungApplication.activity.runOnUiThread(action)
-                                            }
-                                            "startHMJE" -> {
-                                                val action = Runnable {
-                                                    try {
-                                                        onHunminGameStartInfo(
-                                                            this.getString("iCountDown"),
-                                                            this.getString("strInitialWord")
-                                                        )
-                                                    } catch (e: IOException) {
-                                                        e.printStackTrace()
-                                                    } catch (e: JSONException) {
-                                                        Log.e("Error ===>", e.toString())
-                                                        onHunminGameStartInfo(
-                                                            this.getString("iCountDown"),
-                                                            "없음"
-                                                        )
-                                                    }
-                                                }
-
-                                                ChosungApplication.activity.runOnUiThread(action)
-
-                                            }
+                                    val action = Runnable {
+                                        try {
+                                            // InitUserList(this.getJSONArray("arrUserInfo"))
+                                            socketConnectListner.onDataReceived(JSONObject(text))
+                                        } catch (e: IOException) {
+                                            e.printStackTrace()
                                         }
                                     }
+
+                                    ChosungApplication.activity.runOnUiThread(action)
+
+
                                 }
                             })
 
@@ -134,21 +105,13 @@ class ChosungApplication : Application() {
 
         }
 
-
         interface SocketConnectListner {
             fun onConnet()
-            fun onLoadUserList(jsonArray: JSONArray)
-
-
-
+            fun onDataReceived(jsonObject: JSONObject)
         }
 
 
 
-//        interface HunminStartListner {
-//            fun onHunminGameStartInfo(count: String, chosung: String)
-//
-//        }
 
 
 
@@ -232,6 +195,7 @@ class ChosungApplication : Application() {
                     Log.e("메세지 보냄  훈민정음===>", data_obj.toString())
                 }.let {
 
+                    Log.e("메세지 let 훈민정음===>", data_obj.toString())
                 }
 
 

@@ -1,10 +1,15 @@
 package com.wlswnwns.chosung_android.waitRoom
 
 import android.util.Log
+import com.neovisionaries.ws.client.WebSocket
+import com.neovisionaries.ws.client.WebSocketAdapter
 import com.wlswnwns.chosung_android.ChosungApplication
 import com.wlswnwns.chosung_android.item.Game
 import com.wlswnwns.chosung_android.item.Room
 import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.IOException
 
 class WaitRoomPresenter(view: WaitRoomContract.View ) :
     WaitRoomContract.Presenter {
@@ -13,8 +18,6 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
     var view: WaitRoomContract.View
 
     var model: WaitRoomModel
-
-
 
     init {
         this.view = view
@@ -31,13 +34,19 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
         view.showTime(game.iTime)
         view.showQRCodeImage(model.makeRoomQRCode())
 
-
         ChosungApplication.SocketConnect(object : ChosungApplication.Companion.SocketConnectListner {
 
 
 
-            override fun onLoadUserList(jsonArray: JSONArray) {
-                view.showUserList(model.InitUserList(jsonArray))
+            override fun onDataReceived(jsonObject: JSONObject) {
+                try {
+                    if(jsonObject.getString("strEvent")=="enterRoom"){
+                        view.showUserList(model.InitUserList(jsonObject.getJSONArray("arrUserInfo")))
+                    }
+                }catch (e:JSONException){
+                    e.printStackTrace()
+                }
+
             }
 
             override fun onConnet() {
@@ -77,7 +86,7 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
     }
 
     override fun disConnectSocket() {
-//        ChosungApplication.client?.disconnect()
+        ChosungApplication.client?.clearListeners()
         Log.e("디스커넥트 소켓 ", "디스디스")
     }
 

@@ -117,10 +117,6 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
 
     override fun onDestroyView() {
         super.onDestroyView()
-
 //        presenter?.disConnectSocket()
-
     }
-
-
 }

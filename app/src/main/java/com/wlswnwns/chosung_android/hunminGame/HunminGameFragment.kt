@@ -40,7 +40,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
         presenter = HunminGamePresenter(this)
         presenter?.viewDidLoad(args.iLength,args.iTime)
-        presenter?.setChosung()
+//        presenter?.setChosung()
         presenter?.gameTimerStart() // 게임 타이머 시작
 
     }

@@ -88,7 +88,7 @@ interface HunminGameContract {
         // 순위 프래그먼트로 이동하기 위한 임시 타이머
         fun gameTimerStart()
 
-        fun setChosung()
+        fun setChosung(strInitialWord:String, iCountDown:String)
     }
 
 }

@@ -4,9 +4,14 @@ import android.os.CountDownTimer
 import android.os.Handler
 import android.provider.SyncStateContract.Helpers.update
 import android.util.Log
+import com.neovisionaries.ws.client.WebSocket
+import com.neovisionaries.ws.client.WebSocketAdapter
 import com.wlswnwns.chosung_android.ChosungApplication
 import com.wlswnwns.chosung_android.item.Test
+import com.wlswnwns.chosung_android.waitRoom.WaitRoomModel
 import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -16,8 +21,6 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 
     var view: HunminGameContract.View
     var model: HunminGameModel
-
-
     // 생성자
     init {
         this.view = view
@@ -32,9 +35,37 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
         model.ChosungLog = ArrayList()
         Log.e("viewDidLoad", "뷰 초기화 실행")
         ChosungApplication.startHMJEGame() // 게임시작 체크
-//        ChosungApplication.startHMJEGameTimeCheck()
+        ChosungApplication.client?.clearListeners()
+        Log.e("viewDidLoad2", "뷰 초기화 실행2")
+
+        ChosungApplication.client?.addListener(object : WebSocketAdapter() {
+            override fun onTextMessage(websocket: WebSocket?, text: String?) {
+                super.onTextMessage(websocket, text)
+                Log.e("메세지===>", text)
+                JSONObject(text)
+                val action = Runnable {
+                    Log.e("onDataReceived", JSONObject(text).getString("strEvent"))
+                    if (JSONObject(text).getString("strEvent") == "startHMJE") {
+                        try {
+                            Log.e("checkTimeHMJE2", JSONObject(text).getString("iCountDown"))
+
+                            setChosung(
+                                JSONObject(text).getString("strInitialWord"),
+                                JSONObject(text).getString("iCountDown")
+                            )
+                        }catch (e:JSONException){
+                            e.printStackTrace()
+                        }
+                    }else if (JSONObject(text).getString("strEvent") == "checkAnswerHMJE") {
+                        Log.e("checkAnswerHMJE", JSONObject(text).getString("strMessage"))
+                    }
+                }
+
+                ChosungApplication.activity.runOnUiThread(action)
 
 
+            }
+        })
     }
 
     // 유저가 입력한 텍스트를 set
@@ -127,7 +158,6 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 
 
     }
-
     override fun wrongViewTimeSet() {
         // 실패뷰를 띄우고 0.4초 뒤에 defult뷰 호출
         view.wrongGameView()
@@ -136,9 +166,9 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
         }, 400)
     }
 
-    override fun setChosung() {
-        if (model.Game.iCountDown == "0") {
-            view.showChosung(model.Game.strInitialWord)
+    override fun setChosung(strInitialWord: String, iCountDown: String) {
+        if (iCountDown == "0") {
+            view.showChosung(strInitialWord)
 
         } else {
             view.showChosung(getRandomChosung())
