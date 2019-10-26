@@ -58,7 +58,7 @@ class ChosungApplication : Application() {
                                         }
                                     }
 
-                                    ChosungApplication.activity.runOnUiThread(action)
+                                                ChosungApplication.activity.runOnUiThread(action)
 
 
                                 }
@@ -195,7 +195,6 @@ class ChosungApplication : Application() {
                     Log.e("메세지 보냄  훈민정음===>", data_obj.toString())
                 }.let {
 
-                    Log.e("메세지 let 훈민정음===>", data_obj.toString())
                 }
 
 
@@ -212,6 +211,28 @@ class ChosungApplication : Application() {
 
                 data_obj.put("action", "checkTimeHMJE")
                 data_obj.put("iRoomId", roomId)
+                Log.e("메세지 보냄 훈민정음 게임 시작체크===>", data_obj.toString())
+
+                client?.let {
+                    client?.sendText(data_obj.toString())
+                }.let {
+
+                }
+
+
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+
+        fun hunminGameIsAnswer(strMessage:String) {
+            var data_obj = JSONObject()
+
+            try {
+
+                data_obj.put("action", "checkAnswerHMJE")
+                data_obj.put("iRoomId", roomId)
+                data_obj.put("strMessage", strMessage)
 
                 client?.let {
                     client?.sendText(data_obj.toString())

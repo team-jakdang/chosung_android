@@ -127,6 +127,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
     // ChosungTextView ,UserInputEditTextView 를 숨긴다
     // AnswerImageView 을 보이게 한다
     override fun answerGameView() {
+        Toast.makeText(context, "정답입니다.", Toast.LENGTH_SHORT).show()
         UserInputEditTextView.isVisible = false
         AnswerImageView.isVisible = true
     }
@@ -134,6 +135,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
     // 유저가 정답이 아닐때 바뀌는 뷰
     // ChosungTextView ,UserInputEditTextView , WrongImageView 보이게
     override fun wrongGameView() {
+        Toast.makeText(context, "정답이 아닙니다.", Toast.LENGTH_SHORT).show()
         UserInputEditTextView.isVisible = true
         WrongImageView.isVisible = true
     }
