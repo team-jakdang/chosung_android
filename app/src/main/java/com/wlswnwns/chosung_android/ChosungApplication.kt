@@ -69,22 +69,20 @@ class ChosungApplication : Application() {
                                             }
                                             "startHMJE" -> {
                                                 val action = Runnable {
-//                                                    try {
-//                                                        hunminstart.onHunminGameStartInfo(
-//                                                            this.getString("iCountDown"),
-//                                                            this.getString("strInitialWord")
-//                                                        )
-//
-//
-//                                                    } catch (e: IOException) {
-//                                                        e.printStackTrace()
-//                                                    } catch (e: JSONException) {
-//                                                        Log.e("Error ===>", e.toString())
-//                                                        hunminstart.onHunminGameStartInfo(
-//                                                            this.getString("iCountDown"),
-//                                                            "없음"
-//                                                        )
-//                                                    }
+                                                    try {
+                                                        onHunminGameStartInfo(
+                                                            this.getString("iCountDown"),
+                                                            this.getString("strInitialWord")
+                                                        )
+                                                    } catch (e: IOException) {
+                                                        e.printStackTrace()
+                                                    } catch (e: JSONException) {
+                                                        Log.e("Error ===>", e.toString())
+                                                        onHunminGameStartInfo(
+                                                            this.getString("iCountDown"),
+                                                            "없음"
+                                                        )
+                                                    }
                                                 }
 
                                                 ChosungApplication.activity.runOnUiThread(action)
@@ -142,26 +140,27 @@ class ChosungApplication : Application() {
             fun onLoadUserList(jsonArray: JSONArray)
 
 
-        }
-
-
-
-        interface HunminStartListner {
-            fun onHunminGameStartInfo(count: String, chosung: String)
 
         }
 
 
 
-//        fun onHunminGameStartInfo(count: String, chosung: String) {
-//            Log.e("카운트", count + chosung)
-//
-//            Game.iCountDown = count
-//            Game.strInitialWord = chosung
-//
-//
+//        interface HunminStartListner {
+//            fun onHunminGameStartInfo(count: String, chosung: String)
 //
 //        }
+
+
+
+        fun onHunminGameStartInfo(count: String, chosung: String) {
+            Log.e("카운트", count + chosung)
+
+            Game.iCountDown = count
+            Game.strInitialWord = chosung
+
+
+
+        }
 
         fun enterRoom(IsMaster: Boolean, roomId: Int, nikname: String) {
 

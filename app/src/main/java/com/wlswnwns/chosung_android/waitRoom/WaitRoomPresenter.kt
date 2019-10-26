@@ -35,6 +35,7 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
         ChosungApplication.SocketConnect(object : ChosungApplication.Companion.SocketConnectListner {
 
 
+
             override fun onLoadUserList(jsonArray: JSONArray) {
                 view.showUserList(model.InitUserList(jsonArray))
             }

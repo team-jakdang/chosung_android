@@ -34,6 +34,7 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
         ChosungApplication.startHMJEGame() // 게임시작 체크
 //        ChosungApplication.startHMJEGameTimeCheck()
 
+
     }
 
     // 유저가 입력한 텍스트를 set
