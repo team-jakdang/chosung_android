@@ -9,11 +9,14 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.dialog.GameSettingDialog
-import kotlinx.android.synthetic.main.layout_main.*
+import com.wlswnwns.chosung_android.item.Game
+import com.wlswnwns.chosung_android.item.Room
 
+import kotlinx.android.synthetic.main.layout_main.*
+import kotlinx.android.synthetic.main.layout_wait_room.*
+import net.glxn.qrgen.android.QRCode
 
 class MainFragment internal constructor() : Fragment(), MainContract.View {
-
 
     // 이전 프레그먼트에서 전달 받아온 데이터들
     private val args: MainFragmentArgs by navArgs()
@@ -37,7 +40,7 @@ class MainFragment internal constructor() : Fragment(), MainContract.View {
         super.onViewCreated(view, savedInstanceState)
 
         presenter = MainPresenter(this)
-        presenter?.viewDidLoad()
+        presenter?.viewDidLoad(args.strNickName)
 
     }
 
@@ -45,17 +48,21 @@ class MainFragment internal constructor() : Fragment(), MainContract.View {
         // 훈민정음 버튼 클릭이벤트
 
         CreateRoomBtn.setOnClickListener {
-            presenter?.makeGameSetting()
+            presenter?.onClickMakeRoomBtn()
         }
         SearchRoomBtn.setOnClickListener { moveQRCameraFragment() }
 
 
+
+
+
     }
 
-    override fun moveWaitRoomFragment() {
+    override fun moveWaitRoomFragment(game: Game,room : Room) {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
 
-            MainFragmentDirections.actionMainFragmentToWaitRoomFragment(args.strNickName)
+            MainFragmentDirections.actionMainFragmentToWaitRoomFragment(args.strNickName,room,game)
+
         )
     }
 
@@ -82,6 +89,11 @@ class MainFragment internal constructor() : Fragment(), MainContract.View {
             }
         }
     }
+
+    override fun showFailMakeRoomMsg() {
+
+    }
+
 
 
 }

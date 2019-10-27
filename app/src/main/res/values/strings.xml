@@ -5,14 +5,22 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
+    <string name="dialog_confirm_btn">확인</string>
+    <string name="dialog_cancel_btn">취소</string>
+
     <!--닉네임-->
     <string name="nickname_hint">닉네임을 입력해주세요</string>
     <string name="nickname_confirm_btn">확인</string>
-
+    <string name="nickname_too_long_name">닉네임은 10글자를 넘을 수 없습니다</string>
 
     <!--메인화면-->
     <string name="main_create_room_btn">방 만들기</string>
     <string name="main_search_room_btn">방 찾기</string>
+    <string name="main_fail_make_room">방 생성에 실패하였습니다\n다시 시도해주세요</string>
+
+    <!--QR카메라-->
+    <string name="qrcamera_fail_find_room">QR코드에 해당하는 방이 존재하지 않습니다</string>
+
 
     <!--게임세팅-->
     <string name="game_setting_dialog_title">게임 설정</string>
@@ -33,12 +41,20 @@
     <string name="wait_room_entrylist_title">Player</string>
     <string name="wait_room_entrylist_count">명</string>
     <string name="wait_room_game_mode_title">Game Mode</string>
-    <string name="wait_room_game_guide_btn">설명</string>
+    <string name="wait_room_game_guide_btn">설명</string>중
     <string name="wait_room_chosung_length_title">글자 수</string>
     <string name="wait_room_game_time_title">게임 시간</string>
     <string name="wait_room_qrcode_title">QR 코드</string>
     <string name="wait_room_game_start_btn">게임 시작</string>
+    <string name="wait_room_fail_exit_room">방에서 나가는데 실패했습니다\n다시한번 시도해주세요</string>
 
+    <string name="wait_room_ingame_user">(게임중)</string>
+
+
+
+    <!--대기실 나가기 다이얼로그-->
+    <string name="exit_wait_room_dialog_title">대기방 나가기</string>
+    <string name="exit_wait_room_dialog_content">대기방에서 나가시겠습니까?</string>
 
 
     <!--훈민정음 게임-->
@@ -46,11 +62,12 @@
     <string name="hunminGame_answer">정답입니다</string>
     <string name="hunminGame_wrong">제시한 초성과 다른 단어입니다</string>
 
-    <!-- 쿵쿵따 게임 -->
-    <string name="kkungDda_gameOver">게임 종료</string>
-    <string name="kkungDda_Loser">걸린 사람</string>
-    <string name="kkungDda_restartGame">게임 재시작</string>
-    <string name="kkungDda_finishGame">그만하기</string>
+
+    <!--게임 오버화면-->
+    <string name="game_over_kkt_title">걸린 사람</string>
+    <string name="game_over_hunmin_title">순위 발표</string>
+    <string name="game_over_restart">게임 재시작</string>
+    <string name="game_over_finish">게임 종료</string>
 
 
 </resources>

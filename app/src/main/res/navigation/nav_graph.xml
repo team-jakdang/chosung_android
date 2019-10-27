@@ -1,59 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nav_graph"
         app:startDestination="@id/nickNameFragment">
 
 
-    <fragment android:id="@+id/mainFragment"
-              android:name="com.wlswnwns.chosung_android.main.MainFragment"
-              android:label="layout_main"
-              tools:layout="@layout/layout_main">
-        <argument android:name="strNickName" app:argType="string"/>
-        <action android:id="@+id/action_mainFragment_to_cameraFragment" app:destination="@id/cameraFragment"/>
-        <action android:id="@+id/action_mainFragment_to_waitRoomFragment" app:destination="@id/waitRoomFragment"/>
+    <fragment
+            android:id="@+id/mainFragment"
+            android:name="com.wlswnwns.chosung_android.main.MainFragment"
+            android:label="layout_main"
+            tools:layout="@layout/layout_main">
+        <argument
+                android:name="strNickName"
+                app:argType="string" />
+        <action
+                android:id="@+id/action_mainFragment_to_cameraFragment"
+                app:destination="@id/cameraFragment" />
+        <action
+                android:id="@+id/action_mainFragment_to_waitRoomFragment"
+                app:destination="@id/waitRoomFragment" />
     </fragment>
 
-    <fragment android:id="@+id/nickNameFragment"
-              android:name="com.wlswnwns.chosung_android.nickname.NickNameFragment"
-              android:label="layout_nickname">
-        <action android:id="@+id/action_nickNameFragment_to_mainFragment" app:destination="@id/mainFragment"/>
+    <fragment
+            android:id="@+id/nickNameFragment"
+            android:name="com.wlswnwns.chosung_android.nickname.NickNameFragment"
+            android:label="layout_nickname">
+        <action
+                android:id="@+id/action_nickNameFragment_to_mainFragment"
+                app:destination="@id/mainFragment" />
     </fragment>
-    <fragment android:id="@+id/hunminGameFragment"
-              android:name="com.wlswnwns.chosung_android.hunminGame.HunminGameFragment"
-              android:label="layout_hunmingame"
-              tools:layout="@layout/layout_hunmingame">
-        <action android:id="@+id/action_hunminGameFragment_to_hunminGameRankingFragment"
-                app:destination="@+id/hunminGameRankingFragment"/>
+    <fragment
+            android:id="@+id/hunminGameFragment"
+            android:name="com.wlswnwns.chosung_android.hunminGame.HunminGameFragment"
+            android:label="layout_hunmingame"
+            tools:layout="@layout/layout_hunmingame">
+        <action
+                android:id="@+id/action_hunminGameFragment_to_hunminGameOverFragment"
+                app:destination="@+id/hunminGameOverFragment" />
+        <argument
+                android:name="iLength"
+                app:argType="integer" />
+        <argument
+                android:name="iTime"
+                app:argType="integer" />
+        <!--        <argument android:name="User"-->
+        <!--                app:argType="com.wlswnwns.chosung_android.waitRoom.WaitRoomModel.Users[]"/>-->
     </fragment>
-    <fragment android:id="@+id/cameraFragment" android:name="com.wlswnwns.chosung_android.qrcamera.CameraFragment"
-              android:label="CameraFragment">
-        <argument android:name="strNickName" app:argType="string"/>
-        <action android:id="@+id/action_cameraFragment_to_waitRoomFragment" app:destination="@id/waitRoomFragment"/>
+    <fragment
+            android:id="@+id/cameraFragment"
+            android:name="com.wlswnwns.chosung_android.qrcamera.CameraFragment"
+            android:label="CameraFragment">
+        <argument
+                android:name="strNickName"
+                app:argType="string" />
+        <action
+                android:id="@+id/action_cameraFragment_to_waitRoomFragment"
+                app:destination="@id/waitRoomFragment" />
     </fragment>
-    <fragment android:id="@+id/waitRoomFragment" android:name="com.wlswnwns.chosung_android.waitRoom.WaitRoomFragment"
-              android:label="WaitRoomFragment">
-        <action android:id="@+id/action_waitRoomFragment_to_hunminGameFragment"
-                app:destination="@id/hunminGameFragment"/>
-        <argument android:name="strNikName" app:argType="string"/>
+    <fragment
+            android:id="@+id/waitRoomFragment"
+            android:name="com.wlswnwns.chosung_android.waitRoom.WaitRoomFragment"
+            android:label="WaitRoomFragment">
+        <action
+                android:id="@+id/action_waitRoomFragment_to_hunminGameFragment"
+                app:destination="@id/hunminGameFragment" />
+        <argument
+                android:name="strNikName"
+                app:argType="string" />
         <action
                 android:id="@+id/action_waitRoomFragment_to_kungKungDdaGameFragment"
                 app:destination="@id/kungKungDdaGameFragment" />
+        <argument
+                android:name="room"
+                app:argType="com.wlswnwns.chosung_android.item.Room" />
+        <argument
+                android:name="game"
+                app:argType="com.wlswnwns.chosung_android.item.Game" />
+
     </fragment>
     <fragment
             android:id="@+id/kungKungDdaGameFragment"
-            android:name="com.wlswnwns.chosung_android.hunminGame.KungKungDdaGameFragment"
-            android:label="KungKungDdaGameFragment" />
-
-    <fragment android:id="@+id/hunminGameRankingFragment"
-              android:name="com.wlswnwns.chosung_android.hunminGameRanking.HunminGameRankingFragment"
-              android:label="HunminGameRankingFragment">
-        <action android:id="@+id/action_hunminGameRankingFragment_to_waitRoomFragment"
-                app:destination="@id/waitRoomFragment"/>
-        <action android:id="@+id/action_hunminGameRankingFragment_to_hunminGameFragment"
-                app:destination="@id/hunminGameFragment"/>
+            android:name="com.wlswnwns.chosung_android.KungKungDdaGame.KungKungDdaGameFragment"
+            android:label="KungKungDdaGameFragment">
+        <action
+                android:id="@+id/action_kungKungDdaGameFragment_to_kungKungDdaGameOverFragment"
+                app:destination="@id/kungKungDdaGameOverFragment" />
     </fragment>
+
+    <fragment
+            android:id="@+id/hunminGameOverFragment"
+            android:name="com.wlswnwns.chosung_android.hunminGameOver.HunminGameOverFragment"
+            android:label="HunminGameOverFragment">
+        <action
+                android:id="@+id/action_hunminGameOverFragment_to_waitRoomFragment"
+                app:destination="@id/waitRoomFragment" />
+        <action
+                android:id="@+id/action_hunminGameOverFragment_to_hunminGameFragment"
+                app:destination="@id/hunminGameFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/kungKungDdaGameOverFragment"
+            android:name="com.wlswnwns.chosung_android.KungKungDdaGameOver.KungKungDdaGameOverFragment"
+            android:label="KungKungDdaGameOverFragment" />
 
 
 </navigation>
