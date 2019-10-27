@@ -98,6 +98,9 @@
         <action
                 android:id="@+id/action_hunminGameOverFragment_to_hunminGameFragment"
                 app:destination="@id/hunminGameFragment" />
+        <argument
+                android:name="resultArr"
+                app:argType="string" />
     </fragment>
     <fragment
             android:id="@+id/kungKungDdaGameOverFragment"

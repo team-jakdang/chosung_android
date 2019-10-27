@@ -48,7 +48,6 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
     override fun showChosungLogList(ChosungLog: ArrayList<Game>) {
 
-        println("ChosungLogList :: " + ChosungLog)
 
         HunminGameRoomChosungLogAdapter(
             requireContext(),
@@ -144,9 +143,12 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
 
     // 게임오버 프래그먼트로 이동
-    override fun moveHunminGameOverFragment() {
+    override fun moveHunminGameOverFragment(rusultArr : String ) {
+
+        println("rusultArr :: " + rusultArr)
+
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            HunminGameFragmentDirections.actionHunminGameFragmentToHunminGameOverFragment()
+            HunminGameFragmentDirections.actionHunminGameFragmentToHunminGameOverFragment(rusultArr)
         )
     }
 
