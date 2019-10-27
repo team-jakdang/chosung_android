@@ -29,7 +29,7 @@ interface HunminGameContract {
         fun defaultGameView()
 
         // 순위 발표 프레그먼트 띄움
-        fun moveHunminGameOverFragment()
+        fun moveHunminGameOverFragment(rusultArr : String)
 
         // 에러 메세지를 다이얼로그로 보여줌
         fun showErrorMsg(msg : String)

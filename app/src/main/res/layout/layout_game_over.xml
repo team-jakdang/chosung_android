@@ -75,6 +75,7 @@
                 app:layout_constraintGuide_begin="561dp" />
 
         <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/gameResultRecyclerView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="32dp"
@@ -84,6 +85,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/guideline3"
                 app:layout_constraintEnd_toEndOf="@+id/view2"
                 app:layout_constraintStart_toStartOf="@+id/view2"
-                app:layout_constraintTop_toBottomOf="@+id/TitleTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/TitleTextView"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

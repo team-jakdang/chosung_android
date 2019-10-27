@@ -18,6 +18,7 @@ class HunminGameModel {
     var User: User = User()
     var Room: Room= Room()
 
+    var ResultArr : String = ""
 
     var ChosungLog : ArrayList<Game>? = null
 

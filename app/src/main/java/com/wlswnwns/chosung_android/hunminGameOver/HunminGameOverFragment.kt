@@ -7,14 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import com.wlswnwns.chosung_android.R
+import com.wlswnwns.chosung_android.adapter.HunminGameOverRoomResultAdapter
 
 import com.wlswnwns.chosung_android.item.Game
 import com.wlswnwns.chosung_android.item.Room
 
 import kotlinx.android.synthetic.main.layout_game_over.*
+import kotlinx.android.synthetic.main.layout_game_over.TitleTextView
+import kotlinx.android.synthetic.main.layout_hunmingame.*
 
 class HunminGameOverFragment : Fragment(), HunminGameOverContract.View {
+
+
+    private val args : HunminGameOverFragmentArgs by navArgs()
 
     var presenter: HunminGameOverContract.Presenter? = null
 
@@ -30,6 +37,7 @@ class HunminGameOverFragment : Fragment(), HunminGameOverContract.View {
 
         presenter = HunminGameOverPresenter(this)
         presenter?.viewDidLoad()
+        presenter?.setResult(args.resultArr)
 
     }
 
@@ -38,6 +46,17 @@ class HunminGameOverFragment : Fragment(), HunminGameOverContract.View {
         TitleTextView.setText(requireActivity().resources.getString(R.string.game_over_hunmin_title))
         OneMoreGameBtnView.setOnClickListener{moveHunminGameFragment()}
         GameEndBtnView.setOnClickListener{ moveMainFragment()}
+
+    }
+
+    override fun showResult(gameResult : ArrayList<Game>) {
+        HunminGameOverRoomResultAdapter(
+            requireContext(),
+            presenter!!,
+            gameResult
+        ).let {
+            gameResultRecyclerView.adapter = it
+        }
 
     }
 
