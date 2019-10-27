@@ -55,9 +55,15 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
                             )
                         }catch (e:JSONException){
                             e.printStackTrace()
+                            setChosung(
+                               "없음",
+                                JSONObject(text).getString("iCountDown")
+                            )
                         }
                     }else if (JSONObject(text).getString("strEvent") == "checkAnswerHMJE") {
                         Log.e("checkAnswerHMJE", JSONObject(text).getString("strMessage"))
+                        model.Game.bIsAnswer = JSONObject(text).getBoolean("bIsAnswer")
+                        checkUserInputTextIsAnswer(JSONObject(text).getBoolean("bIsAnswer"))
                     }
                 }
 
@@ -145,9 +151,8 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
     }
 
 
-    override fun checkUserInputTextIsAnswer() {
+    override fun checkUserInputTextIsAnswer(isAnswer : Boolean) {
 
-        ChosungApplication.hunminGameIsAnswer(model.strUserInputEditText)
 
         // 유저가 입력한 답이 정답이라면 성공뷰를 띄워주고
         if(model.Game.bIsAnswer){
@@ -163,8 +168,11 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 
     }
 
+
+
     override fun addChosungLog() {
 
+        ChosungApplication.hunminGameIsAnswer(model.strUserInputEditText)
 
 //        model.ChosungLog?.add(Test("은채", model.strUserInputEditText) )
         model.ChosungLog?.add(model.Game.apply {
@@ -185,11 +193,14 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
     }
 
     override fun setChosung(strInitialWord: String, iCountDown: String) {
+        Log.e("Tag", "카운트 들어오니 :: "  + iCountDown)
         if (iCountDown == "0") {
             view.showChosung(strInitialWord)
             gameStartTimeSendToServer() // 타임체크 시
         } else {
-            view.showChosung(getRandomChosung())
+            Log.e("Tag", "else ")
+
+            view.showChosung(iCountDown)
 
         }
     }

@@ -77,7 +77,7 @@ interface HunminGameContract {
         fun checkUserInputTextLength()
 
         // 유저가 입력한 단어가 답에 속하는지 여부를 판단하기 위한 메소드(추후 서버와 통신)
-        fun checkUserInputTextIsAnswer()
+        fun checkUserInputTextIsAnswer(isAnswer : Boolean)
 
         // 초성 로그 리스트에 추가하는 메소드
         fun addChosungLog()

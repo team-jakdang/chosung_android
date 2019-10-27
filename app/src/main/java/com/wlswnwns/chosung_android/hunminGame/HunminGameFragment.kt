@@ -84,7 +84,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
         UserInputEditTextView.setOnEditorActionListener { v, actionId, event ->
 //            Log.e(TAG, v.toString()+actionId.toString()+event)
             presenter?.addChosungLog()
-            presenter?.checkUserInputTextIsAnswer()
+
             UserInputEditTextView.setText("")
 
 
