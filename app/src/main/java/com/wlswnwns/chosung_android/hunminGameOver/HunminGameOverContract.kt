@@ -1,5 +1,7 @@
 package com.wlswnwns.chosung_android.hunminGameOver
 
+import com.wlswnwns.chosung_android.item.Game
+
 interface HunminGameOverContract {
 
 
@@ -13,10 +15,14 @@ interface HunminGameOverContract {
 
         // 게임종료 버튼을 눌렀을때 대기실로 가는 버튼
         fun moveMainFragment()
+
+        fun showResult(gameResult : ArrayList<Game>)
     }
 
     interface Presenter{
         // 프레그먼트의 뷰가 생성되면 호출 (viewDidLoad()안에서 viewInit()을 실행한다)
         fun viewDidLoad()
+
+        fun setResult(resultArr: String)
     }
 }
