@@ -14,7 +14,7 @@ interface HunminGameContract {
         fun longUserInputText(chosungLength: String)
 
         // 게임이 시작하면 프로그래스바를 활성화
-        fun timeProgressBarActive()
+        fun timeProgressBarActive(iTimeLimit:Int, iCountDown: Int)
 
         // 랜덤 초성을 텍스트에 띄어줌
         fun randomChosungSetTextView(chosung : ArrayList<String>)
@@ -89,6 +89,8 @@ interface HunminGameContract {
         fun gameTimerStart()
 
         fun setChosung(strInitialWord:String, iCountDown:String)
+
+        fun setTimer(iSetTime:Int, iLeftTime:Int)
     }
 
 }

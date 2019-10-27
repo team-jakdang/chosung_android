@@ -45,10 +45,11 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
                 JSONObject(text)
                 val action = Runnable {
                     Log.e("onDataReceived", JSONObject(text).getString("strEvent"))
+                    var iSetTime=iTime;
                     if (JSONObject(text).getString("strEvent") == "startHMJE") {
                         try {
                             Log.e("checkTimeHMJE2", JSONObject(text).getString("iCountDown"))
-
+                            iSetTime = JSONObject(text).getInt("iSetTime")
                             setChosung(
                                 JSONObject(text).getString("strInitialWord"),
                                 JSONObject(text).getString("iCountDown")
@@ -60,6 +61,9 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
                                 JSONObject(text).getString("iCountDown")
                             )
                         }
+                    }else if (JSONObject(text).getString("strEvent") == "checkTimeHMJE") {
+
+                        setTimer(iSetTime,JSONObject(text).getInt("iLeftTime"))
                     }else if (JSONObject(text).getString("strEvent") == "checkAnswerHMJE") {
                         Log.e("checkAnswerHMJE", JSONObject(text).getString("strMessage"))
                         model.Game.bIsAnswer = JSONObject(text).getBoolean("bIsAnswer")
@@ -203,6 +207,18 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
             view.showChosung(iCountDown)
 
         }
+    }
+
+    override fun setTimer(iSetTime: Int, iLeftTime: Int) {
+        Log.e("Tag", "카운트 들어오니 :: "  + iSetTime)
+
+        view.timeProgressBarActive(iSetTime,iLeftTime)
+
+        if(iLeftTime == 0) {
+            view.moveHunminGameOverFragment()
+        }
+
+
     }
 
     override fun gameTimerStart() {

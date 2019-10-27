@@ -1,12 +1,14 @@
 package com.wlswnwns.chosung_android.hunminGame
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -26,7 +28,6 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
     var presenter: HunminGameContract.Presenter? = null
     private val TAG = "HunminGameFragment ==>"
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -151,8 +152,12 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
 
 
-    override fun timeProgressBarActive() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun timeProgressBarActive(iSetTime:Int, iLeftTime:Int) {
+
+        TimerProgressBar.max=iSetTime
+        TimerProgressBar.setProgress(iLeftTime,true)
+
+
     }
 
 
