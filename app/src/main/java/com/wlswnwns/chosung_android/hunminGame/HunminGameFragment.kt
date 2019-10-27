@@ -1,12 +1,14 @@
 package com.wlswnwns.chosung_android.hunminGame
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -26,7 +28,6 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
     var presenter: HunminGameContract.Presenter? = null
     private val TAG = "HunminGameFragment ==>"
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,6 +41,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
         presenter = HunminGamePresenter(this)
         presenter?.viewDidLoad(args.iLength,args.iTime)
+//        presenter?.setChosung()
         presenter?.gameTimerStart() // 게임 타이머 시작
 
     }
@@ -83,7 +85,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
         UserInputEditTextView.setOnEditorActionListener { v, actionId, event ->
 //            Log.e(TAG, v.toString()+actionId.toString()+event)
             presenter?.addChosungLog()
-            presenter?.checkUserInputTextIsAnswer()
+
             UserInputEditTextView.setText("")
 
 
@@ -103,6 +105,12 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+
+    // 랜덤초성과 시작전 타이머를 셋해준
+    override fun showChosung(chosung: String) {
+        ChosungTextView.setText(chosung)
+
+    }
     override fun longUserInputText(chosungLength: String) {
         Toast.makeText(context, "단어의 길이가 3자를 넘으면 안됩니다", Toast.LENGTH_SHORT).show()
     }
@@ -120,6 +128,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
     // ChosungTextView ,UserInputEditTextView 를 숨긴다
     // AnswerImageView 을 보이게 한다
     override fun answerGameView() {
+        Toast.makeText(context, "정답입니다.", Toast.LENGTH_SHORT).show()
         UserInputEditTextView.isVisible = false
         AnswerImageView.isVisible = true
     }
@@ -127,6 +136,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
     // 유저가 정답이 아닐때 바뀌는 뷰
     // ChosungTextView ,UserInputEditTextView , WrongImageView 보이게
     override fun wrongGameView() {
+        Toast.makeText(context, "정답이 아닙니다.", Toast.LENGTH_SHORT).show()
         UserInputEditTextView.isVisible = true
         WrongImageView.isVisible = true
     }
@@ -142,8 +152,12 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
 
 
-    override fun timeProgressBarActive() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun timeProgressBarActive(iSetTime:Int, iLeftTime:Int) {
+
+        TimerProgressBar.max=iSetTime
+        TimerProgressBar.setProgress(iLeftTime,true)
+
+
     }
 
 

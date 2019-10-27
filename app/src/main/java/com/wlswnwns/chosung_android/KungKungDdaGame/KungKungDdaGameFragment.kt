@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.wlswnwns.chosung_android.R
 import kotlinx.android.synthetic.main.layout_kungkungddagame.*
@@ -22,6 +23,7 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View  {
     //presenter 선언
     var presenter: KungKungDdaGameContract.Presenter? = null
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +34,7 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View  {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         //뷰가 만들어지는 시점에서 프레젠터 생성.
         presenter = KungKungDdaGamePresenter(this)
@@ -102,7 +105,8 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View  {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
             KungKungDdaGameFragmentDirections.actionKungKungDdaGameFragmentToKungKungDdaGameOverFragment()
 
-        )    }
+        )
+    }
 
     override fun showErrorMsg(msg: String) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

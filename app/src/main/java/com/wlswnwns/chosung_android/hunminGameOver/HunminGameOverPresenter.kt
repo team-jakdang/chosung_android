@@ -7,7 +7,7 @@ class HunminGameOverPresenter(view: HunminGameOverContract.View) : HunminGameOve
 
     var view: HunminGameOverContract.View
     var model: HunminGameOverModel
- 
+
     // 생성자
     init {
         this.view = view
@@ -18,6 +18,10 @@ class HunminGameOverPresenter(view: HunminGameOverContract.View) : HunminGameOve
 
     override fun viewDidLoad() {
         view.viewInit()
+
+
+
+
     }
 
 
