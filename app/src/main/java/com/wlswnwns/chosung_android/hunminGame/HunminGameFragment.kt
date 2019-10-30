@@ -20,6 +20,7 @@ import com.wlswnwns.chosung_android.item.Game
 import com.wlswnwns.chosung_android.item.Test
 import kotlinx.android.synthetic.main.layout_hunmingame.*
 
+
 class HunminGameFragment : Fragment(), HunminGameContract.View {
 
 

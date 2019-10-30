@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -67,7 +68,21 @@ public class APiAsyc extends AsyncTask<Void, Void, String> {
 
     @Override
     protected String doInBackground(Void... params) {
+
+        try {
+
         url = url + routes;
+
+        if(routes.equals("room-control/findRoom")){
+            Log.e("dㅣ거이거","파인드룸");
+                url = url+"/" + jsonobject.getString("iRoomId");
+
+        }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         URL url = null;//url을 가져온다.
         con = null;
 
@@ -78,14 +93,14 @@ public class APiAsyc extends AsyncTask<Void, Void, String> {
                     con = (HttpURLConnection) url.openConnection();
                     con.setRequestProperty("Cache-Control", "no-cache");//캐시 설정
                     con.setRequestProperty("Accept", "text/html");
-                    if (this.jsonobject != null) {
-                        Iterator keys = this.jsonobject.keys();
-                        while (keys.hasNext()) {
-                            String key = (String) keys.next();
-                            con.setRequestProperty(key, this.jsonobject.getString(key));
-                            Log.d("key", key);
-                        }
-                    }
+//                    if (this.jsonobject != null) {
+//                        Iterator keys = this.jsonobject.keys();
+//                        while (keys.hasNext()) {
+//                            String key = (String) keys.next();
+//                            con.setRequestProperty(key, this.jsonobject.getString(key));
+//                            Log.d("key", key);
+//                        }
+//                    }
                     con.setDoInput(true);//Inputstream으로 서버로부터 응답을 받겠다는 의미
                     con.connect();
                 } catch (Exception e) {

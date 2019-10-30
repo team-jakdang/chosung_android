@@ -10,14 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.wlswnwns.chosung_android.R
+import com.wlswnwns.chosung_android.item.User
 import kotlinx.android.synthetic.main.layout_kungkungddagame.*
 
 /**
  * 뷰에 일어날 이벤트를 구현한다.
  **/
 
-class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View  {
-
+class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View {
 
 
     //presenter 선언
@@ -90,9 +90,10 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View  {
     }
 
     //
-    override fun timeLimitTextActive() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun showCountDownText(count: String) {
+        CountTextView.text = count
     }
+
     override fun readyView() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -112,7 +113,7 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View  {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun changeUserOrder(order1:String,order2:String,order3:String){
+    override fun changeUserOrder(order1: String, order2: String, order3: String) {
 
         Order1TextView.text = order1
         Order2TextView.text = order2
@@ -120,5 +121,22 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View  {
 
 
     }
+
+    override fun showChosungText(chosung: String) {
+        ChosungTextView.text = chosung
+    }
+
+    override fun setOrder1TextView(user: User) {
+        Order1TextView.text = user.strUserName
+    }
+
+    override fun setOrder2TextView(user: User) {
+        Order2TextView.text = user.strUserName
+    }
+
+    override fun setOrder3TextView(user: User) {
+        Order3TextView.text = user.strUserName
+    }
+
 
 }

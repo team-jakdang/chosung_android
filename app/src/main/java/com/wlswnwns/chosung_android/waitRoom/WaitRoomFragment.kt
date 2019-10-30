@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.layout_wait_room.*
 
 class WaitRoomFragment : Fragment(), WaitRoomContract.View {
 
+
     private val args: WaitRoomFragmentArgs by navArgs()
 
     var presenter: WaitRoomPresenter? = null
@@ -34,9 +35,6 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
         presenter = WaitRoomPresenter(this)
         presenter?.viewDidLoad(args.game, args.room,args.strNikName)
 
@@ -46,18 +44,14 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
 
 
     override fun viewInit(iLength: Int, iTime: Int) {
-        HunMinBtn.setOnClickListener { moveHunMinFragment(iLength, iTime) }
-        KungKungDdaBtn.setOnClickListener { moveKungKungDdaFragment() }
         GameStartBtn.setOnClickListener { presenter?.onClickGameStartBtn() }
         BackBtn.setOnClickListener { presenter?.onClickExitRoom() }
-
     }
 
     override fun moveHunMinFragment(iLength : Int, iTime : Int) {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
             WaitRoomFragmentDirections.actionWaitRoomFragmentToHunminGameFragment(iLength,iTime)
         )
-
     }
 
 
@@ -119,4 +113,9 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
         super.onDestroyView()
 //        presenter?.disConnectSocket()
     }
+
+    override fun hideGameStartBtn() {
+        GameStartBtn.visibility = View.INVISIBLE
+    }
+
 }

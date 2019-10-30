@@ -218,35 +218,10 @@
             android:id="@+id/QRCodeImgView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/KungKungDdaBtn"
+            app:layout_constraintBottom_toTopOf="@+id/GameStartBtn"
             app:layout_constraintLeft_toRightOf="@+id/LeftGuideLine"
             app:layout_constraintTop_toBottomOf="@id/QRCodeTitleView"
             app:layout_constraintRight_toRightOf="parent"/>
-
-==
-    <Button
-            android:id="@+id/KungKungDdaBtn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="쿵쿵따"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintLeft_toRightOf="@+id/LeftGuideLine"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/GameNameView"
-            app:layout_constraintVertical_bias="0.8" />
-
-    <Button
-            android:id="@+id/HunMinBtn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="훈민정음"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintLeft_toRightOf="@+id/LeftGuideLine"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/GameNameView"
-            app:layout_constraintVertical_bias="0.9" />
 
 
     <Button
@@ -259,7 +234,7 @@
             app:layout_constraintLeft_toRightOf="@+id/LeftGuideLine"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/GameNameView"
-            app:layout_constraintVertical_bias="1" />
+            app:layout_constraintVertical_bias="0.9"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

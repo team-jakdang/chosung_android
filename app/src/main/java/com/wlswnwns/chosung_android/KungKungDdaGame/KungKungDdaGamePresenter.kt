@@ -2,6 +2,8 @@ package com.wlswnwns.chosung_android.KungKungDdaGame
 
 import android.os.Handler
 import com.wlswnwns.chosung_android.ChosungApplication
+import org.json.JSONException
+import org.json.JSONObject
 
 /**
  * Contract.Presenter에서 정의한 내용 구현
@@ -24,14 +26,46 @@ class KungKungDdaGamePresenter(view : KungKungDdaGameContract.View) : KungKungDd
     init {
         this.view = view
         this.model= KungKungDdaGameModel()
-
     }
 
     // 콘트렉트에 정의한 뷰 객체를 생성.
     override fun viewDidLoad() {
         view.viewInit()
 
-        ChosungApplication.startKKTGame()
+        model.InitSockerListner(object : KungKungDdaGameModel.SockerListner{
+            override fun onDataReceived(jsonObject: JSONObject) {
+                if(jsonObject.getString("strEvent").equals("startKKT")){
+                    try {
+                        view.showCountDownText(jsonObject.getInt("iCountDown").toString())
+                    }catch (e: JSONException){
+                        e.printStackTrace()
+
+                        view.showChosungText(jsonObject.getString("strInitialWord"))
+                        view.showCountDownText(jsonObject.getInt("iSetTime").toString())
+
+//                        for(user in model.InitUserList(jsonObject.getJSONArray("arrUserInfo"))){
+//
+//                            if(user.)
+//                            view.setOrder1TextView()
+//                            view.setOrder2TextView()
+//                            view.setOrder3TextView()
+//                        }
+
+
+
+
+
+                    }
+
+
+
+
+                }
+
+            }
+        })
+        model.GameStart()
+
 
     }
 

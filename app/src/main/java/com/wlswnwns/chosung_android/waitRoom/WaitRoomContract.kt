@@ -38,6 +38,7 @@ interface WaitRoomContract{
 
         fun showQRCodeImage(img : Bitmap)
 
+        fun hideGameStartBtn()
 
 
 
@@ -62,6 +63,7 @@ interface WaitRoomContract{
         fun removeRoom()
 
         fun disConnectSocket()
+
 
     }
 

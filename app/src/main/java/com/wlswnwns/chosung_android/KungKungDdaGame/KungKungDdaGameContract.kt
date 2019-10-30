@@ -1,5 +1,7 @@
 package com.wlswnwns.chosung_android.KungKungDdaGame
 
+import com.wlswnwns.chosung_android.item.User
+
 /**
  * View와 Presenter 정의
  * **/
@@ -19,8 +21,10 @@ interface KungKungDdaGameContract {
         // 게임 시작하면 게임 준비 뷰
         fun readyView()
 
-        // 제한 시간 카운트다운 시작
-        fun timeLimitTextActive()
+        // 카운트 다운 텍스트 보여줌
+        fun showCountDownText(count : String)
+
+        fun showChosungText(chosung : String)
 
         // 유저가 입력하는 단어가 3글자를 넘으면 안된다는 토스트 메세지
         fun longUserInputText()
@@ -46,6 +50,15 @@ interface KungKungDdaGameContract {
 
         //유저의 게임 순서를 뷰에 표시해준다.
         fun changeUserOrder(order1: String, order2: String, order3: String)
+
+        fun setOrder1TextView(user : User)
+
+        fun setOrder2TextView(user : User)
+
+        fun setOrder3TextView(user : User)
+
+
+
     }
 
     /**

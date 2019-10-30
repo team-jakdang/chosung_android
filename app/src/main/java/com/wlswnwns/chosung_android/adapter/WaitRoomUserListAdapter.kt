@@ -58,6 +58,14 @@ class WaitRoomUserListAdapter(
 
         holder.UserNameView?.text = items[position].strUserName
 
+        if(items[position].bIsActive){
+            holder.InGameTextView?.visibility = View.VISIBLE
+        }else{
+            holder.InGameTextView?.visibility = View.INVISIBLE
+        }
+
+
+
     }
 
 
@@ -66,9 +74,11 @@ class WaitRoomUserListAdapter(
 
 
         var UserNameView: TextView? = null
+        var InGameTextView : TextView? = null
 
         init {
             UserNameView = itemView.findViewById(R.id.UserNameView)
+            InGameTextView = itemView.findViewById(R.id.InGameTextView)
         }
 
 

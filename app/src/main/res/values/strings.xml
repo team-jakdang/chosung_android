@@ -41,12 +41,15 @@
     <string name="wait_room_entrylist_title">Player</string>
     <string name="wait_room_entrylist_count">명</string>
     <string name="wait_room_game_mode_title">Game Mode</string>
-    <string name="wait_room_game_guide_btn">설명</string>
+    <string name="wait_room_game_guide_btn">설명</string>중
     <string name="wait_room_chosung_length_title">글자 수</string>
     <string name="wait_room_game_time_title">게임 시간</string>
     <string name="wait_room_qrcode_title">QR 코드</string>
     <string name="wait_room_game_start_btn">게임 시작</string>
     <string name="wait_room_fail_exit_room">방에서 나가는데 실패했습니다\n다시한번 시도해주세요</string>
+
+    <string name="wait_room_ingame_user">(게임중)</string>
+
 
 
     <!--대기실 나가기 다이얼로그-->

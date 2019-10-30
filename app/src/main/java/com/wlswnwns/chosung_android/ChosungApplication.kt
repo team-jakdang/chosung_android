@@ -58,7 +58,7 @@ class ChosungApplication : Application() {
                                         }
                                     }
 
-                                                ChosungApplication.activity.runOnUiThread(action)
+                                    ChosungApplication.activity.runOnUiThread(action)
 
 
                                 }
@@ -115,15 +115,39 @@ class ChosungApplication : Application() {
 
 
 
+
+
         fun onHunminGameStartInfo(count: String, chosung: String) {
             Log.e("카운트", count + chosung)
-
             Game.iCountDown = count
             Game.strInitialWord = chosung
 
 
 
         }
+
+
+        fun moveToGame(){
+
+            var data_obj = JSONObject()
+
+            try {
+                data_obj.put("action", "moveToGame")
+                data_obj.put("iRoomId", roomId)
+
+                client?.let {
+                    client?.sendText(data_obj.toString())
+                    Log.e("게임방 이동 메세===>", data_obj.toString())
+                }.let {
+
+                }
+
+
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+
 
         fun enterRoom(IsMaster: Boolean, roomId: Int, nikname: String) {
 
@@ -158,10 +182,7 @@ class ChosungApplication : Application() {
 
 
         fun startKKTGame() {
-
-
             var data_obj = JSONObject()
-
             try {
 
                 data_obj.put("action", "startKKT")
@@ -173,16 +194,12 @@ class ChosungApplication : Application() {
                 }.let {
 
                 }
-
-
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
         }
 
         fun startHMJEGame() {
-
-
             var data_obj = JSONObject()
 
             try {
