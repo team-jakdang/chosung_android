@@ -62,6 +62,13 @@ class HunminGameOverRoomResultAdapter(
 
         holder.UserOrder?.text = (items[position].iOrder + 1).toString()
         holder.UserNameView?.text = items[position].strUserName
+        if (items[position].bIsFailed){
+            holder.isFailedView?.text = "실패"
+        }else{
+            holder.isFailedView?.text = "성공"
+        }
+
+
 
         Log.e("들어왔 ? ", "" + items[position].iOrder.toString())
 
@@ -74,11 +81,13 @@ class HunminGameOverRoomResultAdapter(
 
         var UserOrder: TextView? = null
         var UserNameView: TextView? = null
+        var isFailedView: TextView? = null
 
 
         init {
             UserOrder = itemView.findViewById(R.id.UserOrder)
             UserNameView = itemView.findViewById(R.id.UserNameView)
+            isFailedView = itemView.findViewById(R.id.isFailedView)
 
         }
 

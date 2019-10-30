@@ -17,6 +17,8 @@ import com.wlswnwns.chosung_android.item.Room
 import kotlinx.android.synthetic.main.layout_game_over.*
 import kotlinx.android.synthetic.main.layout_game_over.TitleTextView
 import kotlinx.android.synthetic.main.layout_hunmingame.*
+import org.json.JSONArray
+import org.json.JSONException
 
 class HunminGameOverFragment : Fragment(), HunminGameOverContract.View {
 
@@ -36,7 +38,7 @@ class HunminGameOverFragment : Fragment(), HunminGameOverContract.View {
         super.onViewCreated(view, savedInstanceState)
 
         presenter = HunminGameOverPresenter(this)
-        presenter?.viewDidLoad()
+        presenter?.viewDidLoad(requireContext())
         presenter?.setResult(args.resultArr)
 
     }
@@ -47,25 +49,32 @@ class HunminGameOverFragment : Fragment(), HunminGameOverContract.View {
         OneMoreGameBtnView.setOnClickListener{moveHunminGameFragment()}
         GameEndBtnView.setOnClickListener{ moveMainFragment()}
 
+
+
     }
 
-    override fun showResult(gameResult : ArrayList<Game>) {
+    override fun showResult(gameResult : ArrayList<Game>, bIsMaster:Boolean) {
         HunminGameOverRoomResultAdapter(
             requireContext(),
             presenter!!,
             gameResult
         ).let {
+            Log.e("showResult", "방장 $bIsMaster")
             gameResultRecyclerView.adapter = it
+            if (bIsMaster){
+                OneMoreGameBtnView.visibility = View.VISIBLE
+            }else{
+                OneMoreGameBtnView.visibility = View.INVISIBLE
+            }
         }
-
     }
 
     override fun moveHunminGameFragment() {
 
         Log.e("ff", "ff1")
-//        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-//            HunminGameRankingFragmentDirections.actionHunminGameRankingFragmentToHunminGameFragment(2,20,)
-//        )
+        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
+            HunminGameOverFragmentDirections.actionHunminGameOverFragmentToHunminGameFragment(2,10)
+        )
     }
 
     override fun moveMainFragment() {

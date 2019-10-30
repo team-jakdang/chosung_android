@@ -37,5 +37,12 @@
                 android:layout_marginLeft="12dp"
                 android:text="차차차"
                 android:textSize="15sp" />
+        <TextView
+                android:id="@+id/isFailedView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:text="실패"
+                android:textSize="15sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
