@@ -1,23 +1,22 @@
 package com.wlswnwns.chosung_android.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.wlswnwns.chosung_android.R
-import com.wlswnwns.chosung_android.hunminGame.HunminGameContract
+import com.wlswnwns.chosung_android.hunminGameOver.HunminGameOverContract
 import com.wlswnwns.chosung_android.item.Game
 
-
-
-class HunminGameRoomChosungLogAdapter(
+class HunminGameOverRoomResultAdapter(
     private val context: Context,
-    private var presenter: HunminGameContract.Presenter,
+    private var presenter: HunminGameOverContract.Presenter,
     items: ArrayList<Game>
+) : RecyclerView.Adapter<HunminGameOverRoomResultAdapter.UserViewHolder>() {
 
-) : RecyclerView.Adapter<HunminGameRoomChosungLogAdapter.UserViewHolder>() {
 
     var items: ArrayList<Game>
 
@@ -27,7 +26,6 @@ class HunminGameRoomChosungLogAdapter(
         this.items = items
 
     }
-
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -40,7 +38,7 @@ class HunminGameRoomChosungLogAdapter(
 
 
         view = LayoutInflater.from(context).inflate(
-            R.layout.item_hunmingame_room,
+            R.layout.item_hunmingameover_result,
             parent,
             false
         ) as ViewGroup
@@ -62,10 +60,17 @@ class HunminGameRoomChosungLogAdapter(
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
 
+        holder.UserOrder?.text = (items[position].iOrder + 1).toString()
         holder.UserNameView?.text = items[position].strUserName
-        holder.ChosungView?.text = items[position].strChosung
+        if (items[position].bIsFailed){
+            holder.isFailedView?.text = "실패"
+        }else{
+            holder.isFailedView?.text = "성공"
+        }
 
 
+
+        Log.e("들어왔 ? ", "" + items[position].iOrder.toString())
 
     }
 
@@ -74,19 +79,17 @@ class HunminGameRoomChosungLogAdapter(
         RecyclerView.ViewHolder(itemView) {
 
 
+        var UserOrder: TextView? = null
         var UserNameView: TextView? = null
-        var ChosungView: TextView? = null
+        var isFailedView: TextView? = null
 
 
         init {
+            UserOrder = itemView.findViewById(R.id.UserOrder)
             UserNameView = itemView.findViewById(R.id.UserNameView)
-            ChosungView = itemView.findViewById(R.id.ChosungView)
+            isFailedView = itemView.findViewById(R.id.isFailedView)
 
         }
 
     }
-
 }
-
-
-

@@ -16,6 +16,10 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
+
+
+
+
 class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Presenter {
 
 
@@ -33,6 +37,7 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
         model.chosungLength = iLength
         model.iTime = iTime
         model.ChosungLog = ArrayList()
+
         Log.e("viewDidLoad", "뷰 초기화 실행")
         ChosungApplication.startHMJEGame() // 게임시작 체크
         ChosungApplication.client?.clearListeners()
@@ -63,7 +68,22 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
                         }
                     }else if (JSONObject(text).getString("strEvent") == "checkTimeHMJE") {
 
-                        setTimer(iSetTime,JSONObject(text).getInt("iLeftTime"))
+
+                        try {
+                            setTimer(iSetTime,JSONObject(text).getInt("iLeftTime"))
+                            var resultList =  concatArray(JSONObject(text).getJSONArray("arrResultInfo"),JSONObject(text).getJSONArray("arrFailUserInfo"))
+                            Log.e("arrResultInfo" , resultList.toString())
+                            model.ResultArr = resultList.toString()
+                            if(JSONObject(text).getInt("iLeftTime") == 0) {
+
+                                view.moveHunminGameOverFragment(model.ResultArr)
+                            }
+
+                        }catch (e:JSONException){
+                            e.printStackTrace()
+                            model.ResultArr = "[]"
+
+                        }
                     }else if (JSONObject(text).getString("strEvent") == "checkAnswerHMJE") {
                         Log.e("checkAnswerHMJE", JSONObject(text).getString("strMessage"))
                         model.Game.bIsAnswer = JSONObject(text).getBoolean("bIsAnswer")
@@ -135,10 +155,10 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
     override fun gameStartTimeSendToServer() {
         ChosungApplication.startHMJEGameTimeCheck() // 타임체크 소켓 연결
 
-        // 게임이 오버되었다면 순위 발표 페이지로 넘어가기 (서버에서 리턴값으로 주는 arrResultInfo 넘겨줘야함)
-        if (model.Game.bTimeOver) {
-            view.moveHunminGameOverFragment()
-        }
+//        // 게임이 오버되었다면 순위 발표 페이지로 넘어가기 (서버에서 리턴값으로 주는 arrResultInfo 넘겨줘야함)
+//        if (model.Game.bTimeOver) {
+//            view.moveHunminGameOverFragment()
+//        }
     }
 
     override fun gameEndTimeSendToServer() {
@@ -152,6 +172,20 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
             getArrRoomInfo().toString()
         )
 
+    }
+
+    @Throws(JSONException::class)
+    private fun concatArray(successArr: JSONArray, failedArr: JSONArray): JSONArray {
+        val result = JSONArray()
+        for (i in 0 until successArr.length()) {
+            successArr.getJSONObject(i).put("bIsFailed",false)
+            result.put(successArr.getJSONObject(i))
+        }
+        for (i in 0 until failedArr.length()) {
+            failedArr.getJSONObject(i).put("bIsFailed",true)
+            result.put(failedArr.getJSONObject(i))
+        }
+        return result
     }
 
 
@@ -214,9 +248,6 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 
         view.timeProgressBarActive(iSetTime,iLeftTime)
 
-        if(iLeftTime == 0) {
-            view.moveHunminGameOverFragment()
-        }
 
 
     }
