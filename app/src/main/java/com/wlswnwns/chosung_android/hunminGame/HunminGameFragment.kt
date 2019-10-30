@@ -39,7 +39,8 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        Log.e(TAG,args.iLength.toString())
+        Log.e(TAG,args.iTime.toString())
         presenter = HunminGamePresenter(this)
         presenter?.viewDidLoad(args.iLength,args.iTime)
 //        presenter?.setChosung()

@@ -16,6 +16,10 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
+
+
+
+
 class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Presenter {
 
 
@@ -67,9 +71,9 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 
                         try {
                             setTimer(iSetTime,JSONObject(text).getInt("iLeftTime"))
-                            model.ResultArr =  JSONObject(text).getJSONArray("arrResultInfo").toString()
-                            Log.e("arrResultInfo" , JSONObject(text).getJSONArray("arrResultInfo").toString())
-
+                            var resultList =  concatArray(JSONObject(text).getJSONArray("arrResultInfo"),JSONObject(text).getJSONArray("arrFailUserInfo"))
+                            Log.e("arrResultInfo" , resultList.toString())
+                            model.ResultArr = resultList.toString()
                             if(JSONObject(text).getInt("iLeftTime") == 0) {
 
                                 view.moveHunminGameOverFragment(model.ResultArr)
@@ -168,6 +172,20 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
             getArrRoomInfo().toString()
         )
 
+    }
+
+    @Throws(JSONException::class)
+    private fun concatArray(successArr: JSONArray, failedArr: JSONArray): JSONArray {
+        val result = JSONArray()
+        for (i in 0 until successArr.length()) {
+            successArr.getJSONObject(i).put("bIsFailed",false)
+            result.put(successArr.getJSONObject(i))
+        }
+        for (i in 0 until failedArr.length()) {
+            failedArr.getJSONObject(i).put("bIsFailed",true)
+            result.put(failedArr.getJSONObject(i))
+        }
+        return result
     }
 
 
