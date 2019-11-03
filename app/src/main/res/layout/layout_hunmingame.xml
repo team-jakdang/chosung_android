@@ -8,138 +8,105 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#EC686F">
-
-        <TextView
-                android:id="@+id/TitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="훈민정음"
-                android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:visibility="visible"
-                app:layout_constraintBottom_toTopOf="@+id/progressBar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-        <View
-                android:id="@+id/ChosungView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="32dp"
-                android:background="#FFFFFF"
-                app:layout_constraintBottom_toTopOf="@+id/guideline"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/progressBar"
-                app:layout_constraintVertical_bias="0.0" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#faf0f2">
 
 
         <TextView
-                android:id="@+id/ChosungTextView"
-                android:layout_width="300dp"
-                android:layout_height="70dp"
-                android:background="#0A0A0A"
-                android:hint="ㅊㅇ"
-                android:textAlignment="center"
-                android:textColor="#F7E24E"
-                android:textColorHighlight="#FFFFFF"
-                android:textColorHint="#F7E24E"
-                android:textSize="50sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/ChosungView"
-                app:layout_constraintEnd_toEndOf="@+id/ChosungView"
-                app:layout_constraintStart_toStartOf="@+id/ChosungView"
-                app:layout_constraintTop_toTopOf="@+id/ChosungView"
-                app:layout_constraintVertical_bias="0.469" />
+            android:id="@+id/ChosungTextView"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:background="#e7b2bc"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorHint="#000000"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TimerProgressBar" />
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/GameLogRecyclerView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/UserInputEditTextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline"
-                app:layout_constraintVertical_bias="1.0"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                />
+            android:id="@+id/GameLogRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#a0999b"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/UserInputEditTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline"
+            app:layout_constraintVertical_bias="1.0" />
 
         <EditText
-                android:id="@+id/UserInputEditTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="60dp"
-                android:ems="10"
-                android:hint="@string/hunminGame_hint"
-                android:inputType="textPersonName"
-                android:textColorHint="#FFFFFF"
-
-
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageView
-                android:id="@+id/AnswerImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img_game_answer"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/GameLogRecyclerView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.501"
-                app:layout_constraintStart_toStartOf="@+id/GameLogRecyclerView"
-                app:layout_constraintTop_toTopOf="@+id/GameLogRecyclerView"
-                app:layout_constraintVertical_bias="0.498" />/>
+            android:id="@+id/UserInputEditTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:ems="10"
+            android:hint="@string/hunminGame_hint"
+            android:inputType="textPersonName"
+            android:paddingStart="5dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:textColorHint="#000000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-                android:id="@+id/WrongImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img_game_wrong"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.501"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/GameLogRecyclerView"
-                app:layout_constraintVertical_bias="0.498" />
+            android:id="@+id/AnswerImageView"
+            android:layout_width="263dp"
+            android:layout_height="205dp"
+            android:visibility="gone"
+            android:src="@drawable/img_game_answer"
+            app:layout_constraintBottom_toBottomOf="@+id/GameLogRecyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="@+id/GameLogRecyclerView"
+            app:layout_constraintTop_toTopOf="@+id/GameLogRecyclerView"
+            app:layout_constraintVertical_bias="0.498" />/>
+
+        <ImageView
+            android:id="@+id/WrongImageView"
+            android:layout_width="263dp"
+            android:layout_height="202dp"
+            android:visibility="gone"
+            android:src="@drawable/img_game_wrong"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/GameLogRecyclerView" />
         />
 
         <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="288dp" />
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="413dp" />
 
         <ProgressBar
-                android:id="@+id/TimerProgressBar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:background="#F2FE53"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TitleTextView" /><![CDATA[
+            android:id="@+id/TimerProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="16dp"
+            android:background="#ffffff"
+            android:progressBackgroundTint="#FFFFFF"
+            android:progressTint="#d98695"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" /><![CDATA[
 
         />
 
