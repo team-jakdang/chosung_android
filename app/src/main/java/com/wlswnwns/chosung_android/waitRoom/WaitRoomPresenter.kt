@@ -10,6 +10,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
+import java.net.SocketException
 
 class WaitRoomPresenter(view: WaitRoomContract.View ) :
     WaitRoomContract.Presenter {
@@ -34,36 +35,38 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
         view.showTime(game.iTime)
         view.showQRCodeImage(model.makeRoomQRCode())
 
-        ChosungApplication.SocketConnect(object : ChosungApplication.Companion.SocketConnectListner {
-            override fun onDataReceived(jsonObject: JSONObject) {
-                try {
-                    if(jsonObject.getString("strEvent")=="enterRoom"){
-                        view.showUserList(model.InitUserList(jsonObject.getJSONArray("arrUserInfo")))
-                        model.Game.strMode = jsonObject.getString("strGameMode")
-                        model.Game.iChosungLenght = jsonObject.getInt("iWordLength")
-                        model.Game.iTime = jsonObject.getInt("iTimeLimit")
+        ChosungApplication.enterRoom(true, model.room.iRoomId!!, nickNmae)
+        ChosungApplication.client?.clearListeners()
+        Log.e("viewDidLoad", "WaitRoomPresenter 뷰 초기화 실행")
+        ChosungApplication.client?.addListener(object : WebSocketAdapter() {
+            override fun onTextMessage(websocket: WebSocket?, text: String?) {
+                super.onTextMessage(websocket, text)
+                Log.e("메세지===>", text)
+                JSONObject(text)
+                val action = Runnable {
+                    Log.e("onDataReceived", JSONObject(text).getString("strEvent"))
+                    if(JSONObject(text).getString("strEvent")=="enterRoom"){
+                        view.showUserList(model.InitUserList(JSONObject(text).getJSONArray("arrUserInfo")))
+                        model.Game.strMode = JSONObject(text).getString("strGameMode")
+                        model.Game.iChosungLenght = JSONObject(text).getInt("iWordLength")
+                        model.Game.iTime = JSONObject(text).getInt("iTimeLimit")
                         view.showGameMode(model.Game.strMode)
                         view.showChosungLength(model.Game.iChosungLenght)
                         view.showTime(model.Game.iTime)
 
 
-                    }else if(jsonObject.getString("strEvent")=="moveToGame"){
+                    }else if(JSONObject(text).getString("strEvent")=="moveToGame"){
                         if (model.Game.strMode.equals("kkt")){
                             view.moveKungKungDdaFragment()
                         }else{
                             view.moveHunMinFragment(game.iChosungLenght,game.iTime)
                         }
                     }
-                }catch (e:JSONException){
-                    e.printStackTrace()
                 }
-
+                ChosungApplication.activity.runOnUiThread(action)
             }
-            override fun onConnet() {
-                ChosungApplication.enterRoom(true, model.room.iRoomId!!, nickNmae)
-            }
-
         })
+
 
 
     }

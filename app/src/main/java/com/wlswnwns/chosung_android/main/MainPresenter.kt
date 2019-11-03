@@ -1,5 +1,11 @@
 package com.wlswnwns.chosung_android.main
 
+import android.util.Log
+import com.wlswnwns.chosung_android.ChosungApplication
+import org.json.JSONException
+import org.json.JSONObject
+import java.net.SocketException
+
 class MainPresenter(view: MainContract.View) : MainContract.Presenter {
 
 
@@ -31,7 +37,6 @@ class MainPresenter(view: MainContract.View) : MainContract.Presenter {
             override fun onSuccess() {
                 view.moveWaitRoomFragment(model.Game,model.room)
             }
-
             override fun onFail() {
                 view.showFailMakeRoomMsg()
             }

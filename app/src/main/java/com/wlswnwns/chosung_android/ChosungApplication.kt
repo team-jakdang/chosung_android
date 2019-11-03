@@ -3,11 +3,10 @@ package com.wlswnwns.chosung_android
 import android.app.Activity
 import android.app.Application
 import android.util.Log
-import com.neovisionaries.ws.client.WebSocket
-import com.neovisionaries.ws.client.WebSocketAdapter
-import com.neovisionaries.ws.client.WebSocketException
-import com.neovisionaries.ws.client.WebSocketFactory
+import com.neovisionaries.ws.client.*
 import com.wlswnwns.chosung_android.item.Game
+import com.wlswnwns.chosung_android.main.MainContract
+import com.wlswnwns.chosung_android.main.MainModel
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -34,15 +33,13 @@ class ChosungApplication : Application() {
 
 
         fun SocketConnect(socketConnectListner: SocketConnectListner) {
-
-
-            Log.e("소켓이 생성 안됐음", "생성함")
-
+            Log.e("소켓이 생성 시작", "스텝1"+ client.toString())
             thread = object : Thread() {
                 override fun run() {
                     super.run()
                     try {
                         WebSocketFactory().apply {
+                            Log.e("SocketConnect", "connect "+client?.isOpen)
                             client = createSocket((ip))
                             client?.addListener(object : WebSocketAdapter() {
                                 override fun onTextMessage(websocket: WebSocket?, text: String?) {
@@ -57,10 +54,7 @@ class ChosungApplication : Application() {
                                             e.printStackTrace()
                                         }
                                     }
-
                                     ChosungApplication.activity.runOnUiThread(action)
-
-
                                 }
                             })
 
@@ -80,13 +74,12 @@ class ChosungApplication : Application() {
                                     cause: WebSocketException?
                                 ) {
                                     super.onError(websocket, cause)
-                                    Log.e("커넥트 에러 -->", cause.toString())
                                 }
                             })
 
                         }
                         client?.connect()
-
+                        Log.e("SocketConnect", "after connect "+client?.isOpen)
                     } catch (e: UnknownHostException) {
                         Log.e("UnknownHost 에러 -->", e.toString())
                         e.printStackTrace()
@@ -95,6 +88,19 @@ class ChosungApplication : Application() {
                         e.printStackTrace()
                     } catch (e: WebSocketException) {
                         Log.e("WebSocket 에러 -->", e.toString())
+                        SocketConnect(object : SocketConnectListner {
+                            override fun onDataReceived(jsonObject: JSONObject) {
+                                try {
+                                    Log.e("onDataReceived", "onDataReceived")
+                                }catch (e: JSONException){
+                                    e.printStackTrace()
+                                }
+
+                            }
+                            override fun onConnet() {
+                                Log.e("onConnected", "Success")
+                            }
+                        })
                         e.printStackTrace()
                     }
                 }
