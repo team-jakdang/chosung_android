@@ -51,6 +51,7 @@
             android:id="@+id/NikNameEditTextView"
             android:hint="@string/nickname_hint"
             android:layout_width="0dp"
+            android:inputType="textPersonName"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toRightOf="@+id/LeftGuideLine"
             app:layout_constraintTop_toBottomOf="@+id/LogoImageView"

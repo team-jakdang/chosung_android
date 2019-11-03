@@ -86,6 +86,12 @@
         <action
                 android:id="@+id/action_kungKungDdaGameFragment_to_kungKungDdaGameOverFragment"
                 app:destination="@id/kungKungDdaGameOverFragment" />
+        <argument
+                android:name="room"
+                app:argType="com.wlswnwns.chosung_android.item.Room" />
+        <argument
+                android:name="game"
+                app:argType="com.wlswnwns.chosung_android.item.Game" />
     </fragment>
 
     <fragment

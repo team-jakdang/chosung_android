@@ -1,5 +1,7 @@
 package com.wlswnwns.chosung_android.KungKungDdaGame
 
+import com.wlswnwns.chosung_android.item.Game
+import com.wlswnwns.chosung_android.item.Room
 import com.wlswnwns.chosung_android.item.User
 
 /**
@@ -13,21 +15,19 @@ interface KungKungDdaGameContract {
      *
      */
 
-    interface  View{
+    interface View {
 
         // 뷰 초기화
         fun viewInit()
 
-        // 게임 시작하면 게임 준비 뷰
-        fun readyView()
 
         // 카운트 다운 텍스트 보여줌
-        fun showCountDownText(count : String)
+        fun showCountDownText(count: String)
 
-        fun showChosungText(chosung : String)
+        fun showChosungText(chosung: String)
 
         // 유저가 입력하는 단어가 3글자를 넘으면 안된다는 토스트 메세지
-        fun longUserInputText()
+        fun longUserInputText(chosungLength: String)
 
         // 유저가 입력한 단어가 정답 일 때 보여줄 뷰
         fun answerGameView()
@@ -38,26 +38,25 @@ interface KungKungDdaGameContract {
         // 게임중 기본 뷰로 돌아가도록 함. (유저가 정답을 입력 할 때의 뷰) 오/정답표시 숨김
         fun defaultGameView()
 
-        //유저가 입력한 단어들을 보여주기 위한 리스트
-        fun listViewGameLogs(arg : ArrayList<Any>)
-
-
-        //쿵쿵따 게임 종료 프래그먼트 띄움
-        fun moveToKungDdaGameOverFragment()
 
         // 에러 메세지를 다이얼로그로 보여줌
-        fun showErrorMsg(msg : String)
+        fun showErrorMsg(msg: String)
 
         //유저의 게임 순서를 뷰에 표시해준다.
         fun changeUserOrder(order1: String, order2: String, order3: String)
 
-        fun setOrder1TextView(user : User)
+        fun setOrder1TextView(user: User)
 
-        fun setOrder2TextView(user : User)
+        fun setOrder2TextView(user: User)
 
-        fun setOrder3TextView(user : User)
+        fun setOrder3TextView(user: User)
 
+        // 게임이 시작하면 프로그래스바를 활성화
+        fun timeProgressBarActive(iTimeLimit: Int, iCountDown: Int)
 
+        fun showChosungLogList(ChosungLog: ArrayList<Game>)
+
+        fun MoveGameResult()
 
     }
 
@@ -68,38 +67,16 @@ interface KungKungDdaGameContract {
      *
      */
 
-    interface Presenter{
+    interface Presenter {
 
         // 프레그먼트의 뷰가 생성되면 호출 (viewDidLoad()안에서 viewInit()을 실행한다)
-        fun viewDidLoad()
+        fun viewDidLoad(gameListner: KungKungDdaGamePresenter.GameListner, room : Room, game : Game)
 
-        // 방 정보 모델에 전달
-        fun setArrRoomInfo(chosungLength : Int)
-        fun getArrRoomInfo():Int
-
-        // 유저 정보 모델에 전달
-        fun setArrUserInfo(userInfo : Any)
-        fun getArrUserInfo():ArrayList<Any>
-
-        // 서버에서 받아온 랜덤 초성을 모델에 전달
-        fun setRandomChosung(chosung : ArrayList<String>)
-        fun getRandomChosung()
-
-
+        fun getArrRoomInfo(): Int
 
         // 유저가 입력한 텍스트를 모델에 전달
-        fun setStrUserInputEditText(inputText : String)
-        fun getStrUserInputEditText():String
+        fun setStrUserInputEditText(inputText: String)
 
-        // 유저들이 입력한 텍스트를 모델에 전달 (로그)
-        fun setListGameLog(inputText : String)
-        fun getListGameLog():ArrayList<Any>
-
-        // 게임 시작한 시간을 서버에 전달
-        fun gameStartTimeSendToServer()
-
-        // 게임 종료한 시간을 서버에 전달
-        fun gameEndTimeSendToServer()
 
         // 유저가 입력한 단어의 글자수가 지정한 수를 넘는지 체크
         fun checkUserInputTextLength()
@@ -113,13 +90,8 @@ interface KungKungDdaGameContract {
         //유저 게임 순서 셋팅
         fun setUserOrder()
 
-        //현제 유저 게임 순서 가져오기
-        fun getUserOrder()
-
-        // 순서가 넘어가면 숫자 카운트 다운 시작
-        fun gameTimerStart()
-
-        fun gameTimerStart1()
+        // 초성 로그
+        fun checkAnswerKKT()
 
     }
 

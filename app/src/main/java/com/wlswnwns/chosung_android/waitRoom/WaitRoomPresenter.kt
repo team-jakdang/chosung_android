@@ -34,6 +34,11 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
         view.showTime(game.iTime)
         view.showQRCodeImage(model.makeRoomQRCode())
 
+        if (!ChosungApplication.Player.bIsMaster) {
+            view.hideGameStartBtn()
+        }
+
+
         ChosungApplication.SocketConnect(object : ChosungApplication.Companion.SocketConnectListner {
             override fun onDataReceived(jsonObject: JSONObject) {
                 try {
@@ -60,7 +65,8 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
 
             }
             override fun onConnet() {
-                ChosungApplication.enterRoom(true, model.room.iRoomId!!, nickNmae)
+
+                ChosungApplication.enterRoom(ChosungApplication.Player.bIsMaster, model.room.iRoomId!!, nickNmae)
             }
 
         })
@@ -82,7 +88,7 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
             view.exitRoom()
         } else {
             view.exitRoom()
-            view.hideGameStartBtn()
+
         }
     }
 

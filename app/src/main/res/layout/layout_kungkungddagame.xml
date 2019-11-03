@@ -3,155 +3,175 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".hunminGame.HunminGameFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <TextView
-                android:id="@+id/Order1TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:hint="현재순서"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/Order2TextView"
-                app:layout_constraintEnd_toStartOf="@+id/Order2TextView"
-                app:layout_constraintStart_toStartOf="parent" />
+            android:layout_height="match_parent"
+            android:background="#EC686F">
 
 
-        <TextView
-                android:id="@+id/Order2TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:hint="다음순서"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/TitleTextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-                android:id="@+id/Order3TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+
+
+        <View
+                android:id="@+id/ChosungView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:fontFamily="sans-serif-medium"
-                android:hint="다다음순서"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/Order2TextView"
+                android:layout_marginBottom="32dp"
+                android:background="#FFFFFF"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/Order2TextView" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/progressBar"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-                android:id="@+id/CountTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:hint="20"
-                android:textSize="80sp"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.25" />
 
         <TextView
                 android:id="@+id/ChosungTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="8dp"
-                android:background="#9C27B0"
-                android:hint="ㅇㅊ"
+                android:layout_width="300dp"
+                android:layout_height="70dp"
+                android:background="#0A0A0A"
                 android:textAlignment="center"
-                android:textColor="#FFFFFF"
+                android:textColor="#F7E24E"
                 android:textColorHighlight="#FFFFFF"
-                android:textColorHint="#FFFFFF"
-                android:textSize="40sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColorHint="#F7E24E"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/ChosungView"
+                app:layout_constraintEnd_toEndOf="@+id/ChosungView"
+                app:layout_constraintStart_toStartOf="@+id/ChosungView"
+                app:layout_constraintTop_toTopOf="@+id/ChosungView"
+                app:layout_constraintVertical_bias="0.469" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/GameLogRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/UserInputEditTextView"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/CountTextView"
-                app:layout_constraintVertical_bias="0.063" />
+                app:layout_constraintTop_toTopOf="@+id/guideline"
+                app:layout_constraintVertical_bias="1.0"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                />
 
         <EditText
                 android:id="@+id/UserInputEditTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="60dp"
                 android:ems="10"
                 android:hint="@string/hunminGame_hint"
                 android:inputType="textPersonName"
-                android:textColorHint="#C9C3C3"
+                android:textColorHint="#FFFFFF"
+
+
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.012"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ChosungFirstTextView"
-                app:layout_constraintVertical_bias="0.093" />
-
-        <Button
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="입력"
-                app:layout_constraintBottom_toBottomOf="@+id/UserInputEditTextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/UserInputEditTextView"
-                app:layout_constraintTop_toTopOf="@+id/UserInputEditTextView" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
                 android:id="@+id/AnswerImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="32dp"
                 android:src="@drawable/img_game_answer"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/GameLogRecyclerView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.494"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TitleTextView"
-                app:layout_constraintVertical_bias="0.07" />
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="@+id/GameLogRecyclerView"
+                app:layout_constraintTop_toTopOf="@+id/GameLogRecyclerView"
+                app:layout_constraintVertical_bias="0.498" />
 
         <ImageView
                 android:id="@+id/WrongImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
                 android:src="@drawable/img_game_wrong"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/CountTextView"
-                app:layout_constraintVertical_bias="0.07" />
+                app:layout_constraintTop_toTopOf="@+id/GameLogRecyclerView"
+                app:layout_constraintVertical_bias="0.498" />
 
-        <androidx.recyclerview.widget.RecyclerView
 
-                android:id="@+id/AnswerRecyclerView"
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="288dp" />
+
+        <ProgressBar
+                android:id="@+id/TimerProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="#F2FE53"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:visibility="invisible"
+                android:background="@drawable/img_kkt_user_selected"
+                android:id="@+id/Order1TextView"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintVertical_bias="0.2"
+                app:layout_constraintHorizontal_bias="0.2"/>
+
+        <TextView
+                android:visibility="invisible"
+                android:background="@drawable/img_kkt_user_unselected"
+                android:id="@+id/Order2TextView"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintVertical_bias="0.2"
+                app:layout_constraintHorizontal_bias="0.5"/>
+
+        <TextView
+                android:visibility="invisible"
+                android:background="@drawable/img_kkt_user_unselected"
+                android:id="@+id/Order3TextView"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintVertical_bias="0.2"
+                app:layout_constraintHorizontal_bias="0.8"/>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

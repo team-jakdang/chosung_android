@@ -57,7 +57,7 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
 
     override fun moveKungKungDdaFragment() {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            WaitRoomFragmentDirections.actionWaitRoomFragmentToKungKungDdaGameFragment()
+            WaitRoomFragmentDirections.actionWaitRoomFragmentToKungKungDdaGameFragment(args.room,args.game)
         )
     }
 

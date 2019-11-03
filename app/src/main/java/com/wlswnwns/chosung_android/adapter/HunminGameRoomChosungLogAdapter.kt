@@ -14,7 +14,6 @@ import com.wlswnwns.chosung_android.item.Game
 
 class HunminGameRoomChosungLogAdapter(
     private val context: Context,
-    private var presenter: HunminGameContract.Presenter,
     items: ArrayList<Game>
 
 ) : RecyclerView.Adapter<HunminGameRoomChosungLogAdapter.UserViewHolder>() {

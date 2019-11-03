@@ -13,6 +13,7 @@ import androidx.navigation.Navigation
 import com.google.android.material.snackbar.Snackbar
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.wlswnwns.chosung_android.R
+import kotlinx.android.synthetic.main.layout_kungkungddagame.*
 import kotlinx.android.synthetic.main.layout_nickname.*
 
 
@@ -54,6 +55,12 @@ class NickNameFragment : Fragment(), NickNameContract.View {
             }
 
         })
+
+        NikNameEditTextView.setOnEditorActionListener { v, actionId, event ->
+            presenter?.onClickConfirmBtn(requireContext())
+
+            true
+        }
 
         ConfirmBtnView.setOnClickListener { presenter?.onClickConfirmBtn(requireContext()) }
         NikNameEditTextView.setText(nickname)

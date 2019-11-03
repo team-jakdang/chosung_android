@@ -8,6 +8,7 @@ import com.neovisionaries.ws.client.WebSocketAdapter
 import com.neovisionaries.ws.client.WebSocketException
 import com.neovisionaries.ws.client.WebSocketFactory
 import com.wlswnwns.chosung_android.item.Game
+import com.wlswnwns.chosung_android.item.User
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -22,6 +23,7 @@ class ChosungApplication : Application() {
 
         var client: WebSocket? = null
 
+
         //서버 주소
         var ip = "wss://an7iczphaj.execute-api.ap-northeast-2.amazonaws.com/dev"
         var thread: Thread? = null
@@ -31,6 +33,8 @@ class ChosungApplication : Application() {
         var roomId: Int = 0
 
         lateinit var nikname: String
+
+        var Player = User()
 
 
         fun SocketConnect(socketConnectListner: SocketConnectListner) {
@@ -111,23 +115,7 @@ class ChosungApplication : Application() {
         }
 
 
-
-
-
-
-
-
-        fun onHunminGameStartInfo(count: String, chosung: String) {
-            Log.e("카운트", count + chosung)
-            Game.iCountDown = count
-            Game.strInitialWord = chosung
-
-
-
-        }
-
-
-        fun moveToGame(){
+        fun moveToGame() {
 
             var data_obj = JSONObject()
 
@@ -164,6 +152,13 @@ class ChosungApplication : Application() {
 
                 data_obj.put("action", "enterRoom")
                 data_obj.put("bIsMaster", IsMaster)
+//                if(IsMaster){
+//
+//                }else{
+//                    data_obj.put("bIsMaster", "False")
+//                }
+
+
                 data_obj.put("iRoomId", roomId)
                 data_obj.put("strNickName", nikname)
 
@@ -220,6 +215,27 @@ class ChosungApplication : Application() {
             }
         }
 
+        fun startKKTGameTimeCheck() {
+            var data_obj = JSONObject()
+
+            try {
+
+                data_obj.put("action", "checkTimeKKT")
+                data_obj.put("iRoomId", roomId)
+                Log.e("메세지 보냄 쿵쿵따 게임 시작체크===>", data_obj.toString())
+
+                client?.let {
+                    client?.sendText(data_obj.toString())
+                }.let {
+
+                }
+
+
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+
 
         fun startHMJEGameTimeCheck() {
             var data_obj = JSONObject()
@@ -242,7 +258,7 @@ class ChosungApplication : Application() {
             }
         }
 
-        fun hunminGameIsAnswer(strMessage:String) {
+        fun hunminGameIsAnswer(strMessage: String) {
             var data_obj = JSONObject()
 
             try {
@@ -254,6 +270,49 @@ class ChosungApplication : Application() {
                 client?.let {
                     client?.sendText(data_obj.toString())
                     Log.e("메세지 보냄 훈민정음 게임 시작체크===>", data_obj.toString())
+                }.let {
+
+                }
+
+
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+
+        fun checkAnswerKKT(strMessage: String) {
+            var data_obj = JSONObject()
+
+            try {
+
+                data_obj.put("action", "checkAnswerKKT")
+                data_obj.put("iRoomId", roomId)
+                data_obj.put("strMessage", strMessage)
+
+                client?.let {
+                    client?.sendText(data_obj.toString())
+                    Log.e("메세지 보냄 쿵쿵따 게임 정답체크===>", data_obj.toString())
+                }.let {
+
+                }
+
+
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+
+        fun nextTurnKKT() {
+            var data_obj = JSONObject()
+
+            try {
+
+                data_obj.put("action", "nextTurnKKT")
+                data_obj.put("iRoomId", roomId)
+
+                client?.let {
+                    client?.sendText(data_obj.toString())
+                    Log.e("메세지 보냄 쿵쿵따 게임 다음턴 ===>", data_obj.toString())
                 }.let {
 
                 }

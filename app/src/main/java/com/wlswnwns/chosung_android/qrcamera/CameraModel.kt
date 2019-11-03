@@ -2,6 +2,7 @@ package com.wlswnwns.chosung_android.qrcamera
 
 
 import android.util.Log
+import com.wlswnwns.chosung_android.ChosungApplication
 import com.wlswnwns.chosung_android.item.Room
 import com.wlswnwns.chosung_android.utils.APiAsyc
 import org.json.JSONObject
@@ -36,6 +37,8 @@ class CameraModel {
                 //방이 존재하면 true 값을 응답받습니다
                 if(result.getBoolean("bHasRoom")){
                     bRoomExist = true
+
+                    ChosungApplication.Player.bIsMaster = false
 
                     findRoomListner.onSuccess()
                 }else{
