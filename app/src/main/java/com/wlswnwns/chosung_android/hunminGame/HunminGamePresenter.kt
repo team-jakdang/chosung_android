@@ -84,12 +84,18 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
                         Log.e("checkAnswerHMJE", JSONObject(text).getString("strMessage"))
                         model.Game.bIsAnswer = JSONObject(text).getBoolean("bIsAnswer")
                         checkUserInputTextIsAnswer(JSONObject(text).getBoolean("bIsAnswer"))
+                    }else if (JSONObject(text).getString("strEvent") == "THE_ROOM_IS_DESTROYED") {
+
+                        //방장이 방 파괴
+
                     }
+
+
+
+
                 }
 
                 ChosungApplication.activity.runOnUiThread(action)
-
-
             }
         })
     }

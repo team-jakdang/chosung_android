@@ -17,18 +17,12 @@ import com.wlswnwns.chosung_android.adapter.HunminGameRoomChosungLogAdapter
 import com.wlswnwns.chosung_android.item.Game
 import com.wlswnwns.chosung_android.item.User
 import kotlinx.android.synthetic.main.layout_kungkungddagame.*
-import kotlinx.android.synthetic.main.layout_kungkungddagame.AnswerImageView
-import kotlinx.android.synthetic.main.layout_kungkungddagame.ChosungTextView
-import kotlinx.android.synthetic.main.layout_kungkungddagame.TimerProgressBar
-import kotlinx.android.synthetic.main.layout_kungkungddagame.UserInputEditTextView
-import kotlinx.android.synthetic.main.layout_kungkungddagame.WrongImageView
 
 /**
  * 뷰에 일어날 이벤트를 구현한다.
  **/
 
 class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View {
-
 
 
     private val args: KungKungDdaGameFragmentArgs by navArgs()
@@ -51,12 +45,12 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View {
 
         //뷰가 만들어지는 시점에서 프레젠터 생성.
         presenter = KungKungDdaGamePresenter(this)
-        presenter?.viewDidLoad(object : KungKungDdaGamePresenter.GameListner{
+        presenter?.viewDidLoad(object : KungKungDdaGamePresenter.GameListner {
             override fun onGameStart() {
                 ChosungApplication.startKKTGameTimeCheck()
             }
 
-        },args.room,args.game) //set View
+        }, args.room, args.game) //set View
 
 
     }
@@ -91,7 +85,7 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View {
 
         // 유저가 키보드에 있는 완료 버튼을 누르면 답이 맞는지 체크하는 'presenter'의  checkUserInputTextIsAnswer() 호출
         UserInputEditTextView.setOnEditorActionListener { v, actionId, event ->
-            presenter?.addChosungLog()
+            presenter?.checkAnswerKKT()
 
             UserInputEditTextView.setText("")
 
@@ -116,36 +110,47 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View {
 
     override fun defaultGameView() {
 
-        UserInputEditTextView.isVisible = true //답 입력칸 보이기
-        WrongImageView.isVisible = false //오답 뷰 숨김
-        AnswerImageView.isVisible = false //정답 뷰 숨김
+        UserInputEditTextView?.let {
+            UserInputEditTextView.isVisible = true //답 입력칸 보이기
+            WrongImageView.isVisible = false //오답 뷰 숨김
+            AnswerImageView.isVisible = false //정답 뷰 숨김
+        }.let {
+
+        }
+
+
     }
 
     //유저의 입력값이 오답일 때 보여주는 오답 뷰.
     override fun wrongGameView() {
-
-        UserInputEditTextView.isVisible = false //답 입력칸 숨기기
-        WrongImageView.isVisible = true //오답 이미지(X) 보이기
+        UserInputEditTextView?.let {
+            UserInputEditTextView.isVisible = false //답 입력칸 숨기기
+            WrongImageView.isVisible = true //오답 이미지(X) 보이기
+        }.let { }
 
     }
 
     //유저의 입력값이 정답일 때 보여주는 정답 뷰.
     override fun answerGameView() {
-
-        UserInputEditTextView.isVisible = false //답 입력칸 숨기기
-        AnswerImageView.isVisible = true //정답 이미지(O) 보이기
+        UserInputEditTextView?.let {
+            UserInputEditTextView.isVisible = false //답 입력칸 숨기기
+            AnswerImageView.isVisible = true //정답 이미지(O) 보이기
+        }.let { }
 
 
     }
 
     //사용자가 입력한 단어의 길이가 3글자를 초과할 때 토스트를 띄움
     override fun longUserInputText(chosungLength: String) {
-        Toast.makeText(context, "단어의 길이가 "+chosungLength+"자를 넘으면 안됩니다", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "단어의 길이가 " + chosungLength + "자를 넘으면 안됩니다", Toast.LENGTH_SHORT)
+            .show()
     }
 
     //
     override fun showCountDownText(count: String) {
-        ChosungTextView.text = count
+        ChosungTextView?.let { it.text = count }.let { }
+
+
     }
 
 
@@ -163,34 +168,56 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View {
     }
 
     override fun showChosungText(chosung: String) {
-        ChosungTextView.text = chosung
+
+        ChosungTextView?.let { ChosungTextView.text = chosung }.let { }
+
+
     }
 
     override fun setOrder1TextView(user: User) {
-        Order1TextView.text = user.strUserName
-        Order1TextView.visibility  = View.VISIBLE
+
+        Order1TextView?.let {
+            Order1TextView.text = user.strUserName
+            Order1TextView.visibility = View.VISIBLE
+        }.let { }
+
+
     }
 
     override fun setOrder2TextView(user: User) {
-        Order2TextView.text = user.strUserName
-        Order2TextView.visibility  = View.VISIBLE
+
+        Order2TextView?.let {
+            Order2TextView.text = user.strUserName
+            Order2TextView.visibility = View.VISIBLE
+        }.let { }
+
+
     }
 
     override fun setOrder3TextView(user: User) {
-        Order3TextView.text = user.strUserName
-        Order3TextView.visibility  = View.VISIBLE
-    }
-    override fun timeProgressBarActive(iSetTime:Int, iLeftTime:Int) {
 
-        TimerProgressBar.max=iSetTime
-        TimerProgressBar.setProgress(iLeftTime,true)
+        Order3TextView?.let {
+            Order3TextView.text = user.strUserName
+            Order3TextView.visibility = View.VISIBLE
+        }.let { }
 
 
     }
+
+    override fun timeProgressBarActive(iSetTime: Int, iLeftTime: Int) {
+
+        TimerProgressBar?.let {
+            it.max = iSetTime
+            it.setProgress(iLeftTime, true)
+        }.let { }
+
+
+    }
+
     override fun MoveGameResult() {
-       Navigation.findNavController(requireActivity(),R.id.fragment_container).navigate(
-           KungKungDdaGameFragmentDirections.actionKungKungDdaGameFragmentToKungKungDdaGameOverFragment()
-       )
+        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
+            KungKungDdaGameFragmentDirections.actionKungKungDdaGameFragmentToKungKungDdaGameOverFragment()
+        )
     }
 
 }

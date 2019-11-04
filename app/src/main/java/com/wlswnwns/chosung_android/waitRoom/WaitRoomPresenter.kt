@@ -29,7 +29,11 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
         model.Game = game
         model.room = room
 
-        view.showGameMode(game.strMode)
+        if(model.Game.strMode.contains("kkt")){
+            view.showGameMode("쿵쿵따")
+        }else{
+            view.showGameMode("훈민정음")
+        }
         view.showChosungLength(game.iChosungLenght)
         view.showTime(game.iTime)
         view.showQRCodeImage(model.makeRoomQRCode())
@@ -38,6 +42,7 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
             view.hideGameStartBtn()
         }
 
+        ChosungApplication.client?.clearListeners()
 
         ChosungApplication.SocketConnect(object : ChosungApplication.Companion.SocketConnectListner {
             override fun onDataReceived(jsonObject: JSONObject) {
@@ -47,9 +52,15 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
                         model.Game.strMode = jsonObject.getString("strGameMode")
                         model.Game.iChosungLenght = jsonObject.getInt("iWordLength")
                         model.Game.iTime = jsonObject.getInt("iTimeLimit")
-                        view.showGameMode(model.Game.strMode)
+                        if(model.Game.strMode.contains("kkt")){
+                            view.showGameMode("쿵쿵따")
+                        }else{
+                            view.showGameMode("훈민정음")
+                        }
+
                         view.showChosungLength(model.Game.iChosungLenght)
                         view.showTime(model.Game.iTime)
+                        view.showPlayerNumber(model.Users?.size.toString())
 
 
                     }else if(jsonObject.getString("strEvent")=="moveToGame"){
@@ -58,6 +69,11 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
                         }else{
                             view.moveHunMinFragment(game.iChosungLenght,game.iTime)
                         }
+                    }else if(jsonObject.getString("strEvent")=="OUT_GAME"){
+
+                       // view.showUserList( model.OutGameUser(jsonObject.getJSONArray("arrUserInfo")))
+
+
                     }
                 }catch (e:JSONException){
                     e.printStackTrace()

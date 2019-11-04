@@ -10,12 +10,12 @@
 
     <!--닉네임-->
     <string name="nickname_hint">닉네임을 입력해주세요</string>
-    <string name="nickname_confirm_btn">확인</string>
+    <string name="nickname_confirm_btn">시작</string>
     <string name="nickname_too_long_name">닉네임은 10글자를 넘을 수 없습니다</string>
 
     <!--메인화면-->
-    <string name="main_create_room_btn">방 만들기</string>
-    <string name="main_search_room_btn">방 찾기</string>
+    <string name="main_create_room_btn">방\n만들기</string>
+    <string name="main_search_room_btn">방\n찾기</string>
     <string name="main_fail_make_room">방 생성에 실패하였습니다\n다시 시도해주세요</string>
 
     <!--QR카메라-->
@@ -38,10 +38,10 @@
 
     <!--대기실화면-->
     <string name="wait_room_back_btn">나가기</string>
-    <string name="wait_room_entrylist_title">Player</string>
+    <string name="wait_room_entrylist_title">현재 인원</string>
     <string name="wait_room_entrylist_count">명</string>
-    <string name="wait_room_game_mode_title">Game Mode</string>
-    <string name="wait_room_game_guide_btn">설명</string>중
+    <string name="wait_room_game_mode_title">게임 모드</string>
+    <string name="wait_room_game_guide_btn">규칙</string>중
     <string name="wait_room_chosung_length_title">글자 수</string>
     <string name="wait_room_game_time_title">게임 시간</string>
     <string name="wait_room_qrcode_title">QR 코드</string>

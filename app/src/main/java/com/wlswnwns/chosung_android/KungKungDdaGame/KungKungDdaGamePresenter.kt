@@ -1,7 +1,6 @@
 package com.wlswnwns.chosung_android.KungKungDdaGame
 
 import android.os.Handler
-import android.util.Log
 import com.wlswnwns.chosung_android.ChosungApplication
 import com.wlswnwns.chosung_android.item.Game
 import com.wlswnwns.chosung_android.item.Room
@@ -49,7 +48,6 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
                         ) {
 
                             view.showCountDownText(jsonObject.getInt("iCountDown").toString())
-                            view.defaultGameView()
 
 
 
@@ -93,12 +91,11 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
                                 if (jsonObject.getInt("iCountDown") == 0) {
                                     gameListner.onGameStart()
 
-                                }else{
+                                } else {
                                     gameListner.onGameStart()
 
                                 }
                             }
-
 
 
                         } else if (jsonObject.getString("strEvent").equals("checkTimeKKT")) {
@@ -108,10 +105,9 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
                             )
                             model.strNowTurnUserName = jsonObject.getString("strNickname")
 
-                            if(jsonObject.getBoolean("bTimeOver")){
+                            if (jsonObject.getBoolean("bTimeOver")) {
                                 view.MoveGameResult()
                             }
-
 
 
                         } else if (jsonObject.getString("strEvent").equals("checkAnswerKKT")) {
@@ -124,11 +120,11 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
                             view.showChosungLogList(model.ChosungLog!!)
 
                             if (jsonObject.getBoolean("bIsAnswer")) {
-                                view.answerGameView()
 
-                                if ( ChosungApplication.Player.bIsMaster) {
+                                if (ChosungApplication.Player.bIsMaster) {
                                     ChosungApplication.nextTurnKKT()
                                 }
+                                answerViewTimeSet()
 
 
 
@@ -205,6 +201,16 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
 
     }
 
+    //정답뷰가 유저에게 보여질 시간 지정
+    fun answerViewTimeSet() {
+        // 0.4초 뒤에 default 뷰 호출
+        view.answerGameView()
+        Handler().postDelayed({
+            view.defaultGameView()
+        }, 400)
+
+    }
+
     //유저 순서 set
     override fun setUserOrder() {
         //todo.서버에서 가져온 순서대로 뷰에 지정해준다.
@@ -214,17 +220,14 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
     }
 
 
-
     override fun getArrRoomInfo(): Int {
         return model.game.iChosungLenght
     }
 
 
-
     override fun setStrUserInputEditText(inputText: String) {
         model.strUserInputEditText = inputText
     }
-
 
 
     override fun checkUserInputTextLength() {
@@ -241,9 +244,6 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
 
         }
     }
-
-
-
 
 
 }

@@ -46,6 +46,26 @@ class WaitRoomModel {
         return Users!!
     }
 
+    fun OutGameUser(jsonArray: JSONArray): ArrayList<User> {
+        var Outuser : User? = null
+
+        for (index in 0 until jsonArray.length()) {
+            var userObj = jsonArray.getJSONObject(index)
+            Outuser = User().apply {
+                strUserName = userObj.getString("strNickName")
+            }
+        }
+
+        for(index in 0..Users?.size!!){
+            if (Users!![index].strUserName.equals(Outuser?.strUserName)){
+                Users?.removeAt(index)
+            }
+        }
+
+
+        return Users!!
+    }
+
 
     fun makeRoomQRCode(): Bitmap {
         return QRCode.from(room.iRoomId.toString()).bitmap()

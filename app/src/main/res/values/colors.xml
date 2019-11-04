@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#ef9e9f</color>
+    <color name="colorPrimaryDark">#ef9e9f</color>
     <color name="colorAccent">#D81B60</color>
 
-
+    <color name="nik_backgound_color">#fec9c9</color>
+    <color name="nik_inside_backgound_color">#FADAD8</color>
+    <color name="wait_room_btn">#ef9e9f</color>
 
 
 </resources>
