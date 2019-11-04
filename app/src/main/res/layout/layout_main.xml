@@ -1,101 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- TODO: Update blank fragment layout -->
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".main.MainFragment">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/nik_backgound_color">
+
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/LayoutTopGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/LayoutBottomGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/LayoutLeftGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/LayoutRightGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/nik_inside_backgound_color"
+        app:layout_constraintBottom_toTopOf="@+id/LayoutBottomGuideLine"
+        app:layout_constraintLeft_toRightOf="@+id/LayoutLeftGuideLine"
+        app:layout_constraintRight_toLeftOf="@+id/LayoutRightGuideLine"
+        app:layout_constraintTop_toBottomOf="@+id/LayoutTopGuideLine">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/CenterLeftGulideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.45" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/CenterRightGulideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.55" />
+
+
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/LeftGuideLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.2"/>
+            app:layout_constraintGuide_percent="0.16" />
 
 
-    <androidx.constraintlayout.widget.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/RightGuideLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.8"/>
+            app:layout_constraintGuide_percent="0.84" />
 
 
-    <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/CenterGulideLine"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5"/>
-
-
-    <androidx.constraintlayout.widget.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/ImageTopGuideLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.2"/>
+            app:layout_constraintGuide_percent="0.1" />
 
-    <androidx.constraintlayout.widget.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/ImageBottomGuideLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.55"/>
+            app:layout_constraintGuide_percent="0.5" />
 
 
-    <androidx.constraintlayout.widget.Guideline
+        <TextView
+            android:id="@+id/LogoImageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="초성\n게임"
+            android:textSize="80dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/ImageBottomGuideLine"
+            app:layout_constraintLeft_toRightOf="@+id/LeftGuideLine"
+            app:layout_constraintRight_toLeftOf="@+id/RightGuideLine"
+            app:layout_constraintTop_toBottomOf="@+id/ImageTopGuideLine" />
+
+
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/ButtonTopGuideLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.60"/>
+            app:layout_constraintGuide_percent="0.72" />
 
 
-    <androidx.constraintlayout.widget.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/ButtonBottomGuideLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.9"/>
+            app:layout_constraintGuide_percent="0.9" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ButtonLeftGuideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ButtonRightGuideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
 
 
-    <ImageView
-            android:id="@+id/LogoImageView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintLeft_toRightOf="@+id/LeftGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/ImageTopGuideLine"
-            app:layout_constraintRight_toLeftOf="@+id/RightGuideLine"
-            app:layout_constraintBottom_toTopOf="@+id/ImageBottomGuideLine"
-            android:src="@drawable/img_person"/>
-
-
-    <Button
-            android:text="@string/main_create_room_btn"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:id="@+id/CreateRoomBtn"
-            app:layout_constraintBottom_toTopOf="@+id/ButtonBottomGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/ButtonTopGuideLine"
+        <TextView
+            android:id="@+id/NickNameView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/CenterGulideLine"/>
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="NickName"
+            android:textSize="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:gravity="center"
+            android:textColor="#000000"
+            app:layout_constraintVertical_bias="0.6"
+            android:background="@drawable/background_main_nik_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
 
 
-    <Button
-            android:text="@string/main_search_room_btn"
+        <Button
+            android:id="@+id/CreateRoomBtn"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:id="@+id/SearchRoomBtn"
+            android:background="@drawable/background_btn"
+            android:text="@string/main_create_room_btn"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/ButtonBottomGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/ButtonTopGuideLine"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/CenterGulideLine"/>
+            app:layout_constraintLeft_toRightOf="@+id/ButtonLeftGuideLine"
+            app:layout_constraintRight_toLeftOf="@+id/CenterLeftGulideLine"
+            app:layout_constraintTop_toBottomOf="@+id/ButtonTopGuideLine" />
 
 
+        <Button
+            android:id="@+id/SearchRoomBtn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/background_btn"
+            android:text="@string/main_search_room_btn"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/ButtonBottomGuideLine"
+            app:layout_constraintLeft_toRightOf="@+id/CenterRightGulideLine"
+            app:layout_constraintRight_toLeftOf="@+id/ButtonRightGuideLine"
+            app:layout_constraintTop_toBottomOf="@+id/ButtonTopGuideLine" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

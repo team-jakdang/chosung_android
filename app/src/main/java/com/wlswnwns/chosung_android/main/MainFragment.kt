@@ -52,6 +52,7 @@ class MainFragment internal constructor() : Fragment(), MainContract.View {
         }
         SearchRoomBtn.setOnClickListener { moveQRCameraFragment() }
 
+        NickNameView.text = args.strNickName
 
 
 

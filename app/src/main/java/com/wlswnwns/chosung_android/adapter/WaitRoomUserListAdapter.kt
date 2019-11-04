@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.wlswnwns.chosung_android.R
@@ -64,6 +65,12 @@ class WaitRoomUserListAdapter(
             holder.InGameTextView?.visibility = View.INVISIBLE
         }
 
+        if(items[position].bIsMaster){
+            holder.StarImgView?.visibility = View.VISIBLE
+        }else{
+            holder.StarImgView?.visibility = View.INVISIBLE
+        }
+
 
 
     }
@@ -75,10 +82,12 @@ class WaitRoomUserListAdapter(
 
         var UserNameView: TextView? = null
         var InGameTextView : TextView? = null
+        var StarImgView : ImageView? = null
 
         init {
             UserNameView = itemView.findViewById(R.id.UserNameView)
             InGameTextView = itemView.findViewById(R.id.InGameTextView)
+            StarImgView = itemView.findViewById(R.id.StarImgView)
         }
 
 

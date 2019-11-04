@@ -40,6 +40,8 @@ interface WaitRoomContract{
 
         fun hideGameStartBtn()
 
+        fun showPlayerNumber(number : String)
+
 
 
     }

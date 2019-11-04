@@ -53,7 +53,6 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
         HunminGameRoomChosungLogAdapter(
             requireContext(),
-            presenter!!,
             ChosungLog
         ).let {
             GameLogRecyclerView.adapter = it

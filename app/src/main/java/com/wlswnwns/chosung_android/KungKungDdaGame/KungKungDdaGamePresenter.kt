@@ -2,78 +2,192 @@ package com.wlswnwns.chosung_android.KungKungDdaGame
 
 import android.os.Handler
 import com.wlswnwns.chosung_android.ChosungApplication
+import com.wlswnwns.chosung_android.item.Game
+import com.wlswnwns.chosung_android.item.Room
+import com.wlswnwns.chosung_android.item.User
 import org.json.JSONException
 import org.json.JSONObject
+import java.io.IOException
 
 /**
  * Contract.Presenter에서 정의한 내용 구현
  *  뷰의 동작을 구현한다.
  **/
 
-class KungKungDdaGamePresenter(view : KungKungDdaGameContract.View) : KungKungDdaGameContract.Presenter {
-    override fun gameTimerStart1() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
+    KungKungDdaGameContract.Presenter {
 
 
-    var view : KungKungDdaGameContract.View
+    var view: KungKungDdaGameContract.View
 
 
-    var model : KungKungDdaGameModel
+    var model: KungKungDdaGameModel
 
 
     //생성자
     init {
         this.view = view
-        this.model= KungKungDdaGameModel()
+        this.model = KungKungDdaGameModel()
     }
 
     // 콘트렉트에 정의한 뷰 객체를 생성.
-    override fun viewDidLoad() {
+    override fun viewDidLoad(gameListner: GameListner, room: Room, game: Game) {
         view.viewInit()
 
-        model.InitSockerListner(object : KungKungDdaGameModel.SockerListner{
+        model.game = game
+        model.room = room
+
+
+        model.InitSockerListner(object : KungKungDdaGameModel.SockerListner {
             override fun onDataReceived(jsonObject: JSONObject) {
-                if(jsonObject.getString("strEvent").equals("startKKT")){
+                val action = Runnable {
                     try {
-                        view.showCountDownText(jsonObject.getInt("iCountDown").toString())
-                    }catch (e: JSONException){
+                        if (jsonObject.getString("strEvent").equals("startKKT") || jsonObject.getString(
+                                "strEvent"
+                            ).equals("nextTurnKKT")
+                        ) {
+
+                            view.showCountDownText(jsonObject.getInt("iCountDown").toString())
+
+
+
+                            view.showChosungText(jsonObject.getString("strInitialWord"))
+                            model.iTimeLimit = jsonObject.getInt("iSetTime")
+
+                            if (jsonObject.getString("strEvent").equals("startKKT")) {
+                                model.InitUserList(jsonObject.getJSONArray("arrUserOrderInfo"))
+                                    .let {
+
+                                        if (model.UserList.size < 3) {
+
+                                            if (model.UserList.size == 2) {
+                                                model.UserList.add(User().apply {
+                                                    strUserName =
+                                                        model.UserList[0].strUserName
+                                                    bIsActive = model.UserList[0].bIsActive
+                                                    bIsMaster = model.UserList[0].bIsMaster
+                                                    iOrder = 3
+                                                })
+
+                                                model.UserList.add(User().apply {
+                                                    strUserName =
+                                                        model.UserList[1].strUserName
+                                                    bIsActive = model.UserList[1].bIsActive
+                                                    bIsMaster = model.UserList[1].bIsMaster
+                                                    iOrder = 4
+                                                })
+                                            }
+                                        }
+                                        OrderViewChange()
+                                    }
+
+                            }
+
+
+
+                            if (ChosungApplication.Player.strUserName.equals(model.UserList[0].strUserName)) {
+
+
+                                if (jsonObject.getInt("iCountDown") == 0) {
+                                    gameListner.onGameStart()
+
+                                } else {
+                                    gameListner.onGameStart()
+
+                                }
+                            }
+
+
+                        } else if (jsonObject.getString("strEvent").equals("checkTimeKKT")) {
+                            view.timeProgressBarActive(
+                                model.iTimeLimit,
+                                jsonObject.getInt("iLeftTime")
+                            )
+                            model.strNowTurnUserName = jsonObject.getString("strNickname")
+
+                            if (jsonObject.getBoolean("bTimeOver")) {
+                                view.MoveGameResult()
+                            }
+
+
+                        } else if (jsonObject.getString("strEvent").equals("checkAnswerKKT")) {
+
+
+                            model.ChosungLog?.add(Game().apply {
+                                strUserName = jsonObject.getString("strNickname")
+                                strChosung = jsonObject.getString("strMessage")
+                            })
+                            view.showChosungLogList(model.ChosungLog!!)
+
+                            if (jsonObject.getBoolean("bIsAnswer")) {
+
+                                if (ChosungApplication.Player.bIsMaster) {
+                                    ChosungApplication.nextTurnKKT()
+                                }
+                                answerViewTimeSet()
+
+
+
+                                model.NowTurnUser = model.UserList[0]
+                                model.NowTurnUser.iOrder = +model.UserList.size + 1
+                                model.UserList.removeAt(0)
+                                model.UserList.add(model.NowTurnUser)
+                                OrderViewChange()
+
+                            } else {
+                                wrongViewTimeSet()
+                            }
+
+
+                        }
+                    } catch (e: IOException) {
                         e.printStackTrace()
-
-                        view.showChosungText(jsonObject.getString("strInitialWord"))
-                        view.showCountDownText(jsonObject.getInt("iSetTime").toString())
-
-//                        for(user in model.InitUserList(jsonObject.getJSONArray("arrUserInfo"))){
-//
-//                            if(user.)
-//                            view.setOrder1TextView()
-//                            view.setOrder2TextView()
-//                            view.setOrder3TextView()
-//                        }
-
-
-
-
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
 
                     }
 
-
-
-
                 }
+
+                ChosungApplication.activity.runOnUiThread(action)
+
 
             }
         })
-        model.GameStart()
+
+
+
+        if (ChosungApplication.Player.bIsMaster) {
+            model.GameStart()
+        }
 
 
     }
+
+    interface GameListner {
+        fun onGameStart()
+    }
+
+    fun OrderViewChange() {
+        model.UserList[0]?.let {
+            view.setOrder1TextView(it)
+        }
+
+        model.UserList[1]?.let {
+            view.setOrder2TextView(it)
+        }
+
+
+        model.UserList[2]?.let {
+            view.setOrder3TextView(it)
+        }
+    }
+
 
     // 유저가 입력한 답이 '은채' 이면 성공뷰를 아니라면 실패뷰를 띄어준다. todo.추후 서버에서 받아온 성공 플래그로 수정해야함.
     override fun checkUserInputTextIsAnswer() {
         if (model.strUserInputEditText == "은채")
             view.answerGameView()
-
         else wrongViewTimeSet()
     }
 
@@ -87,90 +201,49 @@ class KungKungDdaGamePresenter(view : KungKungDdaGameContract.View) : KungKungDd
 
     }
 
+    //정답뷰가 유저에게 보여질 시간 지정
+    fun answerViewTimeSet() {
+        // 0.4초 뒤에 default 뷰 호출
+        view.answerGameView()
+        Handler().postDelayed({
+            view.defaultGameView()
+        }, 400)
+
+    }
+
     //유저 순서 set
-    override fun setUserOrder(){
+    override fun setUserOrder() {
         //todo.서버에서 가져온 순서대로 뷰에 지정해준다.
 
         //뷰에 게임 순서 지정
 //        view.changeUserOrder()
     }
-    //유저 순서 get
-    override fun getUserOrder(){
 
-        //서버에서 유저 게임 순서 가져오는 api 호출
-
-
-    }
-
-    //
-    override fun setArrRoomInfo(chosungLength: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     override fun getArrRoomInfo(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return model.game.iChosungLenght
     }
 
-    override fun setArrUserInfo(userInfo: Any) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun getArrUserInfo(): ArrayList<Any> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun setRandomChosung(chosung: ArrayList<String>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun getRandomChosung() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     override fun setStrUserInputEditText(inputText: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        model.strUserInputEditText = inputText
     }
 
-    override fun getStrUserInputEditText(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun setListGameLog(inputText: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun getListGameLog(): ArrayList<Any> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun gameStartTimeSendToServer() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun gameEndTimeSendToServer() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     override fun checkUserInputTextLength() {
-
+        if (model.strUserInputEditText.length > getArrRoomInfo()) view.longUserInputText(
+            getArrRoomInfo().toString()
+        )
     }
 
-    //게임 제한시간 카운트다운 시작
-    override fun gameTimerStart() {
+    override fun checkAnswerKKT() {
 
-//        val countDownTimer = object : CountDownTimer(2000, 1000) {
-//            override fun onTick(millisUntilFinished: Long) {
-//                Log.e("kungddaCntTime", "millisUntilFinished $millisUntilFinished")
-////                val time:Long = (millisUntilFinished/1000) % 60
-//
-//            }
-//            override fun onFinish() {
-//                view.moveToKungDdaGameOverFragment()
-//            }
-//        }
-//        countDownTimer.start()
+        if (ChosungApplication.Player.strUserName.equals(model.strNowTurnUserName)) {
+
+            ChosungApplication.checkAnswerKKT(model.strUserInputEditText)
+
+        }
     }
-
 
 
 }

@@ -11,12 +11,14 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.adapter.WaitRoomUserListAdapter
 import com.wlswnwns.chosung_android.item.User
 import kotlinx.android.synthetic.main.layout_wait_room.*
 
 class WaitRoomFragment : Fragment(), WaitRoomContract.View {
+
 
 
     private val args: WaitRoomFragmentArgs by navArgs()
@@ -36,6 +38,12 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter = WaitRoomPresenter(this)
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         presenter?.viewDidLoad(args.game, args.room,args.strNikName)
 
     }
@@ -57,7 +65,7 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
 
     override fun moveKungKungDdaFragment() {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            WaitRoomFragmentDirections.actionWaitRoomFragmentToKungKungDdaGameFragment()
+            WaitRoomFragmentDirections.actionWaitRoomFragmentToKungKungDdaGameFragment(args.room,args.game)
         )
     }
 
@@ -89,6 +97,7 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
             presenter!!,
             Users
         ).let {
+            entryListView.layoutManager = GridLayoutManager(requireContext(),2)
             entryListView.adapter = it
         }
     }
@@ -115,7 +124,12 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
     }
 
     override fun hideGameStartBtn() {
-        GameStartBtn.visibility = View.INVISIBLE
+        GameStartBtn.visibility = View.GONE
+    }
+
+
+    override fun showPlayerNumber(number: String) {
+        PlayerNumberView.text = number+"명"
     }
 
 }

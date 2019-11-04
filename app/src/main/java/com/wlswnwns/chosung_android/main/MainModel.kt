@@ -2,6 +2,7 @@ package com.wlswnwns.chosung_android.main
 
 import android.graphics.Bitmap
 import android.util.Log
+import com.wlswnwns.chosung_android.ChosungApplication
 import com.wlswnwns.chosung_android.item.Game
 import com.wlswnwns.chosung_android.item.Room
 import com.wlswnwns.chosung_android.item.User
@@ -44,6 +45,8 @@ class MainModel{
             room = Room()
 
             room.iRoomId = result.getInt("iRoomId")
+
+            ChosungApplication.Player.bIsMaster = true
 
             makeRoomListner.onSuccess()
          } else {
