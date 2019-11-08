@@ -1,5 +1,6 @@
 package com.wlswnwns.chosung_android.hunminGame
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
@@ -121,6 +122,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
         UserInputEditTextView.isVisible = true
         WrongImageView.isVisible = false
         AnswerImageView.isVisible = false
+        AnswerAndWrongTextView.isVisible = false
     }
 
 
@@ -129,6 +131,8 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
     // AnswerImageView 을 보이게 한다
     override fun answerGameView() {
         Toast.makeText(context, "정답입니다.", Toast.LENGTH_SHORT).show()
+        AnswerAndWrongTextView.isVisible =true
+        AnswerAndWrongTextView.setText("와우 정답!")
         UserInputEditTextView.isVisible = false
         AnswerImageView.isVisible = true
     }
@@ -137,6 +141,9 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
     // ChosungTextView ,UserInputEditTextView , WrongImageView 보이게
     override fun wrongGameView() {
         Toast.makeText(context, "정답이 아닙니다.", Toast.LENGTH_SHORT).show()
+        AnswerAndWrongTextView.isVisible =true
+        AnswerAndWrongTextView.setText("틀렸어요!")
+        AnswerAndWrongTextView.setTextColor(Color.RED)
         UserInputEditTextView.isVisible = true
         WrongImageView.isVisible = true
     }
