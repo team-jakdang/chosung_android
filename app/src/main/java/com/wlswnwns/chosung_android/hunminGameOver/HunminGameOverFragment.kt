@@ -64,7 +64,7 @@ class HunminGameOverFragment : Fragment(), HunminGameOverContract.View {
             if (bIsMaster){
                 OneMoreGameBtnView.visibility = View.VISIBLE
             }else{
-                OneMoreGameBtnView.visibility = View.INVISIBLE
+                OneMoreGameBtnView.visibility = View.GONE
             }
         }
     }
