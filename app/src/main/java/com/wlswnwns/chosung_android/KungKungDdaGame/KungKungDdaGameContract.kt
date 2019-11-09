@@ -56,7 +56,7 @@ interface KungKungDdaGameContract {
 
         fun showChosungLogList(ChosungLog: ArrayList<Game>)
 
-        fun MoveGameResult()
+        fun MoveGameResult(nickName : String)
 
     }
 

@@ -137,6 +137,34 @@ class ChosungApplication : Application() {
         }
 
 
+        fun exitRoom(roomId: Int) {
+
+            this.roomId = roomId
+
+            var data_obj = JSONObject()
+
+            try {
+
+
+                data_obj.put("action", "exitRoom")
+                data_obj.put("iRoomId", roomId.toString())
+
+
+                client?.let {
+                    client?.sendText(data_obj.toString())
+                    Log.e("메세지 보냄 방나가기===>", data_obj.toString())
+                }.let {
+
+                }
+
+
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+
+
+
         fun enterRoom(IsMaster: Boolean, roomId: Int, nikname: String) {
 
             this.IsMaster = IsMaster

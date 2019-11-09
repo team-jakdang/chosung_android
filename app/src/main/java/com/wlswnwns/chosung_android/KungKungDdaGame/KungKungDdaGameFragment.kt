@@ -1,5 +1,6 @@
 package com.wlswnwns.chosung_android.KungKungDdaGame
 
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,6 +18,13 @@ import com.wlswnwns.chosung_android.adapter.HunminGameRoomChosungLogAdapter
 import com.wlswnwns.chosung_android.item.Game
 import com.wlswnwns.chosung_android.item.User
 import kotlinx.android.synthetic.main.layout_kungkungddagame.*
+import kotlinx.android.synthetic.main.layout_kungkungddagame.AnswerAndWrongTextView
+import kotlinx.android.synthetic.main.layout_kungkungddagame.AnswerImageView
+import kotlinx.android.synthetic.main.layout_kungkungddagame.ChosungTextView
+import kotlinx.android.synthetic.main.layout_kungkungddagame.GameLogRecyclerView
+import kotlinx.android.synthetic.main.layout_kungkungddagame.TimerProgressBar
+import kotlinx.android.synthetic.main.layout_kungkungddagame.UserInputEditTextView
+import kotlinx.android.synthetic.main.layout_kungkungddagame.WrongImageView
 
 /**
  * 뷰에 일어날 이벤트를 구현한다.
@@ -114,6 +122,7 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View {
             UserInputEditTextView.isVisible = true //답 입력칸 보이기
             WrongImageView.isVisible = false //오답 뷰 숨김
             AnswerImageView.isVisible = false //정답 뷰 숨김
+            AnswerAndWrongTextView.isVisible = false
         }.let {
 
         }
@@ -126,6 +135,9 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View {
         UserInputEditTextView?.let {
             UserInputEditTextView.isVisible = false //답 입력칸 숨기기
             WrongImageView.isVisible = true //오답 이미지(X) 보이기
+            AnswerAndWrongTextView.isVisible = true
+            AnswerAndWrongTextView.setText("틀렸어요!")
+            AnswerAndWrongTextView.setTextColor(Color.RED)
         }.let { }
 
     }
@@ -135,6 +147,8 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View {
         UserInputEditTextView?.let {
             UserInputEditTextView.isVisible = false //답 입력칸 숨기기
             AnswerImageView.isVisible = true //정답 이미지(O) 보이기
+            AnswerAndWrongTextView.isVisible = true
+            AnswerAndWrongTextView.setText("와우 정답!")
         }.let { }
 
 
@@ -214,9 +228,9 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View {
 
     }
 
-    override fun MoveGameResult() {
+    override fun MoveGameResult(nickName : String) {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            KungKungDdaGameFragmentDirections.actionKungKungDdaGameFragmentToKungKungDdaGameOverFragment()
+            KungKungDdaGameFragmentDirections.actionKungKungDdaGameFragmentToKungKungDdaGameOverFragment(nickName)
         )
     }
 

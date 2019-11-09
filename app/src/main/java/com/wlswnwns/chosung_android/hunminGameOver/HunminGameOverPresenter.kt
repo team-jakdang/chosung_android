@@ -5,6 +5,7 @@ import android.util.Log
 import com.neovisionaries.ws.client.WebSocket
 import com.neovisionaries.ws.client.WebSocketAdapter
 import com.wlswnwns.chosung_android.ChosungApplication
+import com.wlswnwns.chosung_android.item.Game
 import org.json.JSONException
 import org.json.JSONObject
 import org.json.JSONArray
@@ -32,30 +33,53 @@ class HunminGameOverPresenter(view: HunminGameOverContract.View) : HunminGameOve
         view.viewInit()
         model.getNickName(context)
 
-    }
+        ChosungApplication.client?.clearListeners()
+        Log.e("viewDidLoad", "Hunmin Game Over Presenter")
 
+        ChosungApplication.client?.addListener(object : WebSocketAdapter() {
+            override fun onTextMessage(websocket: WebSocket?, text: String?) {
+                super.onTextMessage(websocket, text)
+                Log.e("메세지===>", text)
+                JSONObject(text)
+                val action = Runnable {
+                    Log.e("Game OVer Presenter", "onDataReceived"+JSONObject(text).getString("strEvent"))
+                    if (JSONObject(text).getString("strEvent") == "moveToGame") {
+                        try {
+                            Log.e("strEvent moveToGame", text)
+                            view.moveHunminGameFragment()
+                        }catch (e:JSONException){
+                            e.printStackTrace()
+                        }
+
+                    }else if (JSONObject(text).getString("strEvent") == "THE_ROOM_IS_DESTROYED") {
+
+                        //방장이 방 파괴
+
+                    }
+                }
+
+                ChosungApplication.activity.runOnUiThread(action)
+            }
+        })
+
+    }
     override fun setResult(resultArr: String) {
         Log.e("setResult ?" ,"" + resultArr)
-        var bIsMaster=false
         if(resultArr !== "[]"){
             val gameResult: JSONArray
 
             try {
                 gameResult = JSONArray(resultArr)
-                for (i in 0 until gameResult.length()) {
-                    Log.e("setResult ?" ,".getString(\"strNickName\")" + gameResult.getJSONObject(i).getString("strNickName"))
-                    Log.e("setResult" ,"strUserName" + model.strUserNikName)
-                    if (gameResult.getJSONObject(i).getString("strNickName")==model.strUserNikName){
-                        bIsMaster = gameResult.getJSONObject(i).getInt("bIsMaster")==1
-                    }
-                }
-                Log.e("setResult ?" ,"" + bIsMaster)
-                view.showResult(model.arrResultInfo(gameResult), bIsMaster)
+                view.showResult(model.arrResultInfo(gameResult))
             } catch (e: JSONException) {
                 // TODO Auto-generated catch block
                 e.printStackTrace()
             }
         }
+    }
+
+    override fun onClickGameReStartBtn() {
+        ChosungApplication.moveToGame()
     }
 
 

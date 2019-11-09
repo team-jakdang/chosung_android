@@ -67,6 +67,7 @@ class WaitRoomModel {
     }
 
 
+
     fun makeRoomQRCode(): Bitmap {
         return QRCode.from(room.iRoomId.toString()).bitmap()
     }

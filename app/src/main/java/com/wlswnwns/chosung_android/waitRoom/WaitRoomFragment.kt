@@ -2,6 +2,7 @@ package com.wlswnwns.chosung_android.waitRoom
 
 import android.graphics.Bitmap
 import android.os.*
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +13,20 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import com.wlswnwns.chosung_android.ChosungApplication
 import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.adapter.WaitRoomUserListAdapter
 import com.wlswnwns.chosung_android.item.User
+import com.wlswnwns.chosung_android.utils.OnBackPressedListener
 import kotlinx.android.synthetic.main.layout_wait_room.*
 
-class WaitRoomFragment : Fragment(), WaitRoomContract.View {
+class WaitRoomFragment : Fragment(), WaitRoomContract.View,OnBackPressedListener {
 
+
+    override fun onBackPressed() {
+        presenter?.checkRoomOwner()
+        Log.e("뒤로가기 버튼 눌림","눌려야함 ㅜ")
+    }
 
 
     private val args: WaitRoomFragmentArgs by navArgs()
@@ -81,10 +89,17 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
     }
 
     override fun exitRoom() {
-        ((requireActivity().supportFragmentManager
-            .findFragmentById(R.id.fragment_container) as NavHostFragment)
-            .navController).popBackStack()
+//        ((requireActivity().supportFragmentManager
+//            .findFragmentById(R.id.fragment_container) as NavHostFragment)
+//            .navController).popBackStack()
+
+        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
+            WaitRoomFragmentDirections.actionWaitRoomFragmentToMainFragment(ChosungApplication.nikname)
+        )
     }
+
+
+
 
     override fun showFailExitRoom() {
 

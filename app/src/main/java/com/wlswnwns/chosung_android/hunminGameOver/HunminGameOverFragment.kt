@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.wlswnwns.chosung_android.ChosungApplication
 import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.adapter.HunminGameOverRoomResultAdapter
 
@@ -46,22 +47,22 @@ class HunminGameOverFragment : Fragment(), HunminGameOverContract.View {
     override fun viewInit() {
 
         TitleTextView.setText(requireActivity().resources.getString(R.string.game_over_hunmin_title))
-        OneMoreGameBtnView.setOnClickListener{moveHunminGameFragment()}
+        OneMoreGameBtnView.setOnClickListener{presenter?.onClickGameReStartBtn()}
         GameEndBtnView.setOnClickListener{ moveMainFragment()}
 
 
 
     }
 
-    override fun showResult(gameResult : ArrayList<Game>, bIsMaster:Boolean) {
+    override fun showResult(gameResult : ArrayList<Game>) {
         HunminGameOverRoomResultAdapter(
             requireContext(),
             presenter!!,
             gameResult
         ).let {
-            Log.e("showResult", "방장 $bIsMaster")
+            Log.e("showResult", "방장 ${ChosungApplication.Player.bIsMaster}")
             gameResultRecyclerView.adapter = it
-            if (bIsMaster){
+            if (ChosungApplication.Player.bIsMaster){
                 OneMoreGameBtnView.visibility = View.VISIBLE
             }else{
                 OneMoreGameBtnView.visibility = View.GONE

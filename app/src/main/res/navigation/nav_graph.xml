@@ -80,6 +80,9 @@
         <argument
                 android:name="game"
                 app:argType="com.wlswnwns.chosung_android.item.Game" />
+        <action
+                android:id="@+id/action_waitRoomFragment_to_mainFragment"
+                app:destination="@id/mainFragment" />
 
     </fragment>
     <fragment
@@ -114,7 +117,9 @@
     <fragment
             android:id="@+id/kungKungDdaGameOverFragment"
             android:name="com.wlswnwns.chosung_android.KungKungDdaGameOver.KungKungDdaGameOverFragment"
-            android:label="KungKungDdaGameOverFragment" />
+            android:label="KungKungDdaGameOverFragment" >
+        <argument android:name="NickName" />
+    </fragment>
 
 
 </navigation>

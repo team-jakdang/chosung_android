@@ -17,7 +17,7 @@ interface HunminGameOverContract {
         // 게임종료 버튼을 눌렀을때 대기실로 가는 버튼
         fun moveMainFragment()
 
-        fun showResult(gameResult : ArrayList<Game>, bIsMaster:Boolean)
+        fun showResult(gameResult : ArrayList<Game>)
     }
 
     interface Presenter{
@@ -25,5 +25,7 @@ interface HunminGameOverContract {
         fun viewDidLoad(context: Context)
 
         fun setResult(resultArr: String)
+
+        fun onClickGameReStartBtn()
     }
 }
