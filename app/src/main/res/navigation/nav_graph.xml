@@ -125,6 +125,15 @@
         <action
                 android:id="@+id/action_kungKungDdaGameOverFragment_to_mainFragment"
                 app:destination="@id/mainFragment" />
+        <action
+                android:id="@+id/action_kungKungDdaGameOverFragment_to_kungKungDdaGameFragment"
+                app:destination="@id/kungKungDdaGameFragment" />
+        <argument
+                android:name="game"
+                app:argType="com.wlswnwns.chosung_android.item.Game" />
+        <argument
+                android:name="room"
+                app:argType="com.wlswnwns.chosung_android.item.Room" />
     </fragment>
 
 

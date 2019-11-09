@@ -112,7 +112,6 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
             view.exitRoom()
 
         }
-        ChosungApplication.exitRoom(model.room.iRoomId!!)
         ChosungApplication.client?.disconnect()
     }
 

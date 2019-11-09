@@ -4,17 +4,32 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.wlswnwns.chosung_android.ChosungApplication
 import com.wlswnwns.chosung_android.KungKungDdaGame.KungKungDdaGameFragmentDirections
+import com.wlswnwns.chosung_android.MainActivity
 import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.waitRoom.WaitRoomFragmentArgs
 import kotlinx.android.synthetic.main.layout_game_over.*
 
-class KungKungDdaGameOverFragment : Fragment(), KungKungDdaGameOverContract.View{
+class KungKungDdaGameOverFragment : Fragment(), KungKungDdaGameOverContract.View, MainActivity.OnBackPressedListener {
+
+
+    override fun onBackPressed() {
+
+        AlertDialog.Builder(requireContext()).apply {
+            setTitle(R.string.game_over_dialog_title)
+            setMessage(R.string.game_over_dialog_content)
+            setPositiveButton(R.string.dialog_confirm_btn) { _, _ -> presenter?.finishGame() }
+            setNegativeButton(R.string.dialog_cancel_btn) { dialoginterface, _ -> dialoginterface.cancel() }
+            create()
+            show()
+        }
+    }
 
     private val args: KungKungDdaGameOverFragmentArgs by navArgs()
 
@@ -56,7 +71,7 @@ class KungKungDdaGameOverFragment : Fragment(), KungKungDdaGameOverContract.View
             }
 
         }
-
+        OneMoreGameBtnView.setOnClickListener { presenter?.restartGame() }
         GameEndBtnView.setOnClickListener { presenter?.finishGame() }
 
     }
@@ -66,6 +81,12 @@ class KungKungDdaGameOverFragment : Fragment(), KungKungDdaGameOverContract.View
             KungKungDdaGameOverFragmentDirections.actionKungKungDdaGameOverFragmentToMainFragment(ChosungApplication.nikname)
         )
     }
+    override fun restartGame() {
+        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
+            KungKungDdaGameOverFragmentDirections.actionKungKungDdaGameOverFragmentToKungKungDdaGameFragment(args.room,args.game)
+        )
+    }
+
 
 
 }

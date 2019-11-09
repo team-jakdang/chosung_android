@@ -24,8 +24,14 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View,MainActivity.OnBackPr
 
 
     override fun onBackPressed() {
-        presenter?.checkRoomOwner()
-        Log.e("뒤로가기 버튼 눌림","눌려야함 ㅜ")
+        AlertDialog.Builder(requireContext()).apply {
+            setTitle(R.string.exit_wait_room_dialog_title)
+            setMessage(R.string.exit_wait_room_dialog_content)
+            setPositiveButton(R.string.dialog_confirm_btn) { _, _ -> presenter?.checkRoomOwner() }
+            setNegativeButton(R.string.dialog_cancel_btn) { dialoginterface, _ -> dialoginterface.cancel() }
+            create()
+            show()
+        }
     }
 
 
