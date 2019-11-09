@@ -15,6 +15,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.wlswnwns.chosung_android.MainActivity
 import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.adapter.HunminGameRoomChosungLogAdapter
 import com.wlswnwns.chosung_android.item.Game
@@ -22,7 +23,10 @@ import com.wlswnwns.chosung_android.item.Test
 import kotlinx.android.synthetic.main.layout_hunmingame.*
 
 
-class HunminGameFragment : Fragment(), HunminGameContract.View {
+class HunminGameFragment : Fragment(), HunminGameContract.View, MainActivity.OnBackPressedListener {
+    override fun onBackPressed() {
+
+    }
 
 
     private val args: HunminGameFragmentArgs by navArgs()
