@@ -74,7 +74,13 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
                        // view.showUserList( model.OutGameUser(jsonObject.getJSONArray("arrUserInfo")))
 
 
+                    }else if(jsonObject.getString("strEvent").equals("EXIT_ROOM")){
+                        view.showUserList(model.InitUserList(jsonObject.getJSONArray("arrUserOrderInfo")))
+                    }else if(jsonObject.getString("strEvent").equals("THE_ROOM_IS_DESTROYED")){
+                        view.exitRoom()
                     }
+
+
                 }catch (e:JSONException){
                     e.printStackTrace()
                 }
@@ -106,6 +112,8 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
             view.exitRoom()
 
         }
+        ChosungApplication.exitRoom(model.room.iRoomId!!)
+        ChosungApplication.client?.disconnect()
     }
 
     override fun removeRoom() {

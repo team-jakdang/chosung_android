@@ -110,6 +110,8 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
                             }
 
 
+
+
                         } else if (jsonObject.getString("strEvent").equals("checkAnswerKKT")) {
 
 

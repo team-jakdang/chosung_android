@@ -80,6 +80,9 @@
         <argument
                 android:name="game"
                 app:argType="com.wlswnwns.chosung_android.item.Game" />
+        <action
+                android:id="@+id/action_waitRoomFragment_to_mainFragment"
+                app:destination="@id/mainFragment" />
 
     </fragment>
     <fragment
