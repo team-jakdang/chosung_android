@@ -114,6 +114,7 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
                             model.ChosungLog?.add(Game().apply {
                                 strUserName = jsonObject.getString("strNickname")
                                 strChosung = jsonObject.getString("strMessage")
+                                bIsAnswer = jsonObject.getBoolean("bIsAnswer")
                             })
                             view.showChosungLogList(model.ChosungLog!!)
 
