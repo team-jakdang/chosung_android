@@ -171,9 +171,19 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
                                     OrderViewChange()
                                 }
 
-                            if (ChosungApplication.Player.bIsMaster) {
+
+                            var isNowTurnPlayerExist = false
+
+                            for(user in model.UserList){
+                                if(model.strNowTurnUserName.equals(user.strUserName)){
+                                    isNowTurnPlayerExist = true
+                                }
+                            }
+
+                            if (ChosungApplication.Player.bIsMaster && !isNowTurnPlayerExist) {
                                 ChosungApplication.nextTurnKKT()
                             }
+
                         }
 
 
