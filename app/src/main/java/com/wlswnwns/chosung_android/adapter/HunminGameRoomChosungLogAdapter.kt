@@ -1,6 +1,7 @@
 package com.wlswnwns.chosung_android.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,11 +64,15 @@ class HunminGameRoomChosungLogAdapter(
 
         holder.UserNameView?.text = items[position].strUserName
         holder.ChosungView?.text = items[position].strChosung
+        if (items[position].bIsAnswer){
+            holder.IsAnswerView?.text = "정답"
+            holder.IsAnswerView?.setTextColor(Color.BLUE)
 
-
-
+        }else{
+            holder.IsAnswerView?.text = "오답"
+            holder.IsAnswerView?.setTextColor(Color.RED)
+        }
     }
-
 
     class UserViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -75,11 +80,13 @@ class HunminGameRoomChosungLogAdapter(
 
         var UserNameView: TextView? = null
         var ChosungView: TextView? = null
+        var IsAnswerView: TextView? = null
 
 
         init {
             UserNameView = itemView.findViewById(R.id.UserNameView)
             ChosungView = itemView.findViewById(R.id.ChosungView)
+            IsAnswerView = itemView.findViewById(R.id.IsAnswerView)
 
         }
 
