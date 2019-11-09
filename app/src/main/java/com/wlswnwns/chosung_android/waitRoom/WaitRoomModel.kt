@@ -56,7 +56,7 @@ class WaitRoomModel {
             }
         }
 
-        for(index in 0..Users?.size!!){
+        for(index in Users?.size!!-1 downTo 1){
             if (Users!![index].strUserName.equals(Outuser?.strUserName)){
                 Users?.removeAt(index)
             }

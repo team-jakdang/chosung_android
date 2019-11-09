@@ -71,8 +71,8 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
                         }
                     }else if(jsonObject.getString("strEvent")=="OUT_GAME"){
 
-                       // view.showUserList( model.OutGameUser(jsonObject.getJSONArray("arrUserInfo")))
-
+                        view.showUserList( model.InitUserList(jsonObject.getJSONArray("arrUserInfo")))
+                        view.showPlayerNumber(model.Users?.size.toString())
 
                     }else if(jsonObject.getString("strEvent").equals("EXIT_ROOM")){
                         view.showUserList(model.InitUserList(jsonObject.getJSONArray("arrUserOrderInfo")))
