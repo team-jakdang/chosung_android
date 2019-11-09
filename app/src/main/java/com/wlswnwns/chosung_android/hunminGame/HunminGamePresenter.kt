@@ -17,15 +17,12 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-
-
-
-
 class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Presenter {
 
 
     var view: HunminGameContract.View
     var model: HunminGameModel
+
     // 생성자
     init {
         this.view = view
@@ -39,8 +36,8 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
         model.iTime = iTime
         model.ChosungLog = ArrayList()
 
-        Log.e("viewDidLoad", "뷰 초기화 실행"+ model.User.bIsMaster)
-        if (ChosungApplication.Player.bIsMaster){
+        Log.e("viewDidLoad", "뷰 초기화 실행" + model.User.bIsMaster)
+        if (ChosungApplication.Player.bIsMaster) {
             ChosungApplication.startHMJEGame() // 게임시작 체크
         }
 
@@ -54,7 +51,7 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
                 JSONObject(text)
                 val action = Runnable {
                     Log.e("onDataReceived", JSONObject(text).getString("strEvent"))
-                    var iSetTime=iTime;
+                    var iSetTime = iTime;
                     if (JSONObject(text).getString("strEvent") == "startHMJE") {
                         try {
                             Log.e("checkTimeHMJE2", JSONObject(text).getString("iCountDown"))
@@ -63,34 +60,39 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
                                 JSONObject(text).getString("strInitialWord"),
                                 JSONObject(text).getString("iCountDown")
                             )
-                        }catch (e:JSONException){
+                        } catch (e: JSONException) {
                             e.printStackTrace()
                             setChosung(
-                               "없음",
+                                "없음",
                                 JSONObject(text).getString("iCountDown")
                             )
                         }
-                    }else if (JSONObject(text).getString("strEvent") == "checkTimeHMJE") {
+                    } else if (JSONObject(text).getString("strEvent") == "checkTimeHMJE") {
 
 
                         try {
-                            setTimer(iSetTime,JSONObject(text).getInt("iLeftTime"))
-                            var resultList =  concatArray(JSONObject(text).getJSONArray("arrResultInfo"),JSONObject(text).getJSONArray("arrFailUserInfo"))
-                            Log.e("arrResultInfo" , resultList.toString())
+                            setTimer(iSetTime, JSONObject(text).getInt("iLeftTime"))
+                            var resultList =
+                                concatArray(
+                                    JSONObject(text).getJSONArray("arrResultInfo"),
+                                    JSONObject(text).getJSONArray("arrFailUserInfo")
+                                )
+                            Log.e("arr Failed Info", resultList.toString())
                             model.ResultArr = resultList.toString()
-                            if(JSONObject(text).getInt("iLeftTime") == 0) {
+                            if (JSONObject(text).getInt("iLeftTime") == 0) {
 
                                 view.moveHunminGameOverFragment(model.ResultArr)
                             }
 
-                        }catch (e:JSONException){
+                        } catch (e: JSONException) {
                             e.printStackTrace()
                             model.ResultArr = "[]"
 
                         }
-                    }else if (JSONObject(text).getString("strEvent") == "checkAnswerHMJE") {
+                    } else if (JSONObject(text).getString("strEvent") == "checkAnswerHMJE") {
                         Log.e("checkAnswerHMJE", JSONObject(text).getString("strMessage"))
                         model.Game.bIsAnswer = JSONObject(text).getBoolean("bIsAnswer")
+                        model.Game.strUserName = JSONObject(text).getString("strNickname")
 
                         model.ChosungLog?.add(Game().apply {
                             strUserName = JSONObject(text).getString("strNickname")
@@ -99,14 +101,12 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 
 
                         view.showChosungLogList(model.ChosungLog!!)
-                        checkUserInputTextIsAnswer(JSONObject(text).getBoolean("bIsAnswer"))
-                    }else if (JSONObject(text).getString("strEvent") == "THE_ROOM_IS_DESTROYED") {
+                        checkUserInputTextIsAnswer()
+                    } else if (JSONObject(text).getString("strEvent") == "THE_ROOM_IS_DESTROYED") {
 
                         //방장이 방 파괴
 
                     }
-
-
 
 
                 }
@@ -171,7 +171,9 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 
 
     override fun gameStartTimeSendToServer() {
-        ChosungApplication.startHMJEGameTimeCheck() // 타임체크 소켓 연결
+        if (ChosungApplication.Player.bIsMaster) {
+            ChosungApplication.startHMJEGameTimeCheck() // 타임체크 소켓 연결
+        }
 
 //        // 게임이 오버되었다면 순위 발표 페이지로 넘어가기 (서버에서 리턴값으로 주는 arrResultInfo 넘겨줘야함)
 //        if (model.Game.bTimeOver) {
@@ -195,35 +197,38 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
     @Throws(JSONException::class)
     private fun concatArray(successArr: JSONArray, failedArr: JSONArray): JSONArray {
         val result = JSONArray()
-        for (i in 0 until successArr.length()) {
-            successArr.getJSONObject(i).put("bIsFailed",false)
-            result.put(successArr.getJSONObject(i))
-        }
+
         for (i in 0 until failedArr.length()) {
-            failedArr.getJSONObject(i).put("bIsFailed",true)
+            failedArr.getJSONObject(i).put("bIsFailed", true)
             result.put(failedArr.getJSONObject(i))
+        }
+        if (result.length() < 1) {
+            Log.e("ConcatArr", "Success " + successArr.getJSONObject(0).toString())
+            successArr.getJSONObject(0).put("bIsFailed", false)
+            result.put(successArr.getJSONObject(0))
+
         }
         return result
     }
 
 
-    override fun checkUserInputTextIsAnswer(isAnswer : Boolean) {
+    override fun checkUserInputTextIsAnswer() {
 
 
         // 유저가 입력한 답이 정답이라면 성공뷰를 띄워주고
-        if(model.Game.bIsAnswer){
-            view.answerGameView()
+        if (model.Game.strUserName == ChosungApplication.Player.strUserName) {
+            if (model.Game.bIsAnswer) {
+                view.answerGameView()
 
+            }
+            // 아니라면 실패 뷰를 띄어준다.
+            else {
+                wrongViewTimeSet()
+            }
         }
-        // 아니라면 실패 뷰를 띄어준다.
-        else{
-            wrongViewTimeSet()
-        }
-
 //        if (model.strUserInputEditText == model.Game.strInitialWord) view.answerGameView() else wrongViewTimeSet()
 
     }
-
 
 
     override fun addChosungLog() {
@@ -233,8 +238,8 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 //        model.ChosungLog?.add(Test(model.User.strUserName, model.strUserInputEditText) )
 
 
-
     }
+
     override fun wrongViewTimeSet() {
         // 실패뷰를 띄우고 0.4초 뒤에 defult뷰 호출
         view.wrongGameView()
@@ -244,7 +249,7 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
     }
 
     override fun setChosung(strInitialWord: String, iCountDown: String) {
-        Log.e("Tag", "카운트 들어오니 :: "  + iCountDown)
+        Log.e("Tag", "카운트 들어오니 :: " + iCountDown)
         if (iCountDown == "0") {
             view.showChosung(strInitialWord)
             gameStartTimeSendToServer() // 타임체크 시
@@ -257,10 +262,9 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
     }
 
     override fun setTimer(iSetTime: Int, iLeftTime: Int) {
-        Log.e("Tag", "카운트 들어오니 :: "  + iSetTime)
+        Log.e("Tag", "카운트 들어오니 :: " + iSetTime)
 
-        view.timeProgressBarActive(iSetTime,iLeftTime)
-
+        view.timeProgressBarActive(iSetTime, iLeftTime)
 
 
     }

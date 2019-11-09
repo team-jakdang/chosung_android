@@ -65,7 +65,7 @@
 
     <!--게임 오버화면-->
     <string name="game_over_kkt_title">걸린 사람</string>
-    <string name="game_over_hunmin_title">게임 종료</string>
+    <string name="game_over_hunmin_title">걸린 사람</string>
     <string name="game_over_restart">다시하기</string>
     <string name="game_over_finish">게임종료</string>
     <string name="game_over_dialog_title">메인으로 나가기</string>
