@@ -15,7 +15,7 @@ interface HunminGameOverContract {
         fun moveHunminGameFragment()
 
         // 게임종료 버튼을 눌렀을때 대기실로 가는 버튼
-        fun moveMainFragment()
+        fun exitRoom()
 
         fun showResult(gameResult : ArrayList<Game>)
     }
@@ -27,5 +27,8 @@ interface HunminGameOverContract {
         fun setResult(resultArr: String)
 
         fun onClickGameReStartBtn()
+
+        fun onClickGameQuiteBtn()
+
     }
 }
