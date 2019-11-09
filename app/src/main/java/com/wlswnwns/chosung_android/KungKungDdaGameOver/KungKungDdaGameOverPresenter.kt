@@ -61,7 +61,6 @@ class KungKungDdaGameOverPresenter(view: KungKungDdaGameOverContract.View) :
     }
 
     override fun finishGame() {
-        ChosungApplication.exitRoom(ChosungApplication.roomId)
         view.exitRoom()
         ChosungApplication.client?.disconnect()
 
