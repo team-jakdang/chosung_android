@@ -117,7 +117,9 @@
     <fragment
             android:id="@+id/kungKungDdaGameOverFragment"
             android:name="com.wlswnwns.chosung_android.KungKungDdaGameOver.KungKungDdaGameOverFragment"
-            android:label="KungKungDdaGameOverFragment" />
+            android:label="KungKungDdaGameOverFragment" >
+        <argument android:name="NickName" />
+    </fragment>
 
 
 </navigation>

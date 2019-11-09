@@ -228,9 +228,9 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View {
 
     }
 
-    override fun MoveGameResult() {
+    override fun MoveGameResult(nickName : String) {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            KungKungDdaGameFragmentDirections.actionKungKungDdaGameFragmentToKungKungDdaGameOverFragment()
+            KungKungDdaGameFragmentDirections.actionKungKungDdaGameFragmentToKungKungDdaGameOverFragment(nickName)
         )
     }
 

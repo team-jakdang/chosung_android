@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.wlswnwns.chosung_android.R
+import com.wlswnwns.chosung_android.waitRoom.WaitRoomFragmentArgs
 import kotlinx.android.synthetic.main.layout_game_over.*
 
 class KungKungDdaGameOverFragment : Fragment(), KungKungDdaGameOverContract.View{
 
+    private val args: KungKungDdaGameOverFragmentArgs by navArgs()
 
 
     var presenter: KungKungDdaGameOverContract.Presenter? = null
@@ -32,7 +35,10 @@ class KungKungDdaGameOverFragment : Fragment(), KungKungDdaGameOverContract.View
     }
 
     override fun viewInit() {
-        TitleTextView.setText(requireActivity().resources.getString(R.string.game_over_kkt_title))
+
+        gameResultRecyclerView.visibility = View.GONE
+        ResultTextView.visibility = View.VISIBLE
+        ResultTextView.setText(args.nickName)
 
     }
 

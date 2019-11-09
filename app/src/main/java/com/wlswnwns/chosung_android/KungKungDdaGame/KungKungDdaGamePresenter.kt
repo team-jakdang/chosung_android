@@ -106,7 +106,7 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
                             model.strNowTurnUserName = jsonObject.getString("strNickname")
 
                             if (jsonObject.getBoolean("bTimeOver")) {
-                                view.MoveGameResult()
+                                view.MoveGameResult(model.strNowTurnUserName)
                             }
 
 
