@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import com.wlswnwns.chosung_android.ChosungApplication
 import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.waitRoom.WaitRoomFragmentArgs
 import kotlinx.android.synthetic.main.layout_game_over.*
@@ -35,10 +37,27 @@ class KungKungDdaGameOverFragment : Fragment(), KungKungDdaGameOverContract.View
     }
 
     override fun viewInit() {
-
+        TitleTextView.text = "걸린사람"
         gameResultRecyclerView.visibility = View.GONE
         ResultTextView.visibility = View.VISIBLE
         ResultTextView.setText(args.nickName)
+
+        if(!ChosungApplication.Player.bIsMaster){
+            OneMoreGameBtnView.visibility = View.GONE
+
+            ConstraintSet().apply {
+                clone(layout)
+
+                setHorizontalBias(GameEndBtnView.id,0.5f)
+
+                applyTo(layout)
+            }
+
+
+        }
+
+
+
 
     }
 

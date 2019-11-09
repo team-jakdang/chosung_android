@@ -107,9 +107,13 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View {
     override fun showChosungLogList(ChosungLog: ArrayList<Game>) {
 
 
+        var ChosungLogDummy : ArrayList<Game> = ChosungLog.clone() as ArrayList<Game>
+
+        ChosungLogDummy.reverse()
+
         HunminGameRoomChosungLogAdapter(
             requireContext(),
-            ChosungLog
+            ChosungLogDummy
         ).let {
             GameLogRecyclerView.adapter = it
         }
