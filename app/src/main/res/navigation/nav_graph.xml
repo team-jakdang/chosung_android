@@ -44,6 +44,9 @@
         <argument
                 android:name="iTime"
                 app:argType="integer" />
+        <argument
+                android:name="bIsMaster"
+                app:argType="boolean" />
         <!--        <argument android:name="User"-->
         <!--                app:argType="com.wlswnwns.chosung_android.waitRoom.WaitRoomModel.Users[]"/>-->
     </fragment>

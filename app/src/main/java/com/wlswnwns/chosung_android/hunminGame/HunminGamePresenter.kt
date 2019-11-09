@@ -38,8 +38,11 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
         model.iTime = iTime
         model.ChosungLog = ArrayList()
 
-        Log.e("viewDidLoad", "뷰 초기화 실행")
-        ChosungApplication.startHMJEGame() // 게임시작 체크
+        Log.e("viewDidLoad", "뷰 초기화 실행"+ model.User.bIsMaster)
+        if (ChosungApplication.Player.bIsMaster){
+            ChosungApplication.startHMJEGame() // 게임시작 체크
+        }
+
         ChosungApplication.client?.clearListeners()
         Log.e("viewDidLoad2", "뷰 초기화 실행2")
 

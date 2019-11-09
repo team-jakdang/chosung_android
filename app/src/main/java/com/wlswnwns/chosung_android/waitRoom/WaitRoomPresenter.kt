@@ -67,7 +67,7 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
                         if (model.Game.strMode.equals("kkt")){
                             view.moveKungKungDdaFragment()
                         }else{
-                            view.moveHunMinFragment(game.iChosungLenght,game.iTime)
+                            view.moveHunMinFragment(game.iChosungLenght,game.iTime, game.bIsMaster)
                         }
                     }else if(jsonObject.getString("strEvent")=="OUT_GAME"){
 

@@ -14,7 +14,7 @@ interface WaitRoomContract{
         fun viewInit(iLength : Int, iTime : Int)
 
         // 훈민정음 게임 프레그먼트를 띄워줍니다
-        fun moveHunMinFragment(iLength : Int, iTime : Int)
+        fun moveHunMinFragment(iLength : Int, iTime : Int, bIsMaster: Boolean)
 
         // 쿵쿵따 게임 프레그먼트를 띄워줍니다
         fun moveKungKungDdaFragment()

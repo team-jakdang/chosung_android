@@ -56,9 +56,9 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View {
         BackBtn.setOnClickListener { presenter?.onClickExitRoom() }
     }
 
-    override fun moveHunMinFragment(iLength : Int, iTime : Int) {
+    override fun moveHunMinFragment(iLength : Int, iTime : Int, bIsMaster: Boolean) {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            WaitRoomFragmentDirections.actionWaitRoomFragmentToHunminGameFragment(iLength,iTime)
+            WaitRoomFragmentDirections.actionWaitRoomFragmentToHunminGameFragment(iLength,iTime, bIsMaster)
         )
     }
 

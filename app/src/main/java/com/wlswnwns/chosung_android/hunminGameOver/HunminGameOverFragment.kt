@@ -73,7 +73,7 @@ class HunminGameOverFragment : Fragment(), HunminGameOverContract.View {
 
         Log.e("ff", "ff1")
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            HunminGameOverFragmentDirections.actionHunminGameOverFragmentToHunminGameFragment(2,10)
+            HunminGameOverFragmentDirections.actionHunminGameOverFragmentToHunminGameFragment(2,10, false)
         )
     }
 

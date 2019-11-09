@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.layout_hunmingame.*
 class HunminGameFragment : Fragment(), HunminGameContract.View {
 
 
-    private val args : HunminGameFragmentArgs by navArgs()
+    private val args: HunminGameFragmentArgs by navArgs()
 
 
     var presenter: HunminGameContract.Presenter? = null
@@ -40,10 +40,10 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.e(TAG,args.iLength.toString())
-        Log.e(TAG,args.iTime.toString())
+        Log.e(TAG, args.iLength.toString())
+        Log.e(TAG, args.iTime.toString())
         presenter = HunminGamePresenter(this)
-        presenter?.viewDidLoad(args.iLength,args.iTime)
+        presenter?.viewDidLoad(args.iLength, args.iTime)
 //        presenter?.setChosung()
         presenter?.gameTimerStart() // 게임 타이머 시작
 
@@ -84,7 +84,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
         // 유저가 키보드에 있는 완료 버튼을 누르면 답이 맞는지 체크하는 'presenter'의  checkUserInputTextIsAnswer() 호출
         UserInputEditTextView.setOnEditorActionListener { v, actionId, event ->
-//            Log.e(TAG, v.toString()+actionId.toString()+event)
+            //            Log.e(TAG, v.toString()+actionId.toString()+event)
             presenter?.addChosungLog()
 
             UserInputEditTextView.setText("")
@@ -93,7 +93,6 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 //            presenter?.listViewGameLog()
             true
         }
-
 
 
     }
@@ -112,6 +111,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
         ChosungTextView.setText(chosung)
 
     }
+
     override fun longUserInputText(chosungLength: String) {
         Toast.makeText(context, "단어의 길이가 3자를 넘으면 안됩니다", Toast.LENGTH_SHORT).show()
     }
@@ -131,7 +131,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
     // AnswerImageView 을 보이게 한다
     override fun answerGameView() {
         Toast.makeText(context, "정답입니다.", Toast.LENGTH_SHORT).show()
-        AnswerAndWrongTextView.isVisible =true
+        AnswerAndWrongTextView.isVisible = true
         AnswerAndWrongTextView.setText("와우 정답!")
         UserInputEditTextView.isVisible = false
         AnswerImageView.isVisible = true
@@ -141,7 +141,7 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
     // ChosungTextView ,UserInputEditTextView , WrongImageView 보이게
     override fun wrongGameView() {
         Toast.makeText(context, "정답이 아닙니다.", Toast.LENGTH_SHORT).show()
-        AnswerAndWrongTextView.isVisible =true
+        AnswerAndWrongTextView.isVisible = true
         AnswerAndWrongTextView.setText("틀렸어요!")
         AnswerAndWrongTextView.setTextColor(Color.RED)
         UserInputEditTextView.isVisible = true
@@ -149,28 +149,26 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
     }
 
 
-
     // 게임오버 프래그먼트로 이동
-    override fun moveHunminGameOverFragment(rusultArr : String ) {
+    override fun moveHunminGameOverFragment(rusultArr: String) {
 
-        println("rusultArr :: " + rusultArr)
-
-        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            HunminGameFragmentDirections.actionHunminGameFragmentToHunminGameOverFragment(rusultArr)
-        )
+        println("rusultArr :: moveHunminGameOverFragment" + rusultArr)
+//        if (Navigation.findNavController(requireActivity(), R.id.fragment_container).currentDestination == null){
+            Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
+                HunminGameFragmentDirections.actionHunminGameFragmentToHunminGameOverFragment(rusultArr))
+//        }
     }
 
 
-
-    override fun timeProgressBarActive(iSetTime:Int, iLeftTime:Int) {
-
-        TimerProgressBar.max=iSetTime
-        TimerProgressBar.setProgress(iLeftTime,true)
+    override fun timeProgressBarActive(iSetTime: Int, iLeftTime: Int) {
+        println("rusultArr :: " + iSetTime)
+        Log.e("iSetTime :: timeProgressBarActive", ""+iSetTime)
+        Log.e("iLeftTime :: timeProgressBarActive", ""+iLeftTime)
+        TimerProgressBar.max = iSetTime
+        TimerProgressBar.setProgress(iLeftTime, true)
 
 
     }
-
-
 
 
 }
