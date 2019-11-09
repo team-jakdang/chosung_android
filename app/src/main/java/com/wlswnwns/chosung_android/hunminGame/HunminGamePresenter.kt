@@ -97,6 +97,7 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
                         model.ChosungLog?.add(Game().apply {
                             strUserName = JSONObject(text).getString("strNickname")
                             strChosung = JSONObject(text).getString("strMessage")
+                            bIsAnswer = JSONObject(text).getBoolean("bIsAnswer")
                         })
 
 
