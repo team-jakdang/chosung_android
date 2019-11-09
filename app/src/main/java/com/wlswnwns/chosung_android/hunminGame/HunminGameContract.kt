@@ -34,6 +34,8 @@ interface HunminGameContract {
         // 에러 메세지를 다이얼로그로 보여줌
         fun showErrorMsg(msg : String)
 
+        fun exitGame()
+
         fun showChosung(chosung : String)
 
         // 초성 로그를 보여줌

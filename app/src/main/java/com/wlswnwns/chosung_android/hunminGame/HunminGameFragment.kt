@@ -15,6 +15,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.wlswnwns.chosung_android.ChosungApplication
 import com.wlswnwns.chosung_android.MainActivity
 import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.adapter.HunminGameRoomChosungLogAdapter
@@ -171,6 +172,12 @@ class HunminGameFragment : Fragment(), HunminGameContract.View, MainActivity.OnB
         TimerProgressBar?.setProgress(iLeftTime, true)
 
 
+    }
+
+    override fun exitGame() {
+        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
+            HunminGameFragmentDirections.actionHunminGameFragmentToMainFragment(ChosungApplication.nikname)
+        )
     }
 
 

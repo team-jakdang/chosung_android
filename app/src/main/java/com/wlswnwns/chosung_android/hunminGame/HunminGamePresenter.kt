@@ -105,10 +105,10 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
                     } else if (JSONObject(text).getString("strEvent") == "THE_ROOM_IS_DESTROYED") {
 
                         //방장이 방 파괴
+                        view.exitGame()
+                        ChosungApplication.client?.disconnect()
 
                     }
-
-
                 }
 
                 ChosungApplication.activity.runOnUiThread(action)

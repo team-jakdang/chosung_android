@@ -38,6 +38,9 @@
         <action
                 android:id="@+id/action_hunminGameFragment_to_hunminGameOverFragment"
                 app:destination="@+id/hunminGameOverFragment" />
+        <action
+                android:id="@+id/action_hunminGameFragment_to_mainFragment"
+                app:destination="@+id/mainFragment" />
         <argument
                 android:name="iLength"
                 app:argType="integer" />
