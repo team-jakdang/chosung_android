@@ -39,20 +39,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        // super.onBackPressed()
-        val fragmentList = supportFragmentManager.fragments
-
-        Log.e(" 이거눌림???", "이거이거")
-
-        fragmentList?.let {
-            for (fragment in it) {
-                if(fragment is OnBackPressedListener){
-                    (fragment as OnBackPressedListener).onBackPressed()
-                }
-            }
-        }.let {
-
-        }
+         super.onBackPressed()
+//        val fragmentList = supportFragmentManager.fragments
+//
+//        Log.e(" 이거눌림???", "이거이거")
+//
+//        fragmentList?.let {
+//            for (fragment in it) {
+//                if(fragment is OnBackPressedListener){
+//                    (fragment as OnBackPressedListener).onBackPressed()
+//                }
+//            }
+//        }.let {
+//
+//        }
 
     }
 
