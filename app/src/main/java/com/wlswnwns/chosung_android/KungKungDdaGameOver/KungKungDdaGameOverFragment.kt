@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.wlswnwns.chosung_android.ChosungApplication
+import com.wlswnwns.chosung_android.KungKungDdaGame.KungKungDdaGameFragmentDirections
 import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.waitRoom.WaitRoomFragmentArgs
 import kotlinx.android.synthetic.main.layout_game_over.*
@@ -53,12 +55,16 @@ class KungKungDdaGameOverFragment : Fragment(), KungKungDdaGameOverContract.View
                 applyTo(layout)
             }
 
-
         }
 
+        GameEndBtnView.setOnClickListener { presenter?.finishGame() }
 
+    }
 
-
+    override fun exitRoom() {
+        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
+            KungKungDdaGameOverFragmentDirections.actionKungKungDdaGameOverFragmentToMainFragment(ChosungApplication.nikname)
+        )
     }
 
 

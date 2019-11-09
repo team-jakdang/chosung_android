@@ -98,6 +98,9 @@
         <argument
                 android:name="game"
                 app:argType="com.wlswnwns.chosung_android.item.Game" />
+        <action
+                android:id="@+id/action_kungKungDdaGameFragment_to_mainFragment"
+                app:destination="@id/mainFragment" />
     </fragment>
 
     <fragment
@@ -119,6 +122,9 @@
             android:name="com.wlswnwns.chosung_android.KungKungDdaGameOver.KungKungDdaGameOverFragment"
             android:label="KungKungDdaGameOverFragment" >
         <argument android:name="NickName" />
+        <action
+                android:id="@+id/action_kungKungDdaGameOverFragment_to_mainFragment"
+                app:destination="@id/mainFragment" />
     </fragment>
 
 
