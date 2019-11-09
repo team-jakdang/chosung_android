@@ -10,6 +10,7 @@ import com.wlswnwns.chosung_android.ChosungApplication
 import com.wlswnwns.chosung_android.item.Test
 import com.wlswnwns.chosung_android.waitRoom.WaitRoomModel
 import org.json.JSONArray
+import com.wlswnwns.chosung_android.item.Game
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
@@ -90,6 +91,14 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
                     }else if (JSONObject(text).getString("strEvent") == "checkAnswerHMJE") {
                         Log.e("checkAnswerHMJE", JSONObject(text).getString("strMessage"))
                         model.Game.bIsAnswer = JSONObject(text).getBoolean("bIsAnswer")
+
+                        model.ChosungLog?.add(Game().apply {
+                            strUserName = JSONObject(text).getString("strNickname")
+                            strChosung = JSONObject(text).getString("strMessage")
+                        })
+
+
+                        view.showChosungLogList(model.ChosungLog!!)
                         checkUserInputTextIsAnswer(JSONObject(text).getBoolean("bIsAnswer"))
                     }else if (JSONObject(text).getString("strEvent") == "THE_ROOM_IS_DESTROYED") {
 
@@ -221,13 +230,8 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 
         ChosungApplication.hunminGameIsAnswer(model.strUserInputEditText)
 
-//        model.ChosungLog?.add(Test("은채", model.strUserInputEditText) )
-        model.ChosungLog?.add(model.Game.apply {
-            strUserName = "은채";strChosung = model.strUserInputEditText
-        })
+//        model.ChosungLog?.add(Test(model.User.strUserName, model.strUserInputEditText) )
 
-
-        view.showChosungLogList(model.ChosungLog!!)
 
 
     }
