@@ -129,7 +129,7 @@
                 android:id="@+id/GameLogRecyclerView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="#a3a1a1"
+                android:background="@null"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toTopOf="@+id/UserInputEditTextView"
                 app:layout_constraintEnd_toEndOf="parent"
