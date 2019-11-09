@@ -28,6 +28,7 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
         view.viewInit(game.iChosungLenght, game.iTime)
         model.Game = game
         model.room = room
+        ChosungApplication.Game = game
 
         if(model.Game.strMode.contains("kkt")){
             view.showGameMode("쿵쿵따")
