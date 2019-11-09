@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.wlswnwns.chosung_android.ChosungApplication
+import com.wlswnwns.chosung_android.MainActivity
 import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.adapter.HunminGameOverRoomResultAdapter
 
@@ -21,9 +22,11 @@ import kotlinx.android.synthetic.main.layout_hunmingame.*
 import org.json.JSONArray
 import org.json.JSONException
 
-class HunminGameOverFragment : Fragment(), HunminGameOverContract.View {
+class HunminGameOverFragment : Fragment(), HunminGameOverContract.View, MainActivity.OnBackPressedListener {
 
+    override fun onBackPressed() {
 
+    }
     private val args : HunminGameOverFragmentArgs by navArgs()
 
     var presenter: HunminGameOverContract.Presenter? = null
