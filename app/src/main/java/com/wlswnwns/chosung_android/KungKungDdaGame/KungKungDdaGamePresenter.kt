@@ -144,6 +144,7 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
                             }
                         }else if(jsonObject.getString("strEvent").equals("THE_ROOM_IS_DESTROYED")){
                             view.exitRoom()
+                            ChosungApplication.client?.disconnect()
                         }else if(jsonObject.getString("strEvent").equals("OUT_GAME")){
                             model.InitUserList(jsonObject.getJSONArray("arrUserInfo"))
                                 .let {
