@@ -33,7 +33,7 @@ interface KungKungDdaGameContract {
         fun answerGameView()
 
         // 유저가 입력한 단어가 오답 일 때 보여줄 결과뷰
-        fun wrongGameView()
+        fun wrongGameView(msg : String)
 
         // 게임중 기본 뷰로 돌아가도록 함. (유저가 정답을 입력 할 때의 뷰) 오/정답표시 숨김
         fun defaultGameView()
@@ -58,6 +58,8 @@ interface KungKungDdaGameContract {
 
         fun MoveGameResult(nickName : String)
 
+
+        fun exitRoom()
     }
 
     /**
@@ -81,11 +83,9 @@ interface KungKungDdaGameContract {
         // 유저가 입력한 단어의 글자수가 지정한 수를 넘는지 체크
         fun checkUserInputTextLength()
 
-        // 유저가 입력한 단어가 답에 속하는지 여부를 판단하기 위한 메소드(추후 서버와 통신)
-        fun checkUserInputTextIsAnswer()
 
         // 실패뷰를(X표시) 지정한 시간 후 사라지게 하는 메소드
-        fun wrongViewTimeSet()
+        fun wrongViewTimeSet(msg : String)
 
         //유저 게임 순서 셋팅
         fun setUserOrder()

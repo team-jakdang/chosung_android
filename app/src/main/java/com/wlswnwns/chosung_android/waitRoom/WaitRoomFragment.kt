@@ -14,13 +14,13 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.wlswnwns.chosung_android.ChosungApplication
+import com.wlswnwns.chosung_android.MainActivity
 import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.adapter.WaitRoomUserListAdapter
 import com.wlswnwns.chosung_android.item.User
-import com.wlswnwns.chosung_android.utils.OnBackPressedListener
 import kotlinx.android.synthetic.main.layout_wait_room.*
 
-class WaitRoomFragment : Fragment(), WaitRoomContract.View,OnBackPressedListener {
+class WaitRoomFragment : Fragment(), WaitRoomContract.View,MainActivity.OnBackPressedListener {
 
 
     override fun onBackPressed() {

@@ -107,9 +107,13 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View {
     override fun showChosungLogList(ChosungLog: ArrayList<Game>) {
 
 
+        var ChosungLogDummy : ArrayList<Game> = ChosungLog.clone() as ArrayList<Game>
+
+        ChosungLogDummy.reverse()
+
         HunminGameRoomChosungLogAdapter(
             requireContext(),
-            ChosungLog
+            ChosungLogDummy
         ).let {
             GameLogRecyclerView.adapter = it
         }
@@ -131,12 +135,12 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View {
     }
 
     //유저의 입력값이 오답일 때 보여주는 오답 뷰.
-    override fun wrongGameView() {
+    override fun wrongGameView(msg : String) {
         UserInputEditTextView?.let {
             UserInputEditTextView.isVisible = false //답 입력칸 숨기기
             WrongImageView.isVisible = true //오답 이미지(X) 보이기
             AnswerAndWrongTextView.isVisible = true
-            AnswerAndWrongTextView.setText("틀렸어요!")
+            AnswerAndWrongTextView.text =  msg
             AnswerAndWrongTextView.setTextColor(Color.RED)
         }.let { }
 
@@ -233,5 +237,12 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View {
             KungKungDdaGameFragmentDirections.actionKungKungDdaGameFragmentToKungKungDdaGameOverFragment(nickName)
         )
     }
+
+    override fun exitRoom() {
+        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
+            KungKungDdaGameFragmentDirections.actionKungKungDdaGameFragmentToMainFragment(ChosungApplication.nikname)
+        )
+    }
+
 
 }

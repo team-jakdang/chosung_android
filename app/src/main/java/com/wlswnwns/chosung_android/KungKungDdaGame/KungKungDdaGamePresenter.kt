@@ -137,11 +137,21 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
                                 OrderViewChange()
 
                             } else {
-                                wrongViewTimeSet()
+
+                                if(jsonObject.getInt("responseCode")==208){
+                                    wrongViewTimeSet("이미 나왔어요!")
+                                }else{
+                                    wrongViewTimeSet("틀렸어요!")
+                                }
+
+
                             }
-
-
+                        }else if(jsonObject.getString("strEvent").equals("THE_ROOM_IS_DESTROYED")){
+                            view.exitRoom()
                         }
+
+
+
                     } catch (e: IOException) {
                         e.printStackTrace()
                     } catch (e: JSONException) {
@@ -186,17 +196,10 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
     }
 
 
-    // 유저가 입력한 답이 '은채' 이면 성공뷰를 아니라면 실패뷰를 띄어준다. todo.추후 서버에서 받아온 성공 플래그로 수정해야함.
-    override fun checkUserInputTextIsAnswer() {
-        if (model.strUserInputEditText == "은채")
-            view.answerGameView()
-        else wrongViewTimeSet()
-    }
-
     //오답뷰가 유저에게 보여질 시간 지정
-    override fun wrongViewTimeSet() {
+    override fun wrongViewTimeSet(msg : String) {
         // 0.4초 뒤에 default 뷰 호출
-        view.wrongGameView()
+        view.wrongGameView(msg)
         Handler().postDelayed({
             view.defaultGameView()
         }, 400)
