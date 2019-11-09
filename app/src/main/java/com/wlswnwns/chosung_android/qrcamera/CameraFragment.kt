@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import com.wlswnwns.chosung_android.MainActivity
 import com.wlswnwns.chosung_android.R
@@ -21,7 +22,9 @@ import me.dm7.barcodescanner.zbar.Result
 
 class CameraFragment internal constructor() : Fragment(), CameraContract.View, MyZBarScannerView.ResultHandler,MainActivity.OnBackPressedListener {
     override fun onBackPressed() {
-
+        ((requireActivity().supportFragmentManager
+            .findFragmentById(R.id.fragment_container) as NavHostFragment)
+            .navController).popBackStack()
     }
 
 

@@ -44,10 +44,7 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
                     try {
                         if (jsonObject.getString("strEvent").equals("startKKT") || jsonObject.getString(
                                 "strEvent"
-                            ).equals("nextTurnKKT") ||jsonObject.getString(
-                                "strEvent"
-                            ).equals("OUT_GAME")
-                        ) {
+                            ).equals("nextTurnKKT")) {
 
                             view.showCountDownText(jsonObject.getInt("iCountDown").toString())
 
@@ -147,6 +144,47 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
                             }
                         }else if(jsonObject.getString("strEvent").equals("THE_ROOM_IS_DESTROYED")){
                             view.exitRoom()
+                            ChosungApplication.client?.disconnect()
+                        }else if(jsonObject.getString("strEvent").equals("OUT_GAME")){
+                            model.InitUserList(jsonObject.getJSONArray("arrUserInfo"))
+                                .let {
+
+                                    if (model.UserList.size < 3) {
+
+                                        if (model.UserList.size == 2) {
+                                            model.UserList.add(User().apply {
+                                                strUserName =
+                                                    model.UserList[0].strUserName
+                                                bIsActive = model.UserList[0].bIsActive
+                                                bIsMaster = model.UserList[0].bIsMaster
+                                                iOrder = 3
+                                            })
+
+                                            model.UserList.add(User().apply {
+                                                strUserName =
+                                                    model.UserList[1].strUserName
+                                                bIsActive = model.UserList[1].bIsActive
+                                                bIsMaster = model.UserList[1].bIsMaster
+                                                iOrder = 4
+                                            })
+                                        }
+                                    }
+                                    OrderViewChange()
+                                }
+
+
+                            var isNowTurnPlayerExist = false
+
+                            for(user in model.UserList){
+                                if(model.strNowTurnUserName.equals(user.strUserName)){
+                                    isNowTurnPlayerExist = true
+                                }
+                            }
+
+                            if (ChosungApplication.Player.bIsMaster && !isNowTurnPlayerExist) {
+                                ChosungApplication.nextTurnKKT()
+                            }
+
                         }
 
 
