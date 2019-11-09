@@ -47,6 +47,8 @@ class MainModel{
             room.iRoomId = result.getInt("iRoomId")
 
             ChosungApplication.Player.bIsMaster = true
+            ChosungApplication.Game.iChosungLenght = Game.iChosungLenght
+            ChosungApplication.Game.iTime = Game.iTime
 
             makeRoomListner.onSuccess()
          } else {
