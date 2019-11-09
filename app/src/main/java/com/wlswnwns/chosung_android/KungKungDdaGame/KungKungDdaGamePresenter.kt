@@ -44,7 +44,9 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
                     try {
                         if (jsonObject.getString("strEvent").equals("startKKT") || jsonObject.getString(
                                 "strEvent"
-                            ).equals("nextTurnKKT")
+                            ).equals("nextTurnKKT") ||jsonObject.getString(
+                                "strEvent"
+                            ).equals("OUT_GAME")
                         ) {
 
                             view.showCountDownText(jsonObject.getInt("iCountDown").toString())
@@ -108,9 +110,6 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
                             if (jsonObject.getBoolean("bTimeOver")) {
                                 view.MoveGameResult(model.strNowTurnUserName)
                             }
-
-
-
 
                         } else if (jsonObject.getString("strEvent").equals("checkAnswerKKT")) {
 

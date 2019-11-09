@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.wlswnwns.chosung_android.MainActivity
 import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.item.Game
 import com.wlswnwns.chosung_android.item.Room
@@ -18,8 +19,10 @@ import com.wlswnwns.chosung_android.qrcamera.View.MyZBarScannerView
 import kotlinx.android.synthetic.main.layout_qrcamera.*
 import me.dm7.barcodescanner.zbar.Result
 
-class CameraFragment internal constructor() : Fragment(), CameraContract.View, MyZBarScannerView.ResultHandler {
+class CameraFragment internal constructor() : Fragment(), CameraContract.View, MyZBarScannerView.ResultHandler,MainActivity.OnBackPressedListener {
+    override fun onBackPressed() {
 
+    }
 
 
     private val args: CameraFragmentArgs by navArgs()
