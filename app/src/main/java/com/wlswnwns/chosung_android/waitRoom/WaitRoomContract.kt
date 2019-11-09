@@ -42,6 +42,7 @@ interface WaitRoomContract{
 
         fun showPlayerNumber(number : String)
 
+        fun showKKTerror()
 
 
     }

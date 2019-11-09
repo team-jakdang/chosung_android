@@ -147,6 +147,7 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
                             view.exitRoom()
                             ChosungApplication.client?.disconnect()
                         }else if(jsonObject.getString("strEvent").equals("OUT_GAME")){
+
                             model.InitUserList(jsonObject.getJSONArray("arrUserInfo"))
                                 .let {
 
@@ -170,6 +171,7 @@ class KungKungDdaGamePresenter(view: KungKungDdaGameContract.View) :
                                             })
                                         }
                                     }
+                                    model.UserList.reverse()
                                     OrderViewChange()
                                 }
 

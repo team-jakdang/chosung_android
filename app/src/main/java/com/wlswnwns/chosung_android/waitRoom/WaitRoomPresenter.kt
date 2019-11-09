@@ -45,6 +45,7 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
 
         ChosungApplication.client?.clearListeners()
 
+
         ChosungApplication.SocketConnect(object : ChosungApplication.Companion.SocketConnectListner {
             override fun onDataReceived(jsonObject: JSONObject) {
                 try {
@@ -98,7 +99,14 @@ class WaitRoomPresenter(view: WaitRoomContract.View ) :
     }
 
     override fun onClickGameStartBtn() {
-        ChosungApplication.moveToGame()
+
+        if(model.Users?.size == 1 && model.Game.strMode.equals("kkt")){
+
+        }else{
+            ChosungApplication.moveToGame()
+        }
+
+
     }
 
     override fun onClickExitRoom() {
