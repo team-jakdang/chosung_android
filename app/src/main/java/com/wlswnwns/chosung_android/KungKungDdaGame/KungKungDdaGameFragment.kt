@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.wlswnwns.chosung_android.ChosungApplication
+import com.wlswnwns.chosung_android.MainActivity
 import com.wlswnwns.chosung_android.R
 import com.wlswnwns.chosung_android.adapter.HunminGameRoomChosungLogAdapter
 import com.wlswnwns.chosung_android.item.Game
@@ -30,7 +31,12 @@ import kotlinx.android.synthetic.main.layout_kungkungddagame.WrongImageView
  * 뷰에 일어날 이벤트를 구현한다.
  **/
 
-class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View {
+class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View, MainActivity.OnBackPressedListener {
+
+
+    override fun onBackPressed() {
+
+    }
 
 
     private val args: KungKungDdaGameFragmentArgs by navArgs()

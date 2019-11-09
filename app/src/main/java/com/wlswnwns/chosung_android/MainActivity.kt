@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             val childFragments = navHostFragment.childFragmentManager.fragments
             childFragments.forEach { fragment ->
                 if(fragment is OnBackPressedListener){
-                    (fragment as WaitRoomFragment).onBackPressed()
+                    (fragment as OnBackPressedListener).onBackPressed()
                 }
             }
         }

@@ -25,7 +25,6 @@ class WaitRoomFragment : Fragment(), WaitRoomContract.View,MainActivity.OnBackPr
 
     override fun onBackPressed() {
         presenter?.checkRoomOwner()
-        Log.e("뒤로가기 버튼 눌림","눌려야함 ㅜ")
     }
 
 
