@@ -7,6 +7,7 @@ interface KungKungDdaGameOverContract {
 
         fun viewInit()
         fun exitRoom()
+        fun restartGame()
 
     }
 
@@ -14,5 +15,7 @@ interface KungKungDdaGameOverContract {
         fun viewDidLoad()
 
         fun finishGame()
+
+        fun restartGame()
     }
 }

@@ -71,7 +71,7 @@ class KungKungDdaGameOverFragment : Fragment(), KungKungDdaGameOverContract.View
             }
 
         }
-
+        OneMoreGameBtnView.setOnClickListener { presenter?.restartGame() }
         GameEndBtnView.setOnClickListener { presenter?.finishGame() }
 
     }
@@ -81,6 +81,12 @@ class KungKungDdaGameOverFragment : Fragment(), KungKungDdaGameOverContract.View
             KungKungDdaGameOverFragmentDirections.actionKungKungDdaGameOverFragmentToMainFragment(ChosungApplication.nikname)
         )
     }
+    override fun restartGame() {
+        Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
+            KungKungDdaGameOverFragmentDirections.actionKungKungDdaGameOverFragmentToKungKungDdaGameFragment(args.room,args.game)
+        )
+    }
+
 
 
 }

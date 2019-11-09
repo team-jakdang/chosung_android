@@ -1,5 +1,6 @@
 package com.wlswnwns.chosung_android.KungKungDdaGameOver
 
+import android.util.Log
 import com.wlswnwns.chosung_android.ChosungApplication
 import com.wlswnwns.chosung_android.KungKungDdaGame.KungKungDdaGameModel
 import com.wlswnwns.chosung_android.item.Game
@@ -41,6 +42,8 @@ class KungKungDdaGameOverPresenter(view: KungKungDdaGameOverContract.View) :
                         } else if (jsonObject.getString("strEvent").equals("THE_ROOM_IS_DESTROYED")) {
                             view.exitRoom()
                             ChosungApplication.client?.disconnect()
+                        }else if (jsonObject.getString("strEvent") == "moveToGame") {
+                            view.restartGame()
                         }
 
 
@@ -59,6 +62,11 @@ class KungKungDdaGameOverPresenter(view: KungKungDdaGameOverContract.View) :
             }
         })
     }
+
+    override fun restartGame() {
+        ChosungApplication.moveToGame()
+    }
+
 
     override fun finishGame() {
         view.exitRoom()

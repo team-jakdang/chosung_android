@@ -240,7 +240,7 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View, MainAc
 
     override fun MoveGameResult(nickName : String) {
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            KungKungDdaGameFragmentDirections.actionKungKungDdaGameFragmentToKungKungDdaGameOverFragment(nickName)
+            KungKungDdaGameFragmentDirections.actionKungKungDdaGameFragmentToKungKungDdaGameOverFragment(nickName,args.game,args.room)
         )
     }
 
