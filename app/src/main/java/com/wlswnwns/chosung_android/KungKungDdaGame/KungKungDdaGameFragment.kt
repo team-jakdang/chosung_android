@@ -76,7 +76,9 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View, MainAc
         //
 
 
-        UserInputEditTextView.addTextChangedListener(object : TextWatcher {
+      
+
+        UserInputEditTextView?.addTextChangedListener(object : TextWatcher {
 
             // 유저가 입력한 텍스트가 변경되면
             override fun afterTextChanged(p0: Editable?) {
@@ -98,7 +100,7 @@ class KungKungDdaGameFragment : Fragment(), KungKungDdaGameContract.View, MainAc
 
 
         // 유저가 키보드에 있는 완료 버튼을 누르면 답이 맞는지 체크하는 'presenter'의  checkUserInputTextIsAnswer() 호출
-        UserInputEditTextView.setOnEditorActionListener { v, actionId, event ->
+        UserInputEditTextView?.setOnEditorActionListener { v, actionId, event ->
             presenter?.checkAnswerKKT()
 
             UserInputEditTextView.setText("")
