@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import android.widget.FrameLayout
+import androidx.navigation.fragment.NavHostFragment
 import com.android.example.cameraxbasic.utils.FLAGS_FULLSCREEN
-import com.wlswnwns.chosung_android.utils.OnBackPressedListener
 import com.wlswnwns.chosung_android.waitRoom.WaitRoomFragment
 
 
@@ -39,21 +39,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-         super.onBackPressed()
-//        val fragmentList = supportFragmentManager.fragments
-//
-//        Log.e(" 이거눌림???", "이거이거")
-//
-//        fragmentList?.let {
-//            for (fragment in it) {
-//                if(fragment is OnBackPressedListener){
-//                    (fragment as OnBackPressedListener).onBackPressed()
-//                }
-//            }
-//        }.let {
-//
-//        }
+        // super.onBackPressed()
 
+        val navHostFragment = supportFragmentManager.fragments.first() as? NavHostFragment
+        if(navHostFragment != null) {
+            val childFragments = navHostFragment.childFragmentManager.fragments
+            childFragments.forEach { fragment ->
+                if(fragment is OnBackPressedListener){
+                    (fragment as WaitRoomFragment).onBackPressed()
+                }
+            }
+        }
+
+
+    }
+
+    public interface OnBackPressedListener{
+        fun onBackPressed()
     }
 
 
