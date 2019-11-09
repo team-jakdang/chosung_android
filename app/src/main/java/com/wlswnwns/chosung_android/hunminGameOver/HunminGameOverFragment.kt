@@ -24,11 +24,11 @@ import org.json.JSONException
 class HunminGameOverFragment : Fragment(), HunminGameOverContract.View {
 
 
-    private val args : HunminGameOverFragmentArgs by navArgs()
+    private val args: HunminGameOverFragmentArgs by navArgs()
 
     var presenter: HunminGameOverContract.Presenter? = null
 
-    override fun onCreateView( 
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -47,14 +47,13 @@ class HunminGameOverFragment : Fragment(), HunminGameOverContract.View {
     override fun viewInit() {
 
         TitleTextView.setText(requireActivity().resources.getString(R.string.game_over_hunmin_title))
-        OneMoreGameBtnView.setOnClickListener{presenter?.onClickGameReStartBtn()}
-        GameEndBtnView.setOnClickListener{ moveMainFragment()}
-
+        OneMoreGameBtnView.setOnClickListener { presenter?.onClickGameReStartBtn() }
+        GameEndBtnView.setOnClickListener { presenter?.onClickGameQuiteBtn()}
 
 
     }
 
-    override fun showResult(gameResult : ArrayList<Game>) {
+    override fun showResult(gameResult: ArrayList<Game>) {
         HunminGameOverRoomResultAdapter(
             requireContext(),
             presenter!!,
@@ -62,9 +61,9 @@ class HunminGameOverFragment : Fragment(), HunminGameOverContract.View {
         ).let {
             Log.e("showResult", "방장 ${ChosungApplication.Player.bIsMaster}")
             gameResultRecyclerView.adapter = it
-            if (ChosungApplication.Player.bIsMaster){
+            if (ChosungApplication.Player.bIsMaster) {
                 OneMoreGameBtnView.visibility = View.VISIBLE
-            }else{
+            } else {
                 OneMoreGameBtnView.visibility = View.GONE
             }
         }
@@ -74,17 +73,20 @@ class HunminGameOverFragment : Fragment(), HunminGameOverContract.View {
 
         Log.e("ff", "ff1")
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            HunminGameOverFragmentDirections.actionHunminGameOverFragmentToHunminGameFragment(2,10, false)
+            HunminGameOverFragmentDirections.actionHunminGameOverFragmentToHunminGameFragment(
+                2,
+                10,
+                false
+            )
         )
     }
 
-    override fun moveMainFragment() {
+    override fun exitRoom() {
         Log.e("ff", "ff2")
 
         Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-            HunminGameOverFragmentDirections.actionHunminGameOverFragmentToWaitRoomFragment("은채",
-                Room(), Game()
-            )
+            HunminGameOverFragmentDirections.actionHunminGameOverFragmentToMainFragment(ChosungApplication.nikname)
 
-        )    }
+        )
+    }
 }

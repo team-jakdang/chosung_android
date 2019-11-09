@@ -108,8 +108,8 @@
             android:name="com.wlswnwns.chosung_android.hunminGameOver.HunminGameOverFragment"
             android:label="HunminGameOverFragment">
         <action
-                android:id="@+id/action_hunminGameOverFragment_to_waitRoomFragment"
-                app:destination="@id/waitRoomFragment" />
+                android:id="@+id/action_hunminGameOverFragment_to_mainFragment"
+                app:destination="@id/mainFragment" />
         <action
                 android:id="@+id/action_hunminGameOverFragment_to_hunminGameFragment"
                 app:destination="@id/hunminGameFragment" />

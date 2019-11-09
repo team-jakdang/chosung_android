@@ -11,10 +11,8 @@ import org.json.JSONObject
 import org.json.JSONArray
 
 
-
-class HunminGameOverPresenter(view: HunminGameOverContract.View) : HunminGameOverContract.Presenter {
-
-
+class HunminGameOverPresenter(view: HunminGameOverContract.View) :
+    HunminGameOverContract.Presenter {
 
 
     var view: HunminGameOverContract.View
@@ -26,7 +24,6 @@ class HunminGameOverPresenter(view: HunminGameOverContract.View) : HunminGameOve
         this.view = view
         this.model = HunminGameOverModel()
     }
-
 
 
     override fun viewDidLoad(context: Context) {
@@ -42,19 +39,25 @@ class HunminGameOverPresenter(view: HunminGameOverContract.View) : HunminGameOve
                 Log.e("메세지===>", text)
                 JSONObject(text)
                 val action = Runnable {
-                    Log.e("Game OVer Presenter", "onDataReceived"+JSONObject(text).getString("strEvent"))
+                    Log.e(
+                        "Game OVer Presenter",
+                        "onDataReceived" + JSONObject(text).getString("strEvent")
+                    )
                     if (JSONObject(text).getString("strEvent") == "moveToGame") {
                         try {
                             Log.e("strEvent moveToGame", text)
                             view.moveHunminGameFragment()
-                        }catch (e:JSONException){
+                        } catch (e: JSONException) {
                             e.printStackTrace()
                         }
 
-                    }else if (JSONObject(text).getString("strEvent") == "THE_ROOM_IS_DESTROYED") {
+                    } else if (JSONObject(text).getString("strEvent") == "EXIT_ROOM" ||
+                        JSONObject(text).getString("strEvent") == "THE_ROOM_IS_DESTROYED"
+                    ) {
 
-                        //방장이 방 파괴
 
+                        view.exitRoom()
+                        ChosungApplication.client?.disconnect()
                     }
                 }
 
@@ -63,9 +66,10 @@ class HunminGameOverPresenter(view: HunminGameOverContract.View) : HunminGameOve
         })
 
     }
+
     override fun setResult(resultArr: String) {
-        Log.e("setResult ?" ,"" + resultArr)
-        if(resultArr !== "[]"){
+        Log.e("setResult ?", "" + resultArr)
+        if (resultArr !== "[]") {
             val gameResult: JSONArray
 
             try {
@@ -82,5 +86,10 @@ class HunminGameOverPresenter(view: HunminGameOverContract.View) : HunminGameOve
         ChosungApplication.moveToGame()
     }
 
+    override fun onClickGameQuiteBtn() {
+        ChosungApplication.exitRoom(ChosungApplication.roomId)
+        view.exitRoom()
+        ChosungApplication.client?.disconnect()
+    }
 
 }
