@@ -78,7 +78,7 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
                             Log.e("arrResultInfo" , resultList.toString())
                             model.ResultArr = resultList.toString()
                             if(JSONObject(text).getInt("iLeftTime") == 0) {
-
+                                Log.e("Presenter","call moveHunminGameOverFragment")
                                 view.moveHunminGameOverFragment(model.ResultArr)
                             }
 
@@ -90,7 +90,8 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
                     }else if (JSONObject(text).getString("strEvent") == "checkAnswerHMJE") {
                         Log.e("checkAnswerHMJE", JSONObject(text).getString("strMessage"))
                         model.Game.bIsAnswer = JSONObject(text).getBoolean("bIsAnswer")
-                        checkUserInputTextIsAnswer(JSONObject(text).getBoolean("bIsAnswer"))
+                        model.Game.strUserName = JSONObject(text).getString("strNickname")
+                        checkUserInputTextIsAnswer()
                     }else if (JSONObject(text).getString("strEvent") == "THE_ROOM_IS_DESTROYED") {
 
                         //방장이 방 파괴
@@ -162,7 +163,9 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
 
 
     override fun gameStartTimeSendToServer() {
-        ChosungApplication.startHMJEGameTimeCheck() // 타임체크 소켓 연결
+        if (ChosungApplication.Player.bIsMaster){
+            ChosungApplication.startHMJEGameTimeCheck() // 타임체크 소켓 연결
+        }
 
 //        // 게임이 오버되었다면 순위 발표 페이지로 넘어가기 (서버에서 리턴값으로 주는 arrResultInfo 넘겨줘야함)
 //        if (model.Game.bTimeOver) {
@@ -198,19 +201,20 @@ class HunminGamePresenter(view: HunminGameContract.View) : HunminGameContract.Pr
     }
 
 
-    override fun checkUserInputTextIsAnswer(isAnswer : Boolean) {
+    override fun checkUserInputTextIsAnswer() {
 
 
         // 유저가 입력한 답이 정답이라면 성공뷰를 띄워주고
-        if(model.Game.bIsAnswer){
-            view.answerGameView()
+        if (model.Game.strUserName==ChosungApplication.Player.strUserName){
+            if(model.Game.bIsAnswer){
+                view.answerGameView()
 
+            }
+            // 아니라면 실패 뷰를 띄어준다.
+            else{
+                wrongViewTimeSet()
+            }
         }
-        // 아니라면 실패 뷰를 띄어준다.
-        else{
-            wrongViewTimeSet()
-        }
-
 //        if (model.strUserInputEditText == model.Game.strInitialWord) view.answerGameView() else wrongViewTimeSet()
 
     }

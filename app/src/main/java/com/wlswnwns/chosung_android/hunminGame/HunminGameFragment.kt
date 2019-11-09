@@ -161,11 +161,10 @@ class HunminGameFragment : Fragment(), HunminGameContract.View {
 
 
     override fun timeProgressBarActive(iSetTime: Int, iLeftTime: Int) {
-        println("rusultArr :: " + iSetTime)
-        Log.e("iSetTime :: timeProgressBarActive", ""+iSetTime)
-        Log.e("iLeftTime :: timeProgressBarActive", ""+iLeftTime)
-        TimerProgressBar.max = iSetTime
-        TimerProgressBar.setProgress(iLeftTime, true)
+        Log.e("Fragment iSetTime :: ", "timeProgressBarActive- $iSetTime")
+        Log.e("Fragment iLeftTime :: ", "timeProgressBarActive- $iLeftTime")
+        TimerProgressBar?.max = iSetTime
+        TimerProgressBar?.setProgress(iLeftTime, true)
 
 
     }
